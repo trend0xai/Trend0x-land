@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.png"><title>Trend0x — Cognitive AI Trading System</title><meta name="description" content="Cognitive AI for High-Precision Crypto Trading"><meta name="keywords" content="crypto, trading, ai, cognitive, finance, blockchain, dex, cex"><meta name="author" content="Trend0x"><meta property="og:title" content="Trend0x — Cognitive AI Trading System"><meta property="og:description" content="Cognitive AI for High-Precision Crypto Trading"><meta property="og:type" content="website"><meta property="og:url" content="https://trend0x.com"><meta property="og:image" content="https://trend0x.com/og-image.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Trend0x — Cognitive AI Trading System"><meta name="twitter:description" content="Cognitive AI for High-Precision Crypto Trading"><meta name="twitter:creator" content="@trend0x"><meta name="twitter:site" content="@trend0x"><meta name="twitter:image" content="https://trend0x.com/og-image.png"><meta name="theme-color" content="#0D0B16"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/index.zALbbT_3.css"></head> <body> <header> <div class="header-container"> <div class="flex-center gap-10"> <button type="button" class="m-open" aria-label="Open navigation menu"> <img src="/_astro/m-open.BPhWHwmm.svg" alt="" width="50" height="50" aria-hidden="true"> </button> <a href="/" class="flex" aria-label="Go to homepage"> <img src="/_astro/logo.BJBpI98g.svg" alt="Trade0x" width="167" height="40" class="x-hide"> <img src="/_astro/x-logo.BgsesvHY.svg" alt="Trade0x" width="40" height="40" class="x-show"> </a> </div> <nav> <ul> <li> <a href="/#performance-risk" class="header-link">Performance & Risk</a> </li> <li> <a href="/#aura-os" class="header-link">About AURA OS</a> </li> <li> <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer" class="header-link">
+Docs
+</a> </li> </ul> </nav> <div class="flex j-end"> <a href="https://app.hyperliquid.xyz/vaults/0x1136d279f8c191109e30464e12e8a31f3bd9071a" target="_blank" rel="noopener noreferrer" class="button button-primary"> <span class="x-hide">Open on</span> Hyperliquid
+</a> </div> </div> </header> <div class="tOx-x-menu" id="mobile-menu" hidden aria-hidden="true" inert role="dialog" aria-modal="true"> <div class="tOx-x-menu__container"> <div class="header-container"> <div class="flex-center gap-10"> <button type="button" class="m-close" aria-label="Close navigation menu"> <img src="/_astro/m-close.CNManjrG.svg" alt="" width="50" height="50" aria-hidden="true"> </button> <img src="/_astro/x-logo.BgsesvHY.svg" alt="Trade0x" width="40" height="40" class="x-show"> </div> <div class="flex j-end"> <a href="https://app.hyperliquid.xyz/vaults/0x1136d279f8c191109e30464e12e8a31f3bd9071a" target="_blank" rel="noopener noreferrer" class="button button-primary"> <span class="x-hide">Open on</span> Hyperliquid
+</a> </div> </div> <ul class="column"> <li> <a href="/#performance-risk" class="header-link">Performance & Risk</a> </li> <li> <a href="/#aura-os" class="header-link">About AURA OS</a> </li> <li> <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer" class="header-link">Docs</a> </li> </ul> <div></div> </div> </div> <script type="module">
+	if (typeof window !== "undefined") {
+		const menu = document.querySelector(".tOx-x-menu");
+		const openTrigger = document.querySelector(".m-open");
+		const closeTrigger = document.querySelector(".tOx-x-menu .m-close");
+		const focusableSelectors =
+			'a[href], button:not([disabled]), [tabindex="0"]';
+		let lastFocused = null;
+
+		if (openTrigger) {
+			openTrigger.setAttribute("aria-controls", "mobile-menu");
+			openTrigger.setAttribute("aria-expanded", "false");
+		}
+
+		const setInertState = (isOpen) => {
+			if (!menu) return;
+			if (isOpen) {
+				menu.removeAttribute("hidden");
+				menu.removeAttribute("inert");
+				menu.removeAttribute("aria-hidden");
+			} else {
+				menu.setAttribute("hidden", "");
+				menu.setAttribute("inert", "");
+				menu.setAttribute("aria-hidden", "true");
+			}
+		};
+
+		const toggleMenu = (isOpen) => {
+			if (!menu) return;
+			setInertState(isOpen);
+			menu.classList.toggle("open", isOpen);
+			document.body.classList.toggle("no-scroll", isOpen);
+			openTrigger?.setAttribute("aria-expanded", String(isOpen));
+
+			if (isOpen) {
+				lastFocused =
+					document.activeElement instanceof HTMLElement
+						? document.activeElement
+						: null;
+				const firstFocusable = menu.querySelector(focusableSelectors);
+				if (firstFocusable instanceof HTMLElement) {
+					firstFocusable.focus();
+				}
+			} else if (lastFocused) {
+				lastFocused.focus();
+				lastFocused = null;
+			}
+		};
+
+		openTrigger?.addEventListener("click", (event) => {
+			event.preventDefault();
+			toggleMenu(true);
+		});
+
+		closeTrigger?.addEventListener("click", (event) => {
+			event.preventDefault();
+			toggleMenu(false);
+		});
+
+		menu?.addEventListener("click", (event) => {
+			if (event.target === menu) {
+				toggleMenu(false);
+			}
+		});
+
+		window.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && menu?.classList.contains("open")) {
+				toggleMenu(false);
+			}
+		});
+
+		document.addEventListener("astro:after-swap", () => toggleMenu(false));
+	}
+</script> <script type="module">
+	const menu = document.querySelector(".tOx-x-menu");
+	const openTrigger = document.querySelector(".m-open");
+	const closeTrigger = document.querySelector(".tOx-x-menu .m-close");
+
+	const toggleMenu = (isOpen) => {
+		if (!menu) return;
+		menu.classList.toggle("open", isOpen);
+		document.body.classList.toggle("no-scroll", isOpen);
+	};
+
+	openTrigger?.addEventListener("click", (event) => {
+		event.preventDefault();
+		toggleMenu(true);
+	});
+
+	closeTrigger?.addEventListener("click", (event) => {
+		event.preventDefault();
+		toggleMenu(false);
+	});
+
+	menu?.addEventListener("click", (event) => {
+		if (event.target === menu) {
+			toggleMenu(false);
+		}
+	});
+
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && menu?.classList.contains("open")) {
+			toggleMenu(false);
+		}
+	});
+
+	document.addEventListener("astro:after-swap", () => toggleMenu(false));
+</script>  <main class="information-page"> <div class="default-container info-bar"> <div class="info-header"> <span class="f-20 w-700">Risk Disclosure</span> </div> <div class="info-content"> <p class="title">
+Trading digital assets involves financial risk due to market
+					volatility, liquidity conditions, and changing market regimes.
+</p> <p class="text">
+Trend0x applies automated risk management mechanisms, including
+					exposure limits and adaptive execution logic. These measures are
+					designed to reduce risk, but do not eliminate the possibility of
+					losses.
+</p> <p class="text">
+Trend0x does not guarantee profitability or performance. Past results
+					are not indicative of future outcomes.
+</p> <p class="text">
+Trend0x is a non-custodial execution and copy trading infrastructure.
+</p> <p class="title mb-0">Trend0x:</p> <p class="text">
+• does not custody user funds, <br>
+• does not pool or manage capital, <br>
+• does not act as a broker, fund, or investment advisor.
+</p> <p class="text">
+All trading activity is executed directly on third-party exchanges
+					selected by the user. Trend0x has no access to user balances or
+					withdrawal permissions.
+</p> <p class="text">
+Users remain fully responsible for their capital, strategy selection,
+					and risk exposure.
+</p> <p class="text">
+Information provided by Trend0x is for informational and execution
+					purposes only and does not constitute financial, legal, or investment
+					advice.
+</p> <p class="text">
+Users should assess their own risk tolerance and conduct independent
+					due diligence before engaging in trading activities.
+</p> <p class="text">
+Execution outcomes may vary due to exchange mechanics, liquidity,
+					latency, and account-specific factors. Trend0x is not responsible for
+					execution differences caused by third-party platforms.
+</p> <p class="text">
+By using Trend0x, users acknowledge and accept the risks associated
+					with digital asset trading, including the possibility of losses
+					despite applied risk controls.
+</p> </div> </div> </main>  <footer> <div class="footer-container"> <div class="flex column gap-30"> <img src="/_astro/logo.BJBpI98g.svg" alt="Trade0x" width="167" height="40"> <p class="f-14 w-300 color-light_03">
+Autonomous trading intelligence <br class="x-hide"> for disciplined execution
+</p> </div> <div class="flex column gap-45"> <nav> <ul> <li> <a href="/#performance-risk" class="header-link">Performance & Risk</a> </li> <li> <a href="/#aura-os" class="header-link">About AURA OS</a> </li> <li> <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer" class="header-link">
+Docs
+</a> </li> </ul> </nav> <div class="flex j-end gap-30"> <a href="https://t.me/trend0x" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-telegram"></i> </a> <a href="https://x.com/Trend0x_com" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-x"></i> </a> <a href="https://www.linkedin.com/company/trend0x" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-linkedin"></i> </a> <a href="https://medium.com/@trend0x.ai" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-medium"></i> </a> </div> </div> </div> <div class="footer-rights text-x-center"> <span class="color-light_03">
+© 2026 TRENDOX. Cognitive AI Trading System.
+</span> <nav> <ul> <li> <a href="/risk-disclaimer" class="header-link">Risk Disclaimer</a> </li> </ul> </nav> </div> </footer> <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.32/build/spline-viewer.js"></script> </body> </html>

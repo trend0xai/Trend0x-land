@@ -1,0 +1,886 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.png"><title>Trend0x — Cognitive AI Trading System</title><meta name="description" content="Cognitive AI for High-Precision Crypto Trading"><meta name="keywords" content="crypto, trading, ai, cognitive, finance, blockchain, dex, cex"><meta name="author" content="Trend0x"><meta property="og:title" content="Trend0x — Cognitive AI Trading System"><meta property="og:description" content="Cognitive AI for High-Precision Crypto Trading"><meta property="og:type" content="website"><meta property="og:url" content="https://trend0x.com"><meta property="og:image" content="https://trend0x.com/og-image.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Trend0x — Cognitive AI Trading System"><meta name="twitter:description" content="Cognitive AI for High-Precision Crypto Trading"><meta name="twitter:creator" content="@trend0x"><meta name="twitter:site" content="@trend0x"><meta name="twitter:image" content="https://trend0x.com/og-image.png"><meta name="theme-color" content="#0D0B16"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/index.zALbbT_3.css"></head> <body> <header> <div class="header-container"> <div class="flex-center gap-10"> <button type="button" class="m-open" aria-label="Open navigation menu"> <img src="/_astro/m-open.BPhWHwmm.svg" alt="" width="50" height="50" aria-hidden="true"> </button> <a href="/" class="flex" aria-label="Go to homepage"> <img src="/_astro/logo.BJBpI98g.svg" alt="Trade0x" width="167" height="40" class="x-hide"> <img src="/_astro/x-logo.BgsesvHY.svg" alt="Trade0x" width="40" height="40" class="x-show"> </a> </div> <nav> <ul> <li> <a href="/#performance-risk" class="header-link">Performance & Risk</a> </li> <li> <a href="/#aura-os" class="header-link">About AURA OS</a> </li> <li> <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer" class="header-link">
+Docs
+</a> </li> </ul> </nav> <div class="flex j-end"> <a href="https://app.hyperliquid.xyz/vaults/0x1136d279f8c191109e30464e12e8a31f3bd9071a" target="_blank" rel="noopener noreferrer" class="button button-primary"> <span class="x-hide">Open on</span> Hyperliquid
+</a> </div> </div> </header> <div class="tOx-x-menu" id="mobile-menu" hidden aria-hidden="true" inert role="dialog" aria-modal="true"> <div class="tOx-x-menu__container"> <div class="header-container"> <div class="flex-center gap-10"> <button type="button" class="m-close" aria-label="Close navigation menu"> <img src="/_astro/m-close.CNManjrG.svg" alt="" width="50" height="50" aria-hidden="true"> </button> <img src="/_astro/x-logo.BgsesvHY.svg" alt="Trade0x" width="40" height="40" class="x-show"> </div> <div class="flex j-end"> <a href="https://app.hyperliquid.xyz/vaults/0x1136d279f8c191109e30464e12e8a31f3bd9071a" target="_blank" rel="noopener noreferrer" class="button button-primary"> <span class="x-hide">Open on</span> Hyperliquid
+</a> </div> </div> <ul class="column"> <li> <a href="/#performance-risk" class="header-link">Performance & Risk</a> </li> <li> <a href="/#aura-os" class="header-link">About AURA OS</a> </li> <li> <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer" class="header-link">Docs</a> </li> </ul> <div></div> </div> </div> <script type="module">
+	if (typeof window !== "undefined") {
+		const menu = document.querySelector(".tOx-x-menu");
+		const openTrigger = document.querySelector(".m-open");
+		const closeTrigger = document.querySelector(".tOx-x-menu .m-close");
+		const focusableSelectors =
+			'a[href], button:not([disabled]), [tabindex="0"]';
+		let lastFocused = null;
+
+		if (openTrigger) {
+			openTrigger.setAttribute("aria-controls", "mobile-menu");
+			openTrigger.setAttribute("aria-expanded", "false");
+		}
+
+		const setInertState = (isOpen) => {
+			if (!menu) return;
+			if (isOpen) {
+				menu.removeAttribute("hidden");
+				menu.removeAttribute("inert");
+				menu.removeAttribute("aria-hidden");
+			} else {
+				menu.setAttribute("hidden", "");
+				menu.setAttribute("inert", "");
+				menu.setAttribute("aria-hidden", "true");
+			}
+		};
+
+		const toggleMenu = (isOpen) => {
+			if (!menu) return;
+			setInertState(isOpen);
+			menu.classList.toggle("open", isOpen);
+			document.body.classList.toggle("no-scroll", isOpen);
+			openTrigger?.setAttribute("aria-expanded", String(isOpen));
+
+			if (isOpen) {
+				lastFocused =
+					document.activeElement instanceof HTMLElement
+						? document.activeElement
+						: null;
+				const firstFocusable = menu.querySelector(focusableSelectors);
+				if (firstFocusable instanceof HTMLElement) {
+					firstFocusable.focus();
+				}
+			} else if (lastFocused) {
+				lastFocused.focus();
+				lastFocused = null;
+			}
+		};
+
+		openTrigger?.addEventListener("click", (event) => {
+			event.preventDefault();
+			toggleMenu(true);
+		});
+
+		closeTrigger?.addEventListener("click", (event) => {
+			event.preventDefault();
+			toggleMenu(false);
+		});
+
+		menu?.addEventListener("click", (event) => {
+			if (event.target === menu) {
+				toggleMenu(false);
+			}
+		});
+
+		window.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && menu?.classList.contains("open")) {
+				toggleMenu(false);
+			}
+		});
+
+		document.addEventListener("astro:after-swap", () => toggleMenu(false));
+	}
+</script> <script type="module">
+	const menu = document.querySelector(".tOx-x-menu");
+	const openTrigger = document.querySelector(".m-open");
+	const closeTrigger = document.querySelector(".tOx-x-menu .m-close");
+
+	const toggleMenu = (isOpen) => {
+		if (!menu) return;
+		menu.classList.toggle("open", isOpen);
+		document.body.classList.toggle("no-scroll", isOpen);
+	};
+
+	openTrigger?.addEventListener("click", (event) => {
+		event.preventDefault();
+		toggleMenu(true);
+	});
+
+	closeTrigger?.addEventListener("click", (event) => {
+		event.preventDefault();
+		toggleMenu(false);
+	});
+
+	menu?.addEventListener("click", (event) => {
+		if (event.target === menu) {
+			toggleMenu(false);
+		}
+	});
+
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && menu?.classList.contains("open")) {
+			toggleMenu(false);
+		}
+	});
+
+	document.addEventListener("astro:after-swap", () => toggleMenu(false));
+</script>  <main> <section class="tOx-hero"> <div class="tOx-hero__background"></div> <div class="container tOx-hero__container"> <div class="tOx-hero__content flex column gap-20 gap-x-10"> <div class="badge badge-green ibm">AUTONOMOUS TRADING INTELLIGENCE</div> <h1 class="f-60 f-x-30 w-900 tOx-color">
+Cognitive AI for High-Precision <br class="x-hide"> On-Chain Trading
+</h1> <p class="f-20 f-x-18 w-600 color-light_08 mb-10">
+Allocate capital to AI-managed strategies with full transparency and
+				risk control
+</p> <div class="flex column gap-10 mb-20"> <div class="flex a-center gap-10"> <div class="circle flex-center"> <i class="icon-wallet"></i> </div> <span class="f-20 w-400 color-light_08">Non-custodial capital</span> </div> <div class="flex a-center gap-10"> <div class="circle flex-center"> <i class="icon-chip"></i> </div> <span class="f-20 w-400 color-light_08">Autonomous execution</span> </div> <div class="flex a-center gap-10"> <div class="circle flex-center"> <i class="icon-protection"></i> </div> <span class="f-20 w-400 color-light_08">
+Exchange-verified performance data
+</span> </div> </div> <div class="flex mb-10"> <a href="https://app.hyperliquid.xyz/vaults/0x1136d279f8c191109e30464e12e8a31f3bd9071a" target="_blank" rel="noopener noreferrer" class="button button-arrow w-x-100">
+Follow Strategy on Hyperliquid
+<div class="flex-center"> <i class="icon-arrow"></i> </div> </a> </div> <div class="flex a-center gap-20 x-column gap-x-10"> <span class="f-16 w-400 color-light_06">Exchange-sourced data</span> <div class="lil-line"></div> <span class="f-16 w-400 color-light_06">Execution-first design</span> <div class="lil-line"></div> <span class="f-16 w-400 color-light_06">Transparent reporting</span> </div> </div> <div class="tOx-hero__illustration"> <div class="tOx-hero__illustration-blur"></div> <div class="tOx-hero__illustration-image"> <spline-viewer url="https://prod.spline.design/MlQWc3hEFGLInLEL/scene.splinecode"></spline-viewer> </div> <div class="tOx-hero_state state-green"> <div class="dots d-t"></div> <div class="dots d-b"></div>
+LIVE
+</div> <div class="tOx-hero_state state-purple"> <div class="dots d-t"></div> <div class="dots d-b"></div>
+EXECUTING
+</div> <div class="tOx-hero_state state-orange"> <div class="dots d-t"></div> <div class="dots d-b"></div>
+RISK GOVERNOR
+</div> <div class="tOx-hero_state state-blue"> <div class="dots d-t"></div> <div class="dots d-b"></div>
+VERIFIED DATA
+</div> <div class="tOx-hash th-1">xvd034m6nvsb9n4</div> <div class="tOx-hash th-2">xvd034m6nvsb9n4</div> <div class="tOx-hash th-3">xvd034m6n</div> <div class="tOx-hash th-4">xvd034m6nfjn32vsb9n4</div> <div class="tOx-hash th-5">xvd034m6n</div> </div> </div> </section> <section class="tOx-benefits"> <div class="tOx-benefits_arrow"></div> <div class="tOx-benefits__container"> <div class="tOx-benefits__conveyor"> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">Risk governance</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Verifiable performance
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Executed on Hyperliquid
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Non-custodial design
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Real-time visibility
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">Risk governance</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Verifiable performance
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Executed on Hyperliquid
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Non-custodial design
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">
+Real-time visibility
+</span> <div class="tOx-b-circle"></div> <span class="f-18 w-500 uppercase tOx-color_green">Risk governance</span> </div> </div> </section> <section class="tOx-performance"> <div class="tOx-performance__container"> <div class="flex-center gap-10 mb-10"> <div class="circle circle-green"></div> <span class="f-20 w-700 uppercase tOx-color_green">In real time</span> </div> <h2 class="f-60 f-x-30 w-900 text-center">Live performance</h2> <p class="f-20 w-400 color-blue text-center mb-20">(Coming Soon)</p> <p class="f-20 w-400 text-center max-680 mb-50">
+Watch positions, exposure, and system state as the engine executes. <br class="x-hide"> No marketing charts. Only operational data and transparent reporting.
+</p> <div class="performance-image"> <div class="performance-info flex-center x-column gap-10"> <div class="performance-info_bar flex-center gap-20"> <i class="icon-equity"></i> <span class="f-18 w-700">Equity curve</span> </div> <div class="performance-info_bar flex-center gap-20"> <i class="icon-exposure"></i> <span class="f-18 w-700">Exposure by asset</span> </div> <div class="performance-info_bar flex-center gap-20"> <i class="icon-positions"></i> <span class="f-18 w-700">Open positions</span> </div> <div class="performance-info_bar flex-center gap-20"> <i class="icon-risk"></i> <span class="f-18 w-700">Risk metrics</span> </div> <div class="performance-info_bar flex-center gap-20"> <i class="icon-status"></i> <span class="f-18 w-700">System status</span> </div> </div> </div> </div> </section> <section class="tOx-risk" id="performance-risk"> <div class="container"> <h2 class="f-60 f-x-30 w-900 text-center">Performance & Risk</h2> <p class="f-17 w-400 text-center mb-70">
+This system is designed to stay alive through bad markets
+</p> <div class="grid col-2 gap-20 mb-50"> <div class="tOx-risk_progression"> <div class="tOx-risk_progression__c"> <p class="f-24 w-600 mb-10">Equity progression over time</p> <p class="f-15 w-400 color-light_07 mb-30">
+Backtested logic transitioning into live execution.<br class="x-hide"> No curve fitting. No spike chasing.
+</p> <div class="risk-progression__chart mb-30"></div> <span class="f-15 w-400 color-light_07">
+Backtest → Live execution | Shape matters more than spikes.
+</span> </div> </div> <div class="flex column gap-4"> <div class="tOx-risk_bar flex column gap-20"> <div class="flex a-center gap-25 gap-x-10"> <div class="risk-bar_icon"> <i class="icon-risk_away"></i> </div> <span class="f-22 w-600">Risk always on</span> </div> <span class="f-15 w-400 color-light_08 pl-10">
+Risk limits are enforced even when signals look tempting
+</span> </div> <div class="tOx-risk_bar flex column gap-20"> <div class="flex a-center gap-25 gap-x-10"> <div class="risk-bar_icon"> <i class="icon-drawdown"></i> </div> <span class="f-22 w-600">Drawdown Control</span> </div> <span class="f-15 w-400 color-light_08 pl-10">
+System operates within predefined risk limits across market regimes
+</span> </div> <div class="tOx-risk_bar flex column gap-20"> <div class="flex a-center gap-25 gap-x-10"> <div class="risk-bar_icon"> <i class="icon-execution"></i> </div> <span class="f-22 w-600">Execution Consistency</span> </div> <span class="f-15 w-400 color-light_08 pl-10">
+Orders are executed autonomously with stable behavior across
+						conditions
+</span> </div> <div class="tOx-risk_bar flex column gap-20"> <div class="flex a-center gap-25 gap-x-10"> <div class="risk-bar_icon"> <i class="icon-sizing"></i> </div> <span class="f-22 w-600">Position sizing logic</span> </div> <span class="f-15 w-400 color-light_08 pl-10">
+The system increases or reduces exposure depending on market
+						conditions
+</span> </div> </div> </div> <p class="f-20 w-700 text-center mb-10">
+Designed for survival — not just spikes
+</p> <p class="f-17 w-400 text-center color-light_07">
+Trend0x prioritizes longevity and controlled risk over short-term
+			performance bursts. <br class="x-hide"> Every decision and outcome is observable
+			inside the live dashboard.
+</p> </div> </section> <section class="tOx-how" id="aura-os"> <div class="tOx-how__container"> <h2 class="f-60 f-x-30 w-900 tOx-color text-center mb-15">
+How Trend0x operates <br class="x-hide"> in real time
+</h2> <p class="f-18 w-400 color-light_08 text-center mb-90">
+Execution-focused architecture. Observable by design.
+</p> <div class="tOx-how_aura"> <div class="tOx-how_aura-glow"></div> <!-- <svg class="tOx-how_aura-lines" data-how-aura-lines aria-hidden="true"
+			></svg> --> <div class="tOx-architecture_data-aura" data-how-core> <span class="aura-os"></span> <div class="spline-container"> <spline-viewer url="https://prod.spline.design/5MF182vcBsqFfnRq/scene.splinecode"></spline-viewer> </div> </div> <span class="f-20 w-800 tOx-how_aura-title">Cognitive AI Core</span> <img src="/_astro/aa-1.QxXXFb8Q.svg" alt="" class="aura-link aa-link-1"> <img src="/_astro/aa-2.BlZKDcA4.svg" alt="" class="aura-link aa-link-2"> <img src="/_astro/aa-3.nLj6WMSF.svg" alt="" class="aura-link aa-link-3"> <img src="/_astro/aa-4.B7kENfg7.svg" alt="" class="aura-link aa-link-4"> <img src="/_astro/aa-5.BbIdKhMJ.svg" alt="" class="aura-link aa-link-5"> <img src="/_astro/aa-6.D6a2w61U.svg" alt="" class="aura-link aa-link-6"> <div class="aura-action aa-type-1 aa-pos-1" data-how-node="order-flow"> <div class="aura-action__dots t"> <div class="d"></div> <div class="d"></div> </div> <div class="aura-action__dots b"> <div class="d"></div> <div class="d"></div> </div> <div class="flex a-center gap-10"> <i class="icon-action"></i> <span class="f-12 w-400 color-light_03">xvd034m6nvsb9n4</span> </div> <span class="f-14 w-500">Order Flow</span> </div> <div class="aura-action aa-type-2 aa-pos-2" data-how-node="orders"> <div class="aura-action__dots t"> <div class="d"></div> <div class="d"></div> </div> <div class="aura-action__dots b"> <div class="d"></div> <div class="d"></div> </div> <div class="flex a-center gap-10"> <i class="icon-action"></i> <span class="f-12 w-400 color-light_03">xvd034m6nvsb9n4</span> </div> <span class="f-14 w-500">Orders</span> </div> <div class="aura-action aa-type-2 aa-pos-3" data-how-node="risk-signals"> <div class="aura-action__dots t"> <div class="d"></div> <div class="d"></div> </div> <div class="aura-action__dots b"> <div class="d"></div> <div class="d"></div> </div> <div class="flex a-center gap-10"> <i class="icon-action"></i> <span class="f-12 w-400 color-light_03">xvd034m6nvsb9n4</span> </div> <span class="f-14 w-500">Risk Signals</span> </div> <div class="aura-action aa-type-1 aa-pos-4" data-how-node="volatility"> <div class="aura-action__dots t"> <div class="d"></div> <div class="d"></div> </div> <div class="aura-action__dots b"> <div class="d"></div> <div class="d"></div> </div> <div class="flex a-center gap-10"> <i class="icon-action"></i> <span class="f-12 w-400 color-light_03">xvd034m6nvsb9n4</span> </div> <span class="f-14 w-500">Volatility</span> </div> <div class="aura-action aa-type-3 aa-pos-5" data-how-node="regime-data"> <div class="aura-action__dots t"> <div class="d"></div> <div class="d"></div> </div> <div class="aura-action__dots b"> <div class="d"></div> <div class="d"></div> </div> <div class="flex a-center gap-10"> <i class="icon-action"></i> <span class="f-12 w-400 color-light_03">xvd034m6nvsb9n4</span> </div> <span class="f-14 w-500">Regime Data</span> </div> <div class="aura-action aa-type-3 aa-pos-6" data-how-node="feedback"> <div class="aura-action__dots t"> <div class="d"></div> <div class="d"></div> </div> <div class="aura-action__dots b"> <div class="d"></div> <div class="d"></div> </div> <div class="flex a-center gap-10"> <i class="icon-action"></i> <span class="f-12 w-400 color-light_03">xvd034m6nvsb9n4</span> </div> <span class="f-14 w-500">Feedback</span> </div> </div> <div class="tOx-how__info flex gap-5 x-column"> <div class="tOx-how_bar"> <div class="how-bar_icon"> <i class="icon-perception"></i> </div> <div class="flex column gap-10 px-15"> <span class="f-21 w-600">Market Perception</span> <span class="f-15 w-400 color-light_07">
+Live interpretation of order flow, volatility, and regime context.
+</span> </div> </div> <div class="tOx-how_bar"> <div class="how-bar_icon"> <i class="icon-reasoning"></i> </div> <div class="flex column gap-10 px-15"> <span class="f-21 w-600">Cognitive Reasoning</span> <span class="f-15 w-400 color-light_07">
+Multi-factor inference across signals, probabilities, and market
+						structure.
+</span> </div> </div> <div class="tOx-how_bar"> <div class="how-bar_icon"> <i class="icon-engine"></i> </div> <div class="flex column gap-10 px-15"> <span class="f-21 w-600">Execution Engine</span> <span class="f-15 w-400 color-light_07">
+Autonomous order routing and position management on Hyperliquid.
+</span> </div> </div> <div class="tOx-how_bar"> <div class="how-bar_icon"> <i class="icon-governor"></i> </div> <div class="flex column gap-10 px-15"> <span class="f-21 w-600">Risk Governor</span> <span class="f-15 w-400 color-light_07">
+Dynamic exposure limits, drawdown control, and emergency logic.
+</span> </div> </div> <div class="tOx-how_bar"> <div class="how-bar_icon"> <i class="icon-loop"></i> </div> <div class="flex column gap-10 px-15"> <span class="f-21 w-600">Feedback Loop</span> <span class="f-15 w-400 color-light_07">
+Post-execution evaluation continuously refines decision behavior.
+</span> </div> </div> </div> </div> <div class="flex-center"> <a href="https://app.hyperliquid.xyz/vaults/0x1136d279f8c191109e30464e12e8a31f3bd9071a" target="_blank" rel="noopener noreferrer" class="button button-arrow">
+Join trend0x vault on Hyperliquid
+<i class="icon-arrow"></i> </a> </div> </section> <script>
+	(() => {
+		const sectionEl = document.querySelector(".tOx-how");
+		if (!sectionEl) return;
+
+		const auraEl = sectionEl.querySelector(".tOx-how_aura");
+		if (!auraEl) return;
+
+		const coreEl =
+			auraEl.querySelector("[data-how-core]") ||
+			auraEl.querySelector(".tOx-architecture_data-aura");
+		const nodeEls = Array.from(auraEl.querySelectorAll("[data-how-node]"));
+		if (!coreEl || nodeEls.length === 0) return;
+
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+
+		const SWITCH_MIN_MS = 4200;
+		const SWITCH_MAX_MS = 6200;
+		const PULSE_MIN_MS = 900;
+		const PULSE_MAX_MS = 2200;
+
+		/** @type {SVGSVGElement | null} */
+		let measureSvgEl = null;
+		/** @type {{ x: number, y: number }} */
+		let coreCenterInAura = { x: 0, y: 0 };
+
+		/** @type {Map<HTMLElement, { link?: HTMLElement, pulsing: boolean }>} */
+		const connections = new Map();
+		/**
+		 * Cache for parsing & measuring each Figma link SVG.
+		 * Keyed by the <img.aura-link> element.
+		 *
+		 * @type {Map<HTMLElement, {
+		 *   ready: boolean,
+		 *   vb: { minX: number, minY: number, w: number, h: number },
+		 *   pathEl: SVGPathElement,
+		 *   totalLen: number,
+		 *   reverse: boolean
+		 * }>}
+		 */
+		const linkPathCache = new Map();
+		/** @type {Set<HTMLElement>} */
+		let activeNodes = new Set();
+		let disposed = false;
+
+		function randInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		function pick(arr) {
+			return arr[Math.floor(Math.random() * arr.length)];
+		}
+
+		function shuffle(arr) {
+			const a = [...arr];
+			for (let i = a.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[a[i], a[j]] = [a[j], a[i]];
+			}
+			return a;
+		}
+
+		function isVisible(el) {
+			if (!el.isConnected) return false;
+			const cs = window.getComputedStyle(el);
+			if (cs.display === "none" || cs.visibility === "hidden") return false;
+			return !!el.getClientRects().length;
+		}
+
+		function visibleNodes() {
+			return nodeEls.filter(isVisible);
+		}
+
+		function getPosIndex(nodeEl) {
+			for (const cls of Array.from(nodeEl.classList)) {
+				const m = cls.match(/^aa-pos-(\d+)$/);
+				if (m) return m[1];
+			}
+			return null;
+		}
+
+		function getLinkForNode(nodeEl) {
+			const idx = getPosIndex(nodeEl);
+			if (!idx) return undefined;
+			return auraEl.querySelector(`.aa-link-${idx}`) || undefined;
+		}
+
+		function ensureMeasureSvg() {
+			if (measureSvgEl) return measureSvgEl;
+			const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			svg.setAttribute("data-how-measure-svg", "");
+			svg.setAttribute("aria-hidden", "true");
+			svg.style.position = "absolute";
+			svg.style.left = "0";
+			svg.style.top = "0";
+			svg.style.width = "0";
+			svg.style.height = "0";
+			svg.style.overflow = "hidden";
+			svg.style.pointerEvents = "none";
+			auraEl.appendChild(svg);
+			measureSvgEl = svg;
+			return svg;
+		}
+
+		function parseViewBox(svgDocEl) {
+			const vbStr = svgDocEl.getAttribute("viewBox") || "";
+			const parts = vbStr
+				.split(/[\s,]+/)
+				.filter(Boolean)
+				.map(Number);
+			if (parts.length === 4 && parts.every((n) => Number.isFinite(n))) {
+				return { minX: parts[0], minY: parts[1], w: parts[2], h: parts[3] };
+			}
+			// Fallback: try width/height
+			const wAttr = Number(svgDocEl.getAttribute("width"));
+			const hAttr = Number(svgDocEl.getAttribute("height"));
+			if (
+				Number.isFinite(wAttr) &&
+				Number.isFinite(hAttr) &&
+				wAttr > 0 &&
+				hAttr > 0
+			) {
+				return { minX: 0, minY: 0, w: wAttr, h: hAttr };
+			}
+			return { minX: 0, minY: 0, w: 100, h: 100 };
+		}
+
+		function pickBestPath(svgDocEl) {
+			const paths = Array.from(svgDocEl.querySelectorAll("path"));
+			if (!paths.length) return null;
+			// Prefer the longest path by measured length.
+			let bestD = paths[0].getAttribute("d") || "";
+			let bestLen = -1;
+			const msvg = ensureMeasureSvg();
+			for (const p of paths) {
+				const d = p.getAttribute("d");
+				if (!d) continue;
+				const tempPath = document.createElementNS(
+					"http://www.w3.org/2000/svg",
+					"path",
+				);
+				tempPath.setAttribute("d", d);
+				msvg.appendChild(tempPath);
+				let len = 0;
+				try {
+					len = tempPath.getTotalLength();
+				} catch {
+					len = 0;
+				}
+				msvg.removeChild(tempPath);
+				if (len > bestLen) {
+					bestLen = len;
+					bestD = d;
+				}
+			}
+			return bestD || null;
+		}
+
+		async function prepareLinkPath(linkEl) {
+			if (!linkEl) return;
+			if (linkPathCache.has(linkEl)) return;
+
+			const src =
+				/** @type {HTMLImageElement} */ (linkEl).currentSrc ||
+				linkEl.getAttribute("src");
+			if (!src) return;
+
+			try {
+				const res = await fetch(src);
+				if (!res.ok) return;
+				const text = await res.text();
+				if (disposed) return;
+
+				const doc = new DOMParser().parseFromString(text, "image/svg+xml");
+				const svgDocEl = doc.querySelector("svg");
+				if (!svgDocEl) return;
+
+				const d = pickBestPath(svgDocEl);
+				if (!d) return;
+
+				const vb = parseViewBox(svgDocEl);
+				const msvg = ensureMeasureSvg();
+				const pathEl = document.createElementNS(
+					"http://www.w3.org/2000/svg",
+					"path",
+				);
+				pathEl.setAttribute("d", d);
+				msvg.appendChild(pathEl);
+				let totalLen = 0;
+				try {
+					totalLen = pathEl.getTotalLength();
+				} catch {
+					totalLen = 0;
+				}
+
+				linkPathCache.set(linkEl, {
+					ready: totalLen > 0,
+					vb,
+					pathEl,
+					totalLen,
+					reverse: false,
+				});
+
+				// Once the path is ready, immediately compute direction so pulses run
+				// from core -> node (rather than defaulting to path start).
+				updateAllDirections();
+			} catch {
+				// ignore
+			}
+		}
+
+		function updateCoreCenter() {
+			const auraRect = auraEl.getBoundingClientRect();
+			const coreRect = coreEl.getBoundingClientRect();
+			coreCenterInAura = {
+				x: coreRect.left - auraRect.left + coreRect.width / 2,
+				y: coreRect.top - auraRect.top + coreRect.height / 2,
+			};
+		}
+
+		function setDirectionForLink(linkEl) {
+			const cached = linkPathCache.get(linkEl);
+			if (!cached?.ready) return;
+
+			const auraRect = auraEl.getBoundingClientRect();
+			const linkRect = linkEl.getBoundingClientRect();
+			if (linkRect.width <= 0 || linkRect.height <= 0) return;
+			const { vb, pathEl, totalLen } = cached;
+			if (!totalLen) return;
+
+			const sx = linkRect.width / vb.w;
+			const sy = linkRect.height / vb.h;
+			const ox = linkRect.left - auraRect.left;
+			const oy = linkRect.top - auraRect.top;
+
+			const p0 = pathEl.getPointAtLength(0);
+			const p1 = pathEl.getPointAtLength(totalLen);
+			const a0 = {
+				x: ox + (p0.x - vb.minX) * sx,
+				y: oy + (p0.y - vb.minY) * sy,
+			};
+			const a1 = {
+				x: ox + (p1.x - vb.minX) * sx,
+				y: oy + (p1.y - vb.minY) * sy,
+			};
+
+			const d0 = Math.hypot(
+				a0.x - coreCenterInAura.x,
+				a0.y - coreCenterInAura.y,
+			);
+			const d1 = Math.hypot(
+				a1.x - coreCenterInAura.x,
+				a1.y - coreCenterInAura.y,
+			);
+			cached.reverse = d0 > d1;
+		}
+
+		function updateAllDirections() {
+			updateCoreCenter();
+			for (const [nodeEl, conn] of connections.entries()) {
+				if (!conn.link) continue;
+				setDirectionForLink(conn.link);
+			}
+		}
+
+		function initConnections() {
+			connections.clear();
+			for (const nodeEl of nodeEls) {
+				const link = getLinkForNode(nodeEl);
+				connections.set(nodeEl, {
+					link,
+					pulsing: false,
+				});
+				if (link) void prepareLinkPath(link);
+			}
+		}
+
+		function ensurePulseDot() {
+			let dotEl = auraEl.querySelector("[data-how-pulse-dot]");
+			if (dotEl) return dotEl;
+			dotEl = document.createElement("div");
+			dotEl.setAttribute("data-how-pulse-dot", "");
+			dotEl.className = "tOx-how_pulse-dot";
+			dotEl.style.opacity = "0";
+			auraEl.appendChild(dotEl);
+			return dotEl;
+		}
+
+		function layoutGeometry() {
+			for (const [nodeEl, conn] of connections.entries()) {
+				const visible = isVisible(nodeEl);
+				if (conn.link) conn.link.classList.toggle("is-hidden", !visible);
+			}
+			updateAllDirections();
+		}
+
+		function desiredActiveCount(visibleCount) {
+			if (visibleCount >= 6) return 4;
+			if (visibleCount >= 2) return Math.max(1, visibleCount - 1);
+			return visibleCount;
+		}
+
+		function chooseActiveNodes() {
+			const vis = visibleNodes();
+			const count = desiredActiveCount(vis.length);
+			return new Set(shuffle(vis).slice(0, count));
+		}
+
+		function applyActiveSet(nextActive) {
+			const prevActive = activeNodes;
+			activeNodes = nextActive;
+			for (const nodeEl of nodeEls) {
+				const isActive = activeNodes.has(nodeEl);
+				const wasActive = prevActive.has(nodeEl);
+				nodeEl.classList.toggle("inactive", !isActive);
+				const conn = connections.get(nodeEl);
+				if (conn?.link) conn.link.classList.toggle("is-active", isActive);
+				if (isActive && !wasActive) updateNodeId(nodeEl);
+			}
+		}
+
+		function easeOutQuad(t) {
+			return 1 - (1 - t) * (1 - t);
+		}
+
+		function randomId(len = 15) {
+			const alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
+			/** @type {number[]} */
+			const bytes = [];
+			try {
+				const arr = new Uint8Array(len);
+				crypto.getRandomValues(arr);
+				for (const b of arr) bytes.push(b);
+			} catch {
+				for (let i = 0; i < len; i++)
+					bytes.push(Math.floor(Math.random() * 256));
+			}
+
+			let out = "";
+			for (let i = 0; i < len; i++) {
+				out += alphabet[bytes[i] % alphabet.length];
+			}
+			return out;
+		}
+
+		function updateNodeId(nodeEl) {
+			const idEl = nodeEl.querySelector("span.color-light_03");
+			if (!idEl) return;
+			idEl.textContent = randomId(15);
+		}
+
+		function pulseConnection(conn) {
+			if (prefersReducedMotion) return;
+			if (conn.pulsing || !conn.link) return;
+
+			// Direction depends on current layout; compute it right before pulsing.
+			updateCoreCenter();
+			setDirectionForLink(conn.link);
+
+			const cached = linkPathCache.get(conn.link);
+			if (!cached?.ready) return;
+			conn.pulsing = true;
+
+			const auraRect = auraEl.getBoundingClientRect();
+			const linkRect = conn.link.getBoundingClientRect();
+			if (linkRect.width <= 0 || linkRect.height <= 0) {
+				conn.pulsing = false;
+				return;
+			}
+
+			const { vb, pathEl, totalLen, reverse } = cached;
+			const sx = linkRect.width / vb.w;
+			const sy = linkRect.height / vb.h;
+			const ox = linkRect.left - auraRect.left;
+			const oy = linkRect.top - auraRect.top;
+
+			const dotEl = ensurePulseDot();
+			dotEl.style.opacity = "1";
+			dotEl.classList.add("is-pulsing");
+
+			const startTime = performance.now();
+			const duration = randInt(900, 1500);
+			const dotHalf = dotEl.offsetWidth ? dotEl.offsetWidth / 2 : 3;
+
+			const tick = (now) => {
+				if (disposed) return;
+				const t = (now - startTime) / duration;
+				if (t >= 1) {
+					dotEl.style.opacity = "0";
+					// Let CSS opacity transition run before clearing state.
+					window.setTimeout(() => {
+						if (disposed) return;
+						dotEl.classList.remove("is-pulsing");
+						conn.pulsing = false;
+					}, 220);
+					return;
+				}
+				const p = easeOutQuad(t);
+				const d = reverse ? (1 - p) * totalLen : p * totalLen;
+				const pt = pathEl.getPointAtLength(d);
+				const x = ox + (pt.x - vb.minX) * sx;
+				const y = oy + (pt.y - vb.minY) * sy;
+				dotEl.style.transform = `translate(${x - dotHalf}px, ${y - dotHalf}px)`;
+				requestAnimationFrame(tick);
+			};
+			requestAnimationFrame(tick);
+		}
+
+		function pulseOnce() {
+			const active = Array.from(activeNodes);
+			if (!active.length) return;
+			const nodeEl = pick(active);
+			const conn = connections.get(nodeEl);
+			if (conn) pulseConnection(conn);
+		}
+
+		function pulseLoop() {
+			if (disposed) return;
+			pulseOnce();
+			window.setTimeout(pulseLoop, randInt(PULSE_MIN_MS, PULSE_MAX_MS));
+		}
+
+		function switchLoop() {
+			if (disposed) return;
+			applyActiveSet(chooseActiveNodes());
+			window.setTimeout(pulseOnce, 220);
+			window.setTimeout(pulseOnce, 520);
+			window.setTimeout(switchLoop, randInt(SWITCH_MIN_MS, SWITCH_MAX_MS));
+		}
+
+		initConnections();
+		layoutGeometry();
+		applyActiveSet(chooseActiveNodes());
+		pulseLoop();
+		switchLoop();
+
+		const ro = new ResizeObserver(() => {
+			layoutGeometry();
+		});
+		ro.observe(auraEl);
+		window.addEventListener("resize", layoutGeometry);
+
+		window.addEventListener("pagehide", () => {
+			disposed = true;
+			ro.disconnect();
+			window.removeEventListener("resize", layoutGeometry);
+		});
+	})();
+</script> <section class="tOx-security"> <div class="container"> <h2 class="f-60 f-x-30 w-900 text-center mb-50">
+Security and transparency <br class="x-hide">by design
+</h2> <div class="grid col-3 gap-20"> <div class="tOx-security_col"> <i class="icon-ncustodial"></i> <span class="f-24 w-600 pl-10">Non-custodial principles</span> </div> <div class="tOx-security_col"> <i class="icon-exrcutiono"></i> <span class="f-24 w-600 pl-10">Execution-only permissions</span> </div> <div class="tOx-security_col"> <i class="icon-governance"></i> <span class="f-24 w-600 pl-10">
+Risk thresholds and kill-switch governance
+</span> </div> <div class="tOx-security_col"> <i class="icon-realtime"></i> <span class="f-24 w-600 pl-10">Real-time dashboard visibility</span> </div> <div class="tOx-security_col"> <i class="icon-audit"></i> <span class="f-24 w-600 pl-10">Audit-ready reporting structure</span> </div> <div class="tOx-security_col"> <i class="icon-performance"></i> <span class="f-24 w-600 pl-10">Exchange-sourced performance metrics</span> </div> </div> </div> </section> <section class="tOx-architecture"> <div class="tOx-architecture__container"> <h2 class="f-60 f-x-30 w-900 text-center mb-15">System Architecture</h2> <p class="f-16 w-400 text-center color-light_07 mb-55">
+Autonomous decision-making connected to live execution infrastructure.
+</p> <div class="tOx-architecture_data mb-10"> <div class="flex-center gap-10 mb-5"> <div class="circle circle-green-2"></div> <span class="f-20 w-700">Real-time data flow</span> </div> <p class="f-17 w-400 color-light_07 text-center mb-30">
+Every decision, every execution, every position — visible and
+				verifiable.
+</p> <div class="tOx-architecture_data-aura"> <span class="aura-os"></span> <div class="spline-container"> <spline-viewer url="https://prod.spline.design/5MF182vcBsqFfnRq/scene.splinecode"></spline-viewer> </div> </div> </div> <div class="tOx-architecture_logs"> <div class="tOx-architecture_log-list flex column" data-arch-log-list aria-live="polite" aria-relevant="additions removals"> <div class="architecture-log_item architecture-log_loader" data-arch-log-loader> <div class="log-time-col"> <span class="f-14 w-400">[...]</span> </div> <div class="log-badge-col flex"> <div class="log-badge">...</div> </div> <div class="log-action-col"> <span class="f-14 w-400 color-light_05"> ... </span> </div> </div> </div> </div> </div> </section> <script>
+	(() => {
+		const listEl = document.querySelector("[data-arch-log-list]");
+		if (!listEl) return;
+
+		const loaderEl = listEl.querySelector("[data-arch-log-loader]");
+		if (!loaderEl) return;
+
+		const MAX_LOGS = 7;
+		const ANIM_MS = 380;
+		const MIN_DELAY_MS = 5850;
+		const MAX_DELAY_MS = 7400;
+
+		const badges = [
+			{ label: "Warning", className: "log-b-warning" },
+			{ label: "Info", className: "log-b-info" },
+			{ label: "Error", className: "log-b-error" },
+			{ label: "Scan", className: "log-b-scan" },
+			{ label: "Success", className: "log-b-success" },
+			{ label: "Execution", className: "log-b-exec" },
+		];
+
+		const actions = [
+			"Stop loss: DOGE-USDT hit SL. Limit order sent at 0.1261",
+			"Close confirmed (system): DOGE-USDT",
+			"Stop loss: TRX-USDT hit SL. Limit order sent at 0.2893",
+			"Close failed: orderQty will be truncated to zero.",
+			"Scanning ZRC-USDT...",
+			"Scanning HBAR-USDT...",
+			"Close confirmed (system): BTC-USDT",
+			"Scanning SOL-USDT...",
+			"Risk check: exposure within threshold.",
+			"Position updated: trailing stop adjusted.",
+			"Route OK: order acknowledged by exchange.",
+			"Latency spike detected. Switching to fallback feed.",
+			"Heartbeat OK. Data stream stable.",
+		];
+
+		function timeLabel(date) {
+			const t = date.toLocaleTimeString([], {
+				hour: "numeric",
+				minute: "2-digit",
+				second: "2-digit",
+			});
+			return `[ ${t} ]`;
+		}
+
+		function nowTimeLabel() {
+			return timeLabel(new Date());
+		}
+
+		function randInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		function pick(arr) {
+			return arr[Math.floor(Math.random() * arr.length)];
+		}
+
+		function getLogItems() {
+			return Array.from(
+				listEl.querySelectorAll(
+					".architecture-log_item:not(.architecture-log_loader)",
+				),
+			);
+		}
+
+		function snapshotRects() {
+			const map = new Map();
+			for (const el of getLogItems()) {
+				map.set(el, el.getBoundingClientRect());
+			}
+			return map;
+		}
+
+		function playFlip(prevRects) {
+			const nextItems = getLogItems();
+			for (const el of nextItems) {
+				const prev = prevRects.get(el);
+				if (!prev) continue;
+				const next = el.getBoundingClientRect();
+				const dy = prev.top - next.top;
+				if (Math.abs(dy) < 0.5) continue;
+				el.style.transform = `translateY(${dy}px)`;
+				el.style.transition = "transform 0ms";
+				requestAnimationFrame(() => {
+					el.style.transition = `transform ${ANIM_MS}ms cubic-bezier(0.2, 0.9, 0.2, 1)`;
+					el.style.transform = "";
+				});
+			}
+		}
+
+		function flashLoader() {
+			loaderEl.classList.remove("is-flashing");
+			// Force reflow so the animation restarts reliably
+			void loaderEl.offsetHeight;
+			loaderEl.classList.add("is-flashing");
+		}
+
+		function createLogElement({ badge, action, time }) {
+			const el = document.createElement("div");
+			el.className = "architecture-log_item is-entering";
+			el.innerHTML = `
+				<div class="log-time-col">
+					<span class="f-14 w-400">${time}</span>
+				</div>
+				<div class="log-badge-col flex">
+					<div class="log-badge ${badge.className}">${badge.label}</div>
+				</div>
+				<div class="log-action-col">
+					<span class="f-14 w-400 color-light_05">${action}</span>
+				</div>
+			`;
+			return el;
+		}
+
+		function animateEnter(el) {
+			// Start state (CSS handles initial opacity/transform)
+			requestAnimationFrame(() => {
+				el.classList.add("is-entered");
+				el.classList.remove("is-entering");
+			});
+		}
+
+		function collapseAndRemove(el) {
+			el.classList.add("is-exiting");
+			const h = el.getBoundingClientRect().height;
+			el.style.height = `${h}px`;
+			el.style.overflow = "hidden";
+			// Ensure height is applied before collapsing
+			requestAnimationFrame(() => {
+				el.style.height = "0px";
+				el.style.paddingTop = "0px";
+				el.style.paddingBottom = "0px";
+				el.style.marginTop = "0px";
+				el.style.marginBottom = "0px";
+			});
+			window.setTimeout(() => el.remove(), ANIM_MS + 80);
+		}
+
+		function addLog() {
+			flashLoader();
+
+			const prev = snapshotRects();
+			const badge = pick(badges);
+			let action = pick(actions);
+			// Bias Scan badge to scanning messages
+			if (badge.label === "Scan") {
+				const scanOnly = actions.filter((a) =>
+					a.toLowerCase().startsWith("scanning "),
+				);
+				action = scanOnly.length ? pick(scanOnly) : action;
+			}
+
+			const el = createLogElement({ badge, action, time: nowTimeLabel() });
+			listEl.insertBefore(el, loaderEl);
+
+			// Enforce max logs (remove earliest/top)
+			const items = getLogItems();
+			if (items.length > MAX_LOGS) {
+				const toRemove = items[0];
+				// Snapshot includes the old element so siblings FLIP smoothly.
+				collapseAndRemove(toRemove);
+			}
+
+			playFlip(prev);
+			animateEnter(el);
+		}
+
+		function seedInitialLogs(count) {
+			const now = Date.now();
+			// Oldest record will be ~35-75s before page load
+			let t = now - randInt(35_000, 75_000);
+			const frag = document.createDocumentFragment();
+
+			for (let i = 0; i < count; i++) {
+				if (i !== 0) t += randInt(3_000, 9_000);
+				const remaining = count - 1 - i;
+				const clamped = Math.min(t, now - remaining * 1_000);
+
+				const badge = pick(badges);
+				let action = pick(actions);
+				if (badge.label === "Scan") {
+					const scanOnly = actions.filter((a) =>
+						a.toLowerCase().startsWith("scanning "),
+					);
+					action = scanOnly.length ? pick(scanOnly) : action;
+				}
+
+				const el = createLogElement({
+					badge,
+					action,
+					time: timeLabel(new Date(clamped)),
+				});
+				// Make seeded logs appear as already present (no enter animation)
+				el.classList.add("is-entered");
+				el.classList.remove("is-entering");
+				frag.appendChild(el);
+			}
+
+			listEl.insertBefore(frag, loaderEl);
+		}
+
+		function scheduleNext() {
+			const delay = randInt(MIN_DELAY_MS, MAX_DELAY_MS);
+			window.setTimeout(() => {
+				addLog();
+				scheduleNext();
+			}, delay);
+		}
+
+		// Start with 7 records already present
+		seedInitialLogs(MAX_LOGS);
+		scheduleNext();
+	})();
+</script> <section class="tOx-who"> <div class="tOx-architecture__container"> <h2 class="f-60 f-x-30 w-900 text-center mb-15">Who is Trend0x for?</h2> <p class="f-16 w-400 text-center color-light_07 mb-55">
+Who Trend0x is designed to opened to operate with at different abstraction
+			levels
+</p> <div class="tOx-who_list"> <div class="tOx-who_list-container flex column gap-20"> <div class="tOx-who_list-item"> <div class="who-title flex a-center gap-15"> <i class="icon-capital"></i> <span class="f-18 w-500">Capital Allocators</span> </div> <div class="who-description"> <span class="f-16 w-400 color-light_07">
+You allocate capital across strategies and require discipline,
+							transparency, and risk control — not signals or manual execution.
+</span> </div> </div> <div class="tOx-who_list-line"></div> <div class="tOx-who_list-item"> <div class="who-title flex a-center gap-15"> <i class="icon-operators"></i> <span class="f-18 w-500">Time-Constrained Operators</span> </div> <div class="who-description"> <span class="f-16 w-400 color-light_07">
+You want market exposure without constant monitoring.
+							Allocation-first, execution handled autonomously.
+</span> </div> </div> <div class="tOx-who_list-line"></div> <div class="tOx-who_list-item"> <div class="who-title flex a-center gap-15"> <i class="icon-participants"></i> <span class="f-18 w-500">Market-Aware Participants</span> </div> <div class="who-description"> <span class="f-16 w-400 color-light_07">
+You understand volatility and regimes and prefer structured
+							execution over discretionary trading.
+</span> </div> </div> </div> </div> </div> </section> <section class="tOx-action"> <div class="tOx-action__container"> <div class="tOx-action__logo"> <div class="tOx-action__logo-spline"> <spline-viewer url="https://prod.spline.design/TEFvj1OysjBzhg1R/scene.splinecode"></spline-viewer> </div> </div> <h2 class="f-60 f-x-30 w-900 tOx-color text-center mb-20">
+Trade with AI. <br> Not emotion.
+</h2> <p class="f-17 w-400 text-center color-light_07 mb-50">
+Explore the dashboard, inspect the architecture, and decide based on
+			transparent data
+</p> <div class="flex-center gap-10 x-column ww-x-100"> <a href="https://app.hyperliquid.xyz/vaults/0x1136d279f8c191109e30464e12e8a31f3bd9071a" target="_blank" rel="noopener noreferrer" class="button button-arrow v2 w-x-100">
+Follow Trend0x on Hyperliquid
+<div class="flex-center"> <i class="icon-arrow"></i> </div> </a> <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer" class="button button-border w-x-100">View Docs</a> </div> </div> </section> </main>  <footer> <div class="footer-container"> <div class="flex column gap-30"> <img src="/_astro/logo.BJBpI98g.svg" alt="Trade0x" width="167" height="40"> <p class="f-14 w-300 color-light_03">
+Autonomous trading intelligence <br class="x-hide"> for disciplined execution
+</p> </div> <div class="flex column gap-45"> <nav> <ul> <li> <a href="/#performance-risk" class="header-link">Performance & Risk</a> </li> <li> <a href="/#aura-os" class="header-link">About AURA OS</a> </li> <li> <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer" class="header-link">
+Docs
+</a> </li> </ul> </nav> <div class="flex j-end gap-30"> <a href="https://t.me/trend0x" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-telegram"></i> </a> <a href="https://x.com/Trend0x_com" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-x"></i> </a> <a href="https://www.linkedin.com/company/trend0x" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-linkedin"></i> </a> <a href="https://medium.com/@trend0x.ai" target="_blank" rel="noopener noreferrer" class="footer-social"> <i class="icon-medium"></i> </a> </div> </div> </div> <div class="footer-rights text-x-center"> <span class="color-light_03">
+© 2026 TRENDOX. Cognitive AI Trading System.
+</span> <nav> <ul> <li> <a href="/risk-disclaimer" class="header-link">Risk Disclaimer</a> </li> </ul> </nav> </div> </footer> <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.32/build/spline-viewer.js"></script> </body> </html>

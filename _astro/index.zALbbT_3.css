@@ -113,76 +113,87 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   color:#afc2bb;background:rgba(255,255,255,.02);border:1px solid rgba(129,171,151,.16)
 }
 .hero-panel{position:relative}
-.panel-frame{
-  position:relative;padding:28px;border-radius:32px;background:linear-gradient(180deg,rgba(10,16,25,.92),rgba(7,12,19,.96));
-  border:1px solid rgba(129,171,151,.16);box-shadow:var(--panel-shadow);overflow:hidden
+.hero-orbit{
+  position:relative;padding:24px;border-radius:36px;min-height:620px;
+  background:linear-gradient(180deg,rgba(9,15,24,.82),rgba(7,12,20,.28));
+  border:1px solid rgba(129,171,151,.12);box-shadow:var(--panel-shadow);overflow:hidden
 }
-.panel-frame:before{
-  content:"";position:absolute;inset:auto -10% 42% 30%;height:220px;
-  background:radial-gradient(circle,rgba(104,195,141,.18),transparent 62%);
-  filter:blur(20px)
+.hero-orbit:before{
+  content:"";position:absolute;inset:16% 10% 10%;
+  background:radial-gradient(circle,rgba(93,181,129,.08),transparent 58%);
+  filter:blur(18px);pointer-events:none
 }
-.panel-frame-lg{min-height:640px}
 .panel-topline{
-  display:flex;align-items:center;gap:10px;margin-bottom:18px;color:#9fb2ac;
+  position:relative;z-index:5;display:flex;align-items:center;gap:10px;margin-bottom:18px;color:#9fb2ac;
   font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase
 }
 .status-dot{
   width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 18px rgba(142,227,169,.75)
 }
-.signal-map{
-  position:relative;min-height:350px;border-radius:24px;margin-bottom:22px;
-  background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,.01));
-  border:1px solid rgba(129,171,151,.12);overflow:hidden
+.orbit-field{
+  position:relative;min-height:520px;border-radius:30px;overflow:hidden
 }
-.signal-lines{
-  position:absolute;inset:0;
+.orbit-grid{
+  position:absolute;inset:4% 4%;
+  border-radius:30px;
   background:
-    radial-gradient(circle at 50% 52%,rgba(92,199,136,.22),transparent 24%),
-    linear-gradient(90deg,transparent 12%,rgba(122,161,141,.09) 12.15%,transparent 12.3%,transparent 49.8%,rgba(122,161,141,.08) 50%,transparent 50.2%,transparent 87.7%,rgba(122,161,141,.09) 87.85%,transparent 88%),
-    linear-gradient(180deg,transparent 20%,rgba(122,161,141,.07) 20.2%,transparent 20.4%,transparent 60%,rgba(122,161,141,.07) 60.2%,transparent 60.4%)
+    linear-gradient(90deg,transparent 0,transparent 19.7%,rgba(122,161,141,.06) 19.9%,transparent 20.1%,transparent 39.7%,rgba(122,161,141,.05) 39.9%,transparent 40.1%,transparent 59.7%,rgba(122,161,141,.05) 59.9%,transparent 60.1%,transparent 79.7%,rgba(122,161,141,.06) 79.9%,transparent 80.1%),
+    linear-gradient(180deg,transparent 0,transparent 19.7%,rgba(122,161,141,.05) 19.9%,transparent 20.1%,transparent 39.7%,rgba(122,161,141,.04) 39.9%,transparent 40.1%,transparent 59.7%,rgba(122,161,141,.04) 59.9%,transparent 60.1%,transparent 79.7%,rgba(122,161,141,.05) 79.9%,transparent 80.1%);
+  border:1px solid rgba(129,171,151,.08)
 }
+.orbit-wave{
+  position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid rgba(146,219,171,.14);
+  box-shadow:0 0 48px rgba(95,176,127,.06), inset 0 0 30px rgba(95,176,127,.02);
+  animation:orbitPulse 6.5s ease-in-out infinite
+}
+.orbit-wave-1{width:180px;height:180px}
+.orbit-wave-2{width:290px;height:290px;animation-delay:1.2s}
+.orbit-wave-3{width:410px;height:410px;animation-delay:2.4s}
 .core-orb{
   position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
-  width:138px;height:138px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,rgba(144,228,174,.42),rgba(78,125,95,.18) 55%,rgba(10,17,25,.95) 72%);
-  border:1px solid rgba(148,220,173,.2);display:flex;align-items:center;justify-content:center;z-index:2
+  width:156px;height:156px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(173,239,195,.42),rgba(101,156,118,.26) 52%,rgba(7,13,21,.96) 74%);
+  border:1px solid rgba(148,220,173,.24);display:flex;align-items:center;justify-content:center;z-index:4;
+  box-shadow:0 0 72px rgba(111,210,146,.18), 0 0 120px rgba(45,102,67,.18);
+  animation:coreFloat 7s ease-in-out infinite
 }
 .core-glow{
-  position:absolute;inset:-35px;border-radius:50%;background:radial-gradient(circle,rgba(113,200,143,.2),transparent 70%);filter:blur(24px)
+  position:absolute;inset:-44px;border-radius:50%;background:radial-gradient(circle,rgba(113,200,143,.22),transparent 68%);filter:blur(28px)
 }
 .core-label{
   position:relative;font-size:28px;font-weight:900;letter-spacing:.14em;color:#eff8f3
 }
 .signal-card{
-  position:absolute;z-index:3;padding:14px 16px;min-width:156px;border-radius:16px;
-  background:rgba(10,17,25,.88);border:1px solid rgba(129,171,151,.16);box-shadow:0 16px 32px rgba(0,0,0,.25)
+  position:absolute;z-index:5;padding:14px 16px;min-width:156px;border-radius:18px;
+  background:rgba(10,17,25,.68);backdrop-filter:blur(10px);
+  border:1px solid rgba(129,171,151,.14);box-shadow:0 14px 30px rgba(0,0,0,.18);
+  animation:cardDrift 8s ease-in-out infinite
 }
 .signal-card small{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.12em;color:var(--muted-2);text-transform:uppercase}
 .signal-card strong{font-size:16px;line-height:1.2}
 .signal-card-green strong{color:#b8f0c9}
 .signal-card-blue strong{color:#a8d6ff}
 .signal-card-amber strong{color:#f0c789}
-.card-live{top:30px;left:34px}
-.card-xai{top:44px;right:30px}
-.card-risk{bottom:92px;left:54px}
-.card-agent{bottom:34px;right:62px}
-.card-data{top:50%;right:22px;transform:translateY(-50%)}
-.hero-terminal{
-  display:grid;gap:10px;padding:18px;border-radius:20px;
-  background:rgba(8,15,24,.84);border:1px solid rgba(129,171,151,.12)
-}
-.terminal-row{
-  display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:start;padding:10px 0;border-bottom:1px solid rgba(129,171,151,.08)
-}
-.terminal-row:last-child{border-bottom:none}
-.terminal-tag{
-  display:inline-flex;justify-content:center;padding:7px 10px;border-radius:999px;
-  background:rgba(255,255,255,.03);border:1px solid rgba(129,171,151,.14);
-  color:#9ec2b0;font-family:"IBM Plex Mono",monospace;font-size:11px;text-transform:uppercase
-}
-.terminal-row p{color:#c8d7d2;line-height:1.5}
+.card-live{top:72px;left:18px;animation-delay:.4s}
+.card-xai{top:88px;right:18px;animation-delay:1.1s}
+.card-risk{left:26px;bottom:124px;animation-delay:1.7s}
+.card-agent{right:34px;bottom:92px;animation-delay:2.3s}
+.card-data{top:50%;right:-4px;transform:translateY(-50%);animation-delay:2.9s}
 .section-heading{max-width:860px;margin-bottom:42px}
+
+@keyframes orbitPulse{
+  0%,100%{opacity:.3;transform:translate(-50%,-50%) scale(.96)}
+  50%{opacity:.8;transform:translate(-50%,-50%) scale(1.03)}
+}
+@keyframes coreFloat{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.04)}
+}
+@keyframes cardDrift{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(0,-8px,0)}
+}
 .section-heading.centered{text-align:center;margin-left:auto;margin-right:auto}
 .section-heading p{margin-top:16px;font-size:19px;line-height:1.6}
 .problem-grid,.compare-grid,.risk-grid,.agent-grid,.audience-grid{

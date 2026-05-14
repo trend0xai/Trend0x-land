@@ -84,9 +84,10 @@ img{display:block;max-width:100%}
 }
 .section{padding:96px 0}
 .section-grid{padding:72px 0 80px}
+.hero-section{padding:26px 0 58px}
 .hero-grid{
   display:grid;grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);gap:42px;align-items:center;
-  min-height:calc(100svh - 88px)
+  min-height:calc(100svh - 114px)
 }
 .eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -117,10 +118,10 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .hero-panel{position:relative}
 .hero-orbit{
-  position:relative;min-height:620px;overflow:visible
+  position:relative;min-height:590px;overflow:visible
 }
 .orbit-field{
-  position:relative;min-height:560px;overflow:visible
+  position:relative;min-height:540px;overflow:visible
 }
 .orbit-grid{
   position:absolute;inset:8% 3% 2%;
@@ -141,23 +142,44 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .orbit-wave-4{width:560px;height:560px;animation-delay:1.65s}
 .core-orb{
   position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
-  width:184px;height:184px;border-radius:50%;
+  width:236px;height:236px;border-radius:50%;
   background:
-    radial-gradient(circle at 32% 28%,rgba(245,255,249,.28),transparent 22%),
-    radial-gradient(circle at 50% 48%,rgba(177,241,198,.5),rgba(98,157,118,.38) 42%,rgba(20,39,31,.72) 65%,rgba(6,11,18,.98) 82%);
-  border:1px solid rgba(174,237,194,.28);display:flex;align-items:center;justify-content:center;z-index:4;
-  box-shadow:0 0 90px rgba(124,226,159,.24), 0 0 160px rgba(56,116,76,.24), inset 0 0 26px rgba(228,255,238,.08);
-  animation:coreFloat 5.4s ease-in-out infinite
+    radial-gradient(circle at 50% 50%,rgba(216,255,228,.16),transparent 26%),
+    radial-gradient(circle at 50% 52%,rgba(69,135,91,.2),rgba(10,18,16,.08) 58%,transparent 76%);
+  display:flex;align-items:center;justify-content:center;z-index:4;
+  box-shadow:0 0 120px rgba(124,226,159,.18), 0 0 220px rgba(56,116,76,.16);
+  animation:coreFloat 5s ease-in-out infinite
 }
-.core-glow{
-  position:absolute;inset:-68px;border-radius:50%;
+.core-bloom{
+  position:absolute;inset:10px;border-radius:50%;
+  animation:coreSpin 24s linear infinite, coreBloomPulse 5s ease-in-out infinite
+}
+.core-petal{
+  position:absolute;left:50%;top:50%;
+  width:104px;height:172px;border-radius:999px;
+  transform-origin:center center;
   background:
-    radial-gradient(circle,rgba(117,223,155,.24),rgba(117,223,155,.08) 42%,transparent 68%);
-  filter:blur(34px)
+    radial-gradient(circle at 50% 30%,rgba(232,255,240,.34),transparent 34%),
+    radial-gradient(circle at 50% 52%,rgba(147,239,176,.54),rgba(86,156,107,.34) 58%,rgba(35,77,49,.12) 82%,transparent 100%);
+  mix-blend-mode:screen;
+  filter:blur(.2px);
+  opacity:.92
+}
+.petal-1{transform:translate(-50%,-50%) rotate(0deg)}
+.petal-2{transform:translate(-50%,-50%) rotate(60deg)}
+.petal-3{transform:translate(-50%,-50%) rotate(120deg)}
+.petal-4{transform:translate(-50%,-50%) rotate(180deg)}
+.petal-5{transform:translate(-50%,-50%) rotate(240deg)}
+.petal-6{transform:translate(-50%,-50%) rotate(300deg)}
+.core-glow{
+  position:absolute;inset:-88px;border-radius:50%;
+  background:
+    radial-gradient(circle,rgba(117,223,155,.28),rgba(117,223,155,.1) 42%,transparent 68%);
+  filter:blur(38px)
 }
 .core-label{
-  position:relative;font-size:30px;font-weight:900;letter-spacing:.12em;color:#f4fbf7;
-  text-shadow:0 0 24px rgba(210,255,225,.18)
+  position:relative;z-index:2;font-size:28px;font-weight:900;letter-spacing:.12em;color:#f4fbf7;
+  text-shadow:0 0 28px rgba(210,255,225,.24)
 }
 .signal-card{
   position:absolute;z-index:5;padding:14px 16px;min-width:156px;border-radius:18px;
@@ -184,7 +206,15 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 @keyframes coreFloat{
   0%,100%{transform:translate(-50%,-50%) scale(1)}
-  50%{transform:translate(-50%,-50%) scale(1.08)}
+  50%{transform:translate(-50%,-50%) scale(1.11)}
+}
+@keyframes coreSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+@keyframes coreBloomPulse{
+  0%,100%{opacity:.92;transform:scale(.94)}
+  50%{opacity:1;transform:scale(1.08)}
 }
 @keyframes cardDrift{
   0%,100%{transform:translate3d(0,0,0)}
@@ -330,6 +360,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 @media (max-width: 860px){
   .section{padding:72px 0}
   .section-grid{padding:44px 0 56px}
+  .hero-section{padding:12px 0 42px}
   .site-shell{padding:0 18px}
   .brand-logo{height:38px}
   .footer-logo{height:40px}
@@ -337,8 +368,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   h2{font-size:clamp(28px,9vw,44px)}
   .hero-lead,.section-heading p,.vision-card p{font-size:18px}
   .problem-grid,.compare-grid,.risk-grid,.agent-grid,.audience-grid,.architecture-grid,.aura-capabilities{grid-template-columns:1fr}
-  .panel-frame-lg{min-height:auto}
-  .signal-map{min-height:440px}
+  .hero-orbit,.orbit-field{min-height:470px}
   .card-live{left:20px}
   .card-xai{right:18px}
   .card-risk{left:24px}

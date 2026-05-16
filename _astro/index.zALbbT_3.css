@@ -552,11 +552,14 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .agent-capsules span:nth-child(3){animation-delay:1.6s}
 .agent-capsules span:nth-child(4){animation-delay:2.4s}
 .trust-statement{
-  margin:0 0 22px;padding:22px 24px;border-radius:24px;border:1px solid rgba(129,171,151,.18);
+  margin:6px 0 28px;padding:30px 32px 32px;border-radius:28px;border:1px solid rgba(129,171,151,.18);
   background:
-    radial-gradient(circle at 18% 50%,rgba(113,200,143,.12),transparent 28%),
+    radial-gradient(circle at 24% 48%,rgba(113,200,143,.15),transparent 30%),
+    radial-gradient(circle at 68% 58%,rgba(84,156,131,.08),transparent 28%),
     linear-gradient(180deg,rgba(14,24,37,.95),rgba(8,14,22,.98));
-  color:#f3faf6;font-size:clamp(24px,3vw,42px);font-weight:900;letter-spacing:-.04em
+  box-shadow:0 22px 54px rgba(0,0,0,.18), inset 0 0 0 1px rgba(129,171,151,.05);
+  color:#f3faf6;font-size:clamp(28px,3.4vw,50px);line-height:.98;font-weight:900;letter-spacing:-.045em;
+  text-wrap:balance;text-shadow:0 0 32px rgba(113,200,143,.08)
 }
 .trust-grid{
   display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px

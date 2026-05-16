@@ -663,7 +663,9 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   box-shadow:0 0 24px rgba(113,200,143,.06)
 }
 .live-logs{
-  position:relative;z-index:1;padding:24px;overflow:hidden;
+  position:relative;z-index:1;display:grid;align-content:start;
+  height:680px;min-height:680px;max-height:680px;
+  padding:24px;overflow:hidden;
   background:
     linear-gradient(180deg,rgba(255,255,255,.012),rgba(255,255,255,0))
 }
@@ -1319,6 +1321,7 @@ html.is-chrome-like .liquid-refraction{
   .signal-card strong{font-size:15px}
   .final-cta-card{gap:20px;padding:30px 30px}
   .live-status,.live-logs{padding:24px}
+  .live-logs{height:620px;min-height:620px;max-height:620px}
 }
 @media (max-width: 860px){
   .section{padding:72px 0}
@@ -1402,6 +1405,7 @@ html.is-chrome-like .liquid-refraction{
   .flow-arrow{display:none}
   .live-status span{padding:12px 14px}
   .live-status b{font-size:14px}
+  .live-logs{height:540px;min-height:540px;max-height:540px}
   .log-row{gap:10px;padding:14px 0}
   .log-pill{min-height:36px;padding:0 14px;font-size:12px;justify-self:start}
   .log-row p{font-size:15px}
@@ -1433,6 +1437,7 @@ html.is-chrome-like .liquid-refraction{
   .operator-row p{font-size:14px}
   .final-cta-card{padding:24px 22px}
   .final-cta-actions{gap:12px}
+  .live-logs{height:500px;min-height:500px;max-height:500px}
   .footer-socials{width:100%}
   .footer-socials a{flex:1 1 calc(50% - 5px);min-width:0}
   .risk-modal-close{flex:0 0 40px;width:40px;height:40px}

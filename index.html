@@ -387,6 +387,14 @@
 
     <script>
       if (typeof window !== "undefined") {
+        const ua = window.navigator.userAgent;
+        const isChromiumLike =
+          /Chrome|CriOS|Edg|OPR/.test(ua) && !/Safari\/.*Version\//.test(ua);
+
+        if (isChromiumLike) {
+          document.documentElement.classList.add("is-chrome-like");
+        }
+
         const toggle = document.querySelector(".nav-toggle");
         const mobileNav = document.getElementById("mobile-nav");
         const mobileLinks = mobileNav ? Array.from(mobileNav.querySelectorAll("a")) : [];

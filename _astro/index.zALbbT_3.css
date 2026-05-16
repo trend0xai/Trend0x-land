@@ -612,6 +612,48 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   50%{opacity:1}
 }
 
+html.is-chrome-like body:before,
+html.is-chrome-like body:after{
+  filter:blur(18px);
+  opacity:.24;
+  animation:none;
+}
+html.is-chrome-like .section:before,
+html.is-chrome-like .glow-card:after,
+html.is-chrome-like .arch-card:after,
+html.is-chrome-like .subtle-card:after,
+html.is-chrome-like .aura-node:after{
+  animation:none;
+  opacity:.24;
+}
+html.is-chrome-like .signal-card,
+html.is-chrome-like .aura-node,
+html.is-chrome-like .surface-card,
+html.is-chrome-like .arch-card,
+html.is-chrome-like .aura-system-copy,
+html.is-chrome-like .aura-system-map,
+html.is-chrome-like .live-panel,
+html.is-chrome-like .trust-statement,
+html.is-chrome-like .final-cta-card{
+  box-shadow:0 16px 48px rgba(0,0,0,.22);
+}
+html.is-chrome-like .aura-system-map:after,
+html.is-chrome-like .aura-beam:before,
+html.is-chrome-like .aura-beam:after,
+html.is-chrome-like .agent-capsules span,
+html.is-chrome-like .flow-step:before,
+html.is-chrome-like .live-status i,
+html.is-chrome-like .live-logs .log-row,
+html.is-chrome-like .live-logs .log-row span{
+  animation:none;
+}
+html.is-chrome-like .reveal-up{
+  transition:opacity .55s ease, transform .55s ease;
+}
+html.is-chrome-like .aura-system-map{
+  background:linear-gradient(180deg,rgba(13,22,36,.96),rgba(10,17,27,.98));
+}
+
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   .reveal-up,.reveal-up.is-visible,.glow-card,.glow-card:hover,.aura-node,.aura-node:hover{

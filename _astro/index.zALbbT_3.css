@@ -805,33 +805,14 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .vision-points{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 .final-cta{padding-top:72px;padding-bottom:120px}
 .final-cta-card{
-  position:relative;display:flex;align-items:end;justify-content:space-between;gap:24px;padding:36px 38px;overflow:hidden
+  display:flex;align-items:end;justify-content:space-between;gap:24px;padding:36px 38px
 }
 .final-cta-card p{margin-top:16px;max-width:760px;font-size:18px;line-height:1.65;color:var(--muted)}
-.final-cta-side{
-  position:relative;display:flex;align-items:center;justify-content:flex-end;gap:24px;min-width:430px
-}
 .final-cta-actions{
-  position:relative;z-index:2;flex-direction:column;align-items:stretch;gap:14px;min-width:280px
+  flex-direction:column;align-items:stretch;gap:14px;min-width:280px
 }
 .final-cta-actions .button{
   width:100%;min-width:280px
-}
-.final-cta-brand{
-  position:relative;display:grid;place-items:center;flex:0 0 150px;width:150px;height:150px;
-  opacity:.38;pointer-events:none
-}
-.final-cta-brand-glow{
-  position:absolute;inset:10%;border-radius:50%;
-  background:radial-gradient(circle,rgba(113,200,143,.14),rgba(82,166,138,.06) 42%,transparent 72%);
-  filter:blur(18px);
-  animation:ambientBrandGlow 15s ease-in-out infinite
-}
-.final-cta-brand-logo{
-  position:relative;z-index:1;width:100%;height:100%;object-fit:contain;
-  filter:drop-shadow(0 0 22px rgba(113,200,143,.1));
-  transform-origin:center center;
-  animation:ambientBrandRotate 28s linear infinite
 }
 .site-footer{
   padding:0 0 46px;border-top:1px solid rgba(129,171,151,.08);background:rgba(5,10,16,.4)
@@ -998,16 +979,6 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   0%,100%{opacity:.52}
   50%{opacity:1}
 }
-@keyframes ambientBrandRotate{
-  0%{transform:rotate(0deg) scale(1)}
-  50%{transform:rotate(180deg) scale(1.02)}
-  100%{transform:rotate(360deg) scale(1)}
-}
-@keyframes ambientBrandGlow{
-  0%,100%{opacity:.58;transform:scale(.96)}
-  50%{opacity:.88;transform:scale(1.06)}
-}
-
 html.is-chrome-like body:before,
 html.is-chrome-like body:after{
   filter:blur(18px);
@@ -1104,13 +1075,6 @@ html.is-chrome-like .liquid-specular{
 html.is-chrome-like .liquid-refraction{
   animation:refractionDrift 21s ease-in-out infinite
 }
-html.is-chrome-like .final-cta-brand-glow{
-  animation:ambientBrandGlow 18s ease-in-out infinite
-}
-html.is-chrome-like .final-cta-brand-logo{
-  animation:ambientBrandRotate 34s linear infinite
-}
-
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   .reveal-up,.reveal-up.is-visible,.glow-card,.glow-card:hover,.aura-node,.aura-node:hover,.core-orb{
@@ -1119,7 +1083,6 @@ html.is-chrome-like .final-cta-brand-logo{
   body:before,body:after,.glow-card:after,.arch-card:after,.subtle-card:after,.aura-node:after,
   .aura-beam:before,.aura-beam:after,.aura-node,.agent-capsules span,.flow-step:before,.flow-step:after,.flow-arrow:before,
   .core-bloom,.core-bloom:after,.core-glow,.core-label,.liquid-layer,.liquid-caustic,.liquid-specular,.liquid-refraction,
-  .final-cta-brand-glow,.final-cta-brand-logo,
   .operator-glyph i,
   .live-status i,.live-logs .log-row,.live-logs .log-row span,.aura-system-map:after{animation:none}
 }
@@ -1131,7 +1094,6 @@ html.is-chrome-like .final-cta-brand-logo{
   .problem-grid,.architecture-grid,.agent-grid,.audience-grid,.risk-grid,.system-grid,.trust-grid,.built-for-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .aura-capabilities{grid-template-columns:1fr 1fr}
   .operator-row{grid-template-columns:34px minmax(0,.9fr) minmax(0,1.2fr)}
-  .final-cta-side{min-width:0;justify-content:space-between}
   .live-status{border-right:none;border-bottom:1px solid rgba(129,171,151,.12)}
   .desktop-nav,.nav-actions{display:none}
   .nav-toggle,.mobile-nav{display:flex}
@@ -1155,10 +1117,8 @@ html.is-chrome-like .final-cta-brand-logo{
   .operator-access-head{align-items:flex-start}
   .operator-row{grid-template-columns:28px 1fr;gap:14px;padding:18px}
   .operator-row h3,.operator-row p{grid-column:2}
-  .final-cta-side{width:100%;min-width:0;justify-content:flex-start}
   .final-cta-actions{min-width:0;width:100%}
   .final-cta-actions .button{min-width:0}
-  .final-cta-brand{display:none}
   .hero-orbit,.orbit-field{min-height:470px}
   .surface-card,.arch-card,.aura-system-copy,.aura-system-map,.live-panel,.final-cta-card,.trust-statement{border-radius:22px}
   .surface-card,.arch-card{padding:22px}

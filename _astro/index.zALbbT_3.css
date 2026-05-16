@@ -808,6 +808,12 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   display:flex;align-items:end;justify-content:space-between;gap:24px;padding:36px 38px
 }
 .final-cta-card p{margin-top:16px;max-width:760px;font-size:18px;line-height:1.65;color:var(--muted)}
+.final-cta-actions{
+  flex-direction:column;align-items:stretch;gap:14px;min-width:280px
+}
+.final-cta-actions .button{
+  width:100%;min-width:280px
+}
 .site-footer{
   padding:0 0 46px;border-top:1px solid rgba(129,171,151,.08);background:rgba(5,10,16,.4)
 }
@@ -1113,6 +1119,8 @@ html.is-chrome-like .liquid-refraction{
   .operator-access-head{align-items:flex-start}
   .operator-row{grid-template-columns:28px 1fr;gap:14px;padding:18px}
   .operator-row h3,.operator-row p{grid-column:2}
+  .final-cta-actions{min-width:0;width:100%}
+  .final-cta-actions .button{min-width:0}
   .hero-orbit,.orbit-field{min-height:470px}
   .surface-card,.arch-card,.aura-system-copy,.aura-system-map,.live-panel,.final-cta-card,.trust-statement{border-radius:22px}
   .surface-card,.arch-card{padding:22px}

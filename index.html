@@ -483,18 +483,26 @@
         const riskModal = document.querySelector("[data-risk-modal]");
         const riskOpeners = Array.from(document.querySelectorAll("[data-open-risk]"));
         const riskClosers = Array.from(document.querySelectorAll("[data-close-risk]"));
+        let mobileNavOpen = false;
+        let riskModalOpen = false;
+
+        const syncOverlayLock = () => {
+          document.body.classList.toggle("no-scroll", mobileNavOpen || riskModalOpen);
+        };
 
         const setState = (open) => {
           if (!toggle || !mobileNav) return;
           toggle.setAttribute("aria-expanded", String(open));
           mobileNav.hidden = !open;
-          document.body.classList.toggle("no-scroll", open);
+          mobileNavOpen = open;
+          syncOverlayLock();
         };
 
         const setRiskModal = (open) => {
           if (!riskModal) return;
           riskModal.hidden = !open;
-          document.body.classList.toggle("no-scroll", open);
+          riskModalOpen = open;
+          syncOverlayLock();
         };
 
         toggle?.addEventListener("click", () => {

@@ -522,6 +522,14 @@
           button.addEventListener("click", () => setRiskModal(false));
         });
 
+        riskModal?.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          if (target.closest("[data-close-risk]")) {
+            setRiskModal(false);
+          }
+        });
+
         window.addEventListener("keydown", (event) => {
           if (event.key === "Escape") setState(false);
           if (event.key === "Escape") setRiskModal(false);

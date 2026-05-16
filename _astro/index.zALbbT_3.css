@@ -946,6 +946,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .risk-modal-close{
   position:relative;flex:0 0 44px;width:44px;height:44px;border-radius:14px;border:1px solid rgba(129,171,151,.16);
+  z-index:3;pointer-events:auto;
   background:rgba(255,255,255,.02);cursor:pointer
 }
 .risk-modal-close span{

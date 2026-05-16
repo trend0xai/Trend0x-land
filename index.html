@@ -309,17 +309,26 @@
               <span data-live-status-item><i></i><b>Feedback loop scheduled</b></span>
             </div>
             <div class="infra-logs live-logs" data-live-feed>
-              <div class="log-row" data-live-log-row data-live-kind="context">
-                <span data-live-time>[ 16:07:11 ]</span><span class="log-pill" data-live-type>Context</span><p data-live-message>Volatility regime updated across active watchlists.</p>
+              <div class="log-row" data-live-log-row data-live-kind="execution">
+                <span data-live-time>[ 19:13:49 ]</span><span class="log-pill" data-live-type>Execution</span><p data-live-message>Latency spike detected. Switching to fallback feed.</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="risk">
-                <span data-live-time>[ 16:07:15 ]</span><span class="log-pill" data-live-type>Risk</span><p data-live-message>Exposure remains inside governor thresholds.</p>
+              <div class="log-row" data-live-log-row data-live-kind="success">
+                <span data-live-time>[ 19:13:57 ]</span><span class="log-pill" data-live-type>Success</span><p data-live-message>Scanning ZRC-USDT...</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="reasoning">
-                <span data-live-time>[ 16:07:18 ]</span><span class="log-pill" data-live-type>Reasoning</span><p data-live-message>Signal clustering detected across structure, momentum, and flow.</p>
+              <div class="log-row" data-live-log-row data-live-kind="scan">
+                <span data-live-time>[ 19:14:03 ]</span><span class="log-pill" data-live-type>Scan</span><p data-live-message>Scanning HBAR-USDT...</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="feedback">
-                <span data-live-time>[ 16:07:22 ]</span><span class="log-pill" data-live-type>Feedback</span><p data-live-message>Post-trade analysis loop initialized for current regime set.</p>
+              <div class="log-row" data-live-log-row data-live-kind="error">
+                <span data-live-time>[ 19:14:11 ]</span><span class="log-pill" data-live-type>Error</span><p data-live-message>Stop loss: DOGE-USDT hit SL. Limit order sent at 0.1261</p>
+              </div>
+              <div class="log-row" data-live-log-row data-live-kind="success">
+                <span data-live-time>[ 19:14:17 ]</span><span class="log-pill" data-live-type>Success</span><p data-live-message>Close confirmed (system): DOGE-USDT</p>
+              </div>
+              <div class="log-row" data-live-log-row data-live-kind="info">
+                <span data-live-time>[ 19:14:24 ]</span><span class="log-pill" data-live-type>Info</span><p data-live-message>Latency spike detected. Switching to fallback feed.</p>
+              </div>
+              <div class="log-row" data-live-log-row data-live-kind="execution">
+                <span data-live-time>[ 19:14:30 ]</span><span class="log-pill" data-live-type>Execution</span><p data-live-message>Scanning HBAR-USDT...</p>
               </div>
             </div>
           </div>
@@ -587,22 +596,30 @@
         ];
 
         const liveFeedPool = [
-          { type: "Execution", message: "Governed execution route prepared for active market state." },
-          { type: "Feedback", message: "Post-trade analysis loop initialized for current regime set." },
-          { type: "System", message: "Operational state synchronized across intelligence and execution layers." },
-          { type: "Context", message: "Liquidity conditions re-ranked across monitored instruments." },
-          { type: "Governance", message: "Exposure layer validated inside active constraints." },
-          { type: "Reasoning", message: "Cross-market signal convergence detected." },
-          { type: "System", message: "Agent synchronization completed successfully." },
-          { type: "Risk", message: "Volatility-aware sizing parameters updated." },
-          { type: "Context", message: "Regime transition probability increased across watchlists." },
-          { type: "Execution", message: "Execution coordination queued through governance layer." },
-          { type: "Feedback", message: "Outcome review cycle scheduled." },
-          { type: "Governance", message: "Decision path validated against independent control logic." },
-          { type: "Reasoning", message: "Signal clustering detected across structure, momentum, and flow." },
-          { type: "Risk", message: "Exposure remains inside governor thresholds." },
-          { type: "Context", message: "Volatility regime updated across active watchlists." },
-          { type: "System", message: "Intelligence layer heartbeat completed across active modules." },
+          { type: "Execution", message: "Latency spike detected. Switching to fallback feed." },
+          { type: "Success", message: "Scanning ZRC-USDT..." },
+          { type: "Scan", message: "Scanning HBAR-USDT..." },
+          { type: "Error", message: "Stop loss: DOGE-USDT hit SL. Limit order sent at 0.1261" },
+          { type: "Success", message: "Close confirmed (system): DOGE-USDT" },
+          { type: "Info", message: "Latency spike detected. Switching to fallback feed." },
+          { type: "Execution", message: "Scanning HBAR-USDT..." },
+          { type: "Scan", message: "Scanning SOL-USDT..." },
+          { type: "Success", message: "Scanning SOL-USDT..." },
+          { type: "Execution", message: "Close confirmed (system): DOGE-USDT" },
+          { type: "Info", message: "Scanning ZRC-USDT..." },
+          { type: "Scan", message: "Scanning DOGE-USDT..." },
+          { type: "Warning", message: "Latency spike detected. Switching to fallback feed." },
+          { type: "Execution", message: "Close confirmed (system): TRX-USDT" },
+          { type: "Success", message: "Execution route confirmed: BTC-USDT" },
+          { type: "Info", message: "Scanning XRP-USDT..." },
+          { type: "Scan", message: "Scanning ADA-USDT..." },
+          { type: "Error", message: "Stop loss: TRX-USDT hit SL. Limit order sent at 0.2893" },
+          { type: "Execution", message: "Scanning SOL-USDT..." },
+          { type: "Success", message: "Close confirmed (system): HBAR-USDT" },
+          { type: "Info", message: "Market feed resynchronized across active pairs." },
+          { type: "Warning", message: "Spread widened on SOL-USDT. Routing through fallback book." },
+          { type: "Scan", message: "Scanning ZRC-USDT..." },
+          { type: "Execution", message: "Trailing stop adjusted: BTC-USDT" },
         ];
 
         const timeFormatter = new Intl.DateTimeFormat("en-GB", {

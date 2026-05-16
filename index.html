@@ -309,17 +309,17 @@
               <span data-live-status-item><i></i><b>Feedback loop scheduled</b></span>
             </div>
             <div class="infra-logs live-logs" data-live-feed>
-              <div class="log-row" data-live-log-row>
-                <span data-live-time>16:07:11</span><strong data-live-type>Context</strong><p data-live-message>Volatility regime updated across active watchlists.</p>
+              <div class="log-row" data-live-log-row data-live-kind="context">
+                <span data-live-time>[ 16:07:11 ]</span><span class="log-pill" data-live-type>Context</span><p data-live-message>Volatility regime updated across active watchlists.</p>
               </div>
-              <div class="log-row" data-live-log-row>
-                <span data-live-time>16:07:15</span><strong data-live-type>Risk</strong><p data-live-message>Exposure remains inside governor thresholds.</p>
+              <div class="log-row" data-live-log-row data-live-kind="risk">
+                <span data-live-time>[ 16:07:15 ]</span><span class="log-pill" data-live-type>Risk</span><p data-live-message>Exposure remains inside governor thresholds.</p>
               </div>
-              <div class="log-row" data-live-log-row>
-                <span data-live-time>16:07:18</span><strong data-live-type>Reasoning</strong><p data-live-message>Signal clustering detected across structure, momentum, and flow.</p>
+              <div class="log-row" data-live-log-row data-live-kind="reasoning">
+                <span data-live-time>[ 16:07:18 ]</span><span class="log-pill" data-live-type>Reasoning</span><p data-live-message>Signal clustering detected across structure, momentum, and flow.</p>
               </div>
-              <div class="log-row" data-live-log-row>
-                <span data-live-time>16:07:22</span><strong data-live-type>Feedback</strong><p data-live-message>Post-trade analysis loop initialized for current regime set.</p>
+              <div class="log-row" data-live-log-row data-live-kind="feedback">
+                <span data-live-time>[ 16:07:22 ]</span><span class="log-pill" data-live-type>Feedback</span><p data-live-message>Post-trade analysis loop initialized for current regime set.</p>
               </div>
             </div>
           </div>
@@ -674,8 +674,9 @@
 
           window.setTimeout(() => {
             const entry = nextFeedEntry();
-            timeNode.textContent = advanceClock();
+            timeNode.textContent = `[ ${advanceClock()} ]`;
             typeNode.textContent = entry.type;
+            row.dataset.liveKind = entry.type.toLowerCase();
             messageNode.textContent = entry.message;
             row.classList.remove("is-refreshing");
             row.classList.add("is-live");
@@ -684,6 +685,12 @@
         };
 
         if (liveStatusItems.length && liveLogRows.length) {
+          liveLogRows.forEach((row) => {
+            const typeNode = row.querySelector("[data-live-type]");
+            if (!typeNode) return;
+            row.dataset.liveKind = typeNode.textContent.trim().toLowerCase();
+          });
+
           liveStatusItems.forEach((item, index) => {
             window.setTimeout(() => updateStatusItem(item), index * 220);
           });

@@ -683,7 +683,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .live-logs .log-row:nth-child(2){animation-delay:1s}
 .live-logs .log-row:nth-child(3){animation-delay:2s}
 .live-logs .log-row:nth-child(4){animation-delay:3s}
-.live-logs .log-row span{animation:timestampBlink 8s ease-in-out infinite}
+.live-logs .log-row span[data-live-time]{animation:timestampBlink 8s ease-in-out infinite}
 .live-logs .log-row.is-refreshing{
   opacity:.18;transform:translateY(10px);filter:blur(1px)
 }
@@ -839,13 +839,44 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .infra-logs{padding:24px}
 .log-row{
-  display:grid;grid-template-columns:90px 120px 1fr;gap:16px;align-items:start;
-  padding:16px 0;border-bottom:1px solid rgba(129,171,151,.08)
+  display:grid;grid-template-columns:176px 132px minmax(0,1fr);gap:18px;align-items:center;
+  padding:14px 0;border-bottom:1px solid rgba(129,171,151,.08)
 }
 .log-row:last-child{border-bottom:none}
-.log-row span{color:var(--muted-2);font-family:"IBM Plex Mono",monospace;font-size:12px}
-.log-row strong{color:#d8e5e0;font-size:14px;text-transform:uppercase;letter-spacing:.06em}
-.log-row p{color:#bfd0ca;line-height:1.55}
+.log-row span[data-live-time]{
+  color:rgba(214,224,219,.72);font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;
+  letter-spacing:.02em;white-space:nowrap
+}
+.log-pill{
+  display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border-radius:15px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(129,171,151,.1);
+  color:#dce8e2;font-size:13px;font-weight:700;letter-spacing:.01em;white-space:nowrap;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)
+}
+.log-row p{
+  color:#d4e0db;line-height:1.45;font-size:15px
+}
+.log-row[data-live-kind="context"] .log-pill{
+  background:rgba(77,124,169,.12);border-color:rgba(119,159,200,.14);color:#c8daf1
+}
+.log-row[data-live-kind="governance"] .log-pill{
+  background:rgba(139,191,150,.12);border-color:rgba(139,191,150,.14);color:#cfe8d4
+}
+.log-row[data-live-kind="reasoning"] .log-pill{
+  background:rgba(137,120,201,.12);border-color:rgba(137,120,201,.14);color:#d8cff4
+}
+.log-row[data-live-kind="system"] .log-pill{
+  background:rgba(115,133,156,.13);border-color:rgba(140,157,182,.14);color:#d9e1eb
+}
+.log-row[data-live-kind="risk"] .log-pill{
+  background:rgba(168,136,82,.14);border-color:rgba(186,149,92,.16);color:#efd8ab
+}
+.log-row[data-live-kind="execution"] .log-pill{
+  background:rgba(112,116,136,.16);border-color:rgba(144,147,168,.14);color:#e1e4ee
+}
+.log-row[data-live-kind="feedback"] .log-pill{
+  background:rgba(70,150,124,.13);border-color:rgba(92,174,146,.16);color:#cde9df
+}
 .vision-section{padding-top:72px}
 .vision-card{
   padding:38px 38px 34px;background:
@@ -1351,7 +1382,7 @@ html.is-chrome-like .liquid-refraction{
   .live-status span{padding:12px 14px}
   .live-status b{font-size:14px}
   .log-row{gap:10px;padding:14px 0}
-  .log-row strong{font-size:13px}
+  .log-pill{min-height:36px;padding:0 14px;font-size:12px;justify-self:start}
   .log-row p{font-size:15px}
   .footer-nav a,.footer-socials a{font-size:13px}
 }

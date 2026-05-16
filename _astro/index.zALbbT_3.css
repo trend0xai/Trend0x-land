@@ -464,13 +464,13 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   content:"";position:absolute;inset:0;border-radius:inherit;
   background:linear-gradient(90deg,rgba(102,186,129,.08),rgba(116,211,147,.22));
   transform:scaleX(0);transform-origin:left center;
-  animation:flowStepFill 10s ease-in-out infinite
+  animation-duration:12s;animation-timing-function:ease-in-out;animation-iteration-count:infinite;animation-fill-mode:both
 }
 .flow-step:after{
   content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
   background:radial-gradient(circle at 50% 50%,rgba(116,211,147,.18),transparent 68%);
   opacity:0;
-  animation:flowPulse 10s ease-in-out infinite
+  animation-duration:12s;animation-timing-function:ease-in-out;animation-iteration-count:infinite;animation-fill-mode:both
 }
 .flow-step span{position:relative;z-index:1}
 .flow-arrow{
@@ -481,17 +481,22 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,rgba(116,211,147,.1),rgba(116,211,147,.9),rgba(116,211,147,.1));
   transform:scaleX(0);transform-origin:left center;
-  animation:flowArrowFill 10s ease-in-out infinite
+  animation-duration:12s;animation-timing-function:ease-in-out;animation-iteration-count:infinite;animation-fill-mode:both
 }
-.flow-step-1:before,.flow-step-1:after{animation-delay:0s}
-.flow-step-2:before,.flow-step-2:after{animation-delay:2s}
-.flow-step-3:before,.flow-step-3:after{animation-delay:4s}
-.flow-step-4:before,.flow-step-4:after{animation-delay:6s}
-.flow-step-5:before,.flow-step-5:after{animation-delay:8s}
-.flow-arrow-1:before{animation-delay:1s}
-.flow-arrow-2:before{animation-delay:3s}
-.flow-arrow-3:before{animation-delay:5s}
-.flow-arrow-4:before{animation-delay:7s}
+.flow-step-1:before{animation-name:flowStepFill1}
+.flow-step-1:after{animation-name:flowPulse1}
+.flow-step-2:before{animation-name:flowStepFill2}
+.flow-step-2:after{animation-name:flowPulse2}
+.flow-step-3:before{animation-name:flowStepFill3}
+.flow-step-3:after{animation-name:flowPulse3}
+.flow-step-4:before{animation-name:flowStepFill4}
+.flow-step-4:after{animation-name:flowPulse4}
+.flow-step-5:before{animation-name:flowStepFill5}
+.flow-step-5:after{animation-name:flowPulse5}
+.flow-arrow-1:before{animation-name:flowArrowFill1}
+.flow-arrow-2:before{animation-name:flowArrowFill2}
+.flow-arrow-3:before{animation-name:flowArrowFill3}
+.flow-arrow-4:before{animation-name:flowArrowFill4}
 .live-panel{
   display:grid;grid-template-columns:280px 1fr;overflow:hidden
 }
@@ -653,19 +658,84 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.8}
   50%{transform:translate3d(1.5%, -1%, 0) scale(1.04);opacity:1}
 }
-@keyframes flowPulse{
-  0%,8%,100%{opacity:0}
-  12%,18%{opacity:1}
+@keyframes flowPulse1{
+  0%,1%,82%,100%{opacity:0}
+  4%,10%{opacity:1}
+  12%,78%{opacity:.18}
 }
-@keyframes flowStepFill{
-  0%,8%{transform:scaleX(0);opacity:.15}
-  12%,18%{transform:scaleX(1);opacity:1}
-  20%,100%{transform:scaleX(1);opacity:.88}
+@keyframes flowPulse2{
+  0%,15%,82%,100%{opacity:0}
+  19%,26%{opacity:1}
+  28%,78%{opacity:.18}
 }
-@keyframes flowArrowFill{
-  0%,8%{transform:scaleX(0);opacity:0}
-  14%,22%{transform:scaleX(1);opacity:1}
-  24%,100%{transform:scaleX(1);opacity:.68}
+@keyframes flowPulse3{
+  0%,31%,82%,100%{opacity:0}
+  35%,42%{opacity:1}
+  44%,78%{opacity:.18}
+}
+@keyframes flowPulse4{
+  0%,47%,82%,100%{opacity:0}
+  51%,58%{opacity:1}
+  60%,78%{opacity:.18}
+}
+@keyframes flowPulse5{
+  0%,63%,82%,100%{opacity:0}
+  67%,74%{opacity:1}
+  76%,78%{opacity:.18}
+}
+@keyframes flowStepFill1{
+  0%,1%{transform:scaleX(0);opacity:.12}
+  4%,10%{transform:scaleX(1);opacity:1}
+  12%,78%{transform:scaleX(1);opacity:.84}
+  82%,100%{transform:scaleX(0);opacity:.12}
+}
+@keyframes flowStepFill2{
+  0%,15%{transform:scaleX(0);opacity:.12}
+  19%,26%{transform:scaleX(1);opacity:1}
+  28%,78%{transform:scaleX(1);opacity:.84}
+  82%,100%{transform:scaleX(0);opacity:.12}
+}
+@keyframes flowStepFill3{
+  0%,31%{transform:scaleX(0);opacity:.12}
+  35%,42%{transform:scaleX(1);opacity:1}
+  44%,78%{transform:scaleX(1);opacity:.84}
+  82%,100%{transform:scaleX(0);opacity:.12}
+}
+@keyframes flowStepFill4{
+  0%,47%{transform:scaleX(0);opacity:.12}
+  51%,58%{transform:scaleX(1);opacity:1}
+  60%,78%{transform:scaleX(1);opacity:.84}
+  82%,100%{transform:scaleX(0);opacity:.12}
+}
+@keyframes flowStepFill5{
+  0%,63%{transform:scaleX(0);opacity:.12}
+  67%,74%{transform:scaleX(1);opacity:1}
+  76%,78%{transform:scaleX(1);opacity:.84}
+  82%,100%{transform:scaleX(0);opacity:.12}
+}
+@keyframes flowArrowFill1{
+  0%,9%{transform:scaleX(0);opacity:0}
+  11%,16%{transform:scaleX(1);opacity:1}
+  18%,78%{transform:scaleX(1);opacity:.64}
+  82%,100%{transform:scaleX(0);opacity:0}
+}
+@keyframes flowArrowFill2{
+  0%,25%{transform:scaleX(0);opacity:0}
+  27%,32%{transform:scaleX(1);opacity:1}
+  34%,78%{transform:scaleX(1);opacity:.64}
+  82%,100%{transform:scaleX(0);opacity:0}
+}
+@keyframes flowArrowFill3{
+  0%,41%{transform:scaleX(0);opacity:0}
+  43%,48%{transform:scaleX(1);opacity:1}
+  50%,78%{transform:scaleX(1);opacity:.64}
+  82%,100%{transform:scaleX(0);opacity:0}
+}
+@keyframes flowArrowFill4{
+  0%,57%{transform:scaleX(0);opacity:0}
+  59%,64%{transform:scaleX(1);opacity:1}
+  66%,78%{transform:scaleX(1);opacity:.64}
+  82%,100%{transform:scaleX(0);opacity:0}
 }
 @keyframes blinkDot{
   0%,100%{opacity:.45;transform:scale(.92)}
@@ -774,13 +844,13 @@ html.is-chrome-like .node-learning{
   animation:nodePulse 16s ease-in-out infinite, auraNodeFloatD 13.4s ease-in-out infinite
 }
 html.is-chrome-like .flow-step:before{
-  animation:flowStepFill 14s ease-in-out infinite
+  animation-duration:14s
 }
 html.is-chrome-like .flow-step:after{
-  animation:flowPulse 14s ease-in-out infinite
+  animation-duration:14s
 }
 html.is-chrome-like .flow-arrow:before{
-  animation:flowArrowFill 14s ease-in-out infinite
+  animation-duration:14s
 }
 html.is-chrome-like .reveal-up{
   transition:opacity .55s ease, transform .55s ease;

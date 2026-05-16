@@ -617,16 +617,26 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .live-status span{
   display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:16px;
-  background:rgba(255,255,255,.02);border:1px solid rgba(129,171,151,.1);color:#bfd0ca;font-weight:600
+  background:rgba(255,255,255,.02);border:1px solid rgba(129,171,151,.1);color:#bfd0ca;font-weight:600;
+  transition:background .45s ease,border-color .45s ease,transform .45s ease,box-shadow .45s ease,opacity .45s ease
 }
 .live-status i{
   width:8px;height:8px;border-radius:50%;background:var(--mint);
   box-shadow:0 0 10px rgba(142,227,169,.45);animation:blinkDot 4.6s ease-in-out infinite
 }
+.live-status b{
+  font:inherit;font-weight:600
+}
 .live-status span:nth-child(2) i{animation-delay:.35s}
 .live-status span:nth-child(3) i{animation-delay:.7s}
 .live-status span:nth-child(4) i{animation-delay:1.05s}
 .live-status span:nth-child(5) i{animation-delay:1.4s}
+.live-status span.is-refreshing{
+  background:rgba(18,31,44,.92);
+  border-color:rgba(129,171,151,.22);
+  transform:translateX(4px);
+  box-shadow:0 0 24px rgba(113,200,143,.06)
+}
 .live-logs{
   position:relative;padding:24px;overflow:hidden
 }
@@ -635,12 +645,19 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   background:linear-gradient(180deg,rgba(8,15,24,0),rgba(8,15,24,.92))
 }
 .live-logs .log-row{
-  animation:logFloat 18s ease-in-out infinite
+  animation:logFloat 18s ease-in-out infinite;
+  transition:opacity .42s ease,transform .42s ease,filter .42s ease,background .42s ease,border-color .42s ease
 }
 .live-logs .log-row:nth-child(2){animation-delay:1s}
 .live-logs .log-row:nth-child(3){animation-delay:2s}
 .live-logs .log-row:nth-child(4){animation-delay:3s}
 .live-logs .log-row span{animation:timestampBlink 8s ease-in-out infinite}
+.live-logs .log-row.is-refreshing{
+  opacity:.2;transform:translateY(8px);filter:blur(1px)
+}
+.live-logs .log-row.is-live{
+  background:linear-gradient(90deg,rgba(113,200,143,.05),transparent 72%);
+}
 .built-for-strip{
   display:grid;gap:18px
 }

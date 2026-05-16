@@ -302,18 +302,26 @@
             <p>The system stays observable by design.</p>
           </div>
           <div class="live-panel">
-            <div class="live-status">
-              <span><i></i>Context updated</span>
-              <span><i></i>Risk threshold verified</span>
-              <span><i></i>Agent reasoning complete</span>
-              <span><i></i>Execution route prepared</span>
-              <span><i></i>Feedback loop scheduled</span>
+            <div class="live-status" data-live-status>
+              <span data-live-status-item><i></i><b>Context updated</b></span>
+              <span data-live-status-item><i></i><b>Risk threshold verified</b></span>
+              <span data-live-status-item><i></i><b>Reasoning sequence active</b></span>
+              <span data-live-status-item><i></i><b>Governed route prepared</b></span>
+              <span data-live-status-item><i></i><b>Feedback loop scheduled</b></span>
             </div>
-            <div class="infra-logs live-logs">
-              <div class="log-row"><span>16:07:11</span><strong>Context</strong><p>Market regime updated across active watchlists.</p></div>
-              <div class="log-row"><span>16:07:15</span><strong>Risk</strong><p>Exposure remains inside governor thresholds.</p></div>
-              <div class="log-row"><span>16:07:18</span><strong>Reasoning</strong><p>Signal clustering confirmed. Execution path prepared.</p></div>
-              <div class="log-row"><span>16:07:22</span><strong>Review</strong><p>Feedback loop scheduled for post-trade analysis.</p></div>
+            <div class="infra-logs live-logs" data-live-feed>
+              <div class="log-row" data-live-log-row>
+                <span data-live-time>16:07:11</span><strong data-live-type>Context</strong><p data-live-message>Volatility regime updated across active watchlists.</p>
+              </div>
+              <div class="log-row" data-live-log-row>
+                <span data-live-time>16:07:15</span><strong data-live-type>Risk</strong><p data-live-message>Exposure remains inside governor thresholds.</p>
+              </div>
+              <div class="log-row" data-live-log-row>
+                <span data-live-time>16:07:18</span><strong data-live-type>Reasoning</strong><p data-live-message>Signal clustering detected across structure, momentum, and flow.</p>
+              </div>
+              <div class="log-row" data-live-log-row>
+                <span data-live-time>16:07:22</span><strong data-live-type>Feedback</strong><p data-live-message>Post-trade analysis loop initialized for current regime set.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -451,6 +459,111 @@
           }
           io ? io.observe(item) : item.classList.add("is-visible");
         });
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const liveStatusItems = Array.from(document.querySelectorAll("[data-live-status-item]"));
+        const liveLogRows = Array.from(document.querySelectorAll("[data-live-log-row]"));
+
+        const liveStatusPool = [
+          "Context updated",
+          "Governance sync active",
+          "Reasoning sequence active",
+          "Risk envelope verified",
+          "Execution path coordinated",
+          "Feedback review queued",
+          "System state normalized",
+          "Market context refreshed",
+        ];
+
+        const liveFeedPool = [
+          { type: "Context", message: "Volatility regime updated across active watchlists." },
+          { type: "Reasoning", message: "Signal clustering detected across structure, momentum, and flow." },
+          { type: "Governance", message: "Decision path validated against independent control logic." },
+          { type: "Risk", message: "Exposure remains inside governor thresholds." },
+          { type: "Execution", message: "Governed execution route prepared for active market state." },
+          { type: "Feedback", message: "Post-trade analysis loop initialized for current regime set." },
+          { type: "System", message: "Operational state synchronized across intelligence and execution layers." },
+          { type: "Context", message: "Liquidity conditions re-ranked across monitored instruments." },
+          { type: "Reasoning", message: "Multi-factor bias updated after higher-timeframe alignment shift." },
+          { type: "Governance", message: "Capital boundaries re-confirmed before coordinated action." },
+          { type: "Execution", message: "Execution coordination held pending risk confirmation cycle." },
+          { type: "Feedback", message: "Adaptive review path scheduled after signal-state transition." },
+        ];
+
+        const timeFormatter = new Intl.DateTimeFormat("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        });
+
+        let liveFeedIndex = 0;
+        let liveStatusIndex = 0;
+
+        const nextFeedEntry = () => {
+          const entry = liveFeedPool[liveFeedIndex % liveFeedPool.length];
+          liveFeedIndex += 1;
+          return entry;
+        };
+
+        const nextStatusText = () => {
+          const text = liveStatusPool[liveStatusIndex % liveStatusPool.length];
+          liveStatusIndex += 1;
+          return text;
+        };
+
+        const updateStatusItem = (item) => {
+          const textNode = item.querySelector("b");
+          if (!textNode) return;
+
+          item.classList.add("is-refreshing");
+          window.setTimeout(() => {
+            textNode.textContent = nextStatusText();
+            item.classList.remove("is-refreshing");
+          }, prefersReducedMotion ? 0 : 240);
+        };
+
+        const updateLogRow = (row) => {
+          const timeNode = row.querySelector("[data-live-time]");
+          const typeNode = row.querySelector("[data-live-type]");
+          const messageNode = row.querySelector("[data-live-message]");
+          if (!timeNode || !typeNode || !messageNode) return;
+
+          row.classList.add("is-refreshing");
+          row.classList.remove("is-live");
+
+          window.setTimeout(() => {
+            const entry = nextFeedEntry();
+            timeNode.textContent = timeFormatter.format(new Date());
+            typeNode.textContent = entry.type;
+            messageNode.textContent = entry.message;
+            row.classList.remove("is-refreshing");
+            row.classList.add("is-live");
+            window.setTimeout(() => row.classList.remove("is-live"), prefersReducedMotion ? 0 : 1800);
+          }, prefersReducedMotion ? 0 : 260);
+        };
+
+        if (liveStatusItems.length && liveLogRows.length) {
+          liveStatusItems.forEach((item, index) => {
+            window.setTimeout(() => updateStatusItem(item), index * 180);
+          });
+
+          liveLogRows.forEach((row, index) => {
+            window.setTimeout(() => updateLogRow(row), index * 220);
+          });
+
+          window.setInterval(() => {
+            const statusTarget = liveStatusItems[Math.floor(Math.random() * liveStatusItems.length)];
+            updateStatusItem(statusTarget);
+          }, prefersReducedMotion ? 8000 : 5200);
+
+          window.setInterval(() => {
+            const rowTarget = liveLogRows.shift();
+            if (!rowTarget) return;
+            updateLogRow(rowTarget);
+            liveLogRows.push(rowTarget);
+          }, prefersReducedMotion ? 9000 : 6400);
+        }
       }
     </script>
   </body>

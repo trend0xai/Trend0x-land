@@ -330,6 +330,9 @@
               <div class="log-row" data-live-log-row data-live-kind="execution">
                 <span data-live-time>[ 19:14:30 ]</span><span class="log-pill" data-live-type>Execution</span><p data-live-message>Scanning HBAR-USDT...</p>
               </div>
+              <div class="log-row log-row-tail" data-live-log-tail data-live-kind="tail">
+                <span data-live-time>[...]</span><span class="log-pill" data-live-type>...</span><p data-live-message>...</p>
+              </div>
             </div>
           </div>
         </div>
@@ -575,7 +578,9 @@
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const liveStatusRoot = document.querySelector("[data-live-status]");
         const liveStatusItems = liveStatusRoot ? Array.from(liveStatusRoot.querySelectorAll("[data-live-status-item]")) : [];
-        const liveLogRows = Array.from(document.querySelectorAll("[data-live-log-row]"));
+        const liveFeedRoot = document.querySelector("[data-live-feed]");
+        let liveLogRows = Array.from(document.querySelectorAll("[data-live-log-row]"));
+        const liveLogTail = document.querySelector("[data-live-log-tail]");
 
         const liveStatusPool = [
           "Context updated",
@@ -680,40 +685,58 @@
           }, prefersReducedMotion ? 0 : 320);
         };
 
-        const updateLogRow = (row) => {
-          const timeNode = row.querySelector("[data-live-time]");
-          const typeNode = row.querySelector("[data-live-type]");
-          const messageNode = row.querySelector("[data-live-message]");
-          if (!timeNode || !typeNode || !messageNode) return;
+        const createLogRow = (entry) => {
+          const row = document.createElement("div");
+          row.className = "log-row is-entering";
+          row.dataset.liveLogRow = "";
+          row.dataset.liveKind = entry.type.toLowerCase();
+          row.innerHTML = `<span data-live-time>[ ${advanceClock()} ]</span><span class="log-pill" data-live-type>${entry.type}</span><p data-live-message>${entry.message}</p>`;
+          return row;
+        };
 
-          row.classList.add("is-refreshing");
-          row.classList.remove("is-live");
+        const pushLogRow = () => {
+          if (!liveFeedRoot || !liveLogTail) return;
 
+          const entry = nextFeedEntry();
+          const newRow = createLogRow(entry);
+          const firstRow = liveLogRows[0];
+
+          liveFeedRoot.insertBefore(newRow, liveLogTail);
+
+          window.requestAnimationFrame(() => {
+            newRow.classList.remove("is-entering");
+            newRow.classList.add("is-live");
+          });
+
+          if (firstRow) {
+            firstRow.classList.add("is-exiting");
+            firstRow.classList.remove("is-live");
+            window.setTimeout(() => {
+              firstRow.remove();
+            }, prefersReducedMotion ? 0 : 520);
+          }
+
+          window.setTimeout(() => newRow.classList.remove("is-live"), prefersReducedMotion ? 0 : 2200);
+
+          liveLogRows = Array.from(document.querySelectorAll("[data-live-log-row]"));
+        };
+
+        const primeLogRow = (row, index) => {
+          if (!row) return;
+          row.dataset.liveKind = row.dataset.liveKind || row.querySelector("[data-live-type]")?.textContent.trim().toLowerCase() || "";
           window.setTimeout(() => {
-            const entry = nextFeedEntry();
-            timeNode.textContent = `[ ${advanceClock()} ]`;
-            typeNode.textContent = entry.type;
-            row.dataset.liveKind = entry.type.toLowerCase();
-            messageNode.textContent = entry.message;
-            row.classList.remove("is-refreshing");
             row.classList.add("is-live");
-            window.setTimeout(() => row.classList.remove("is-live"), prefersReducedMotion ? 0 : 2200);
-          }, prefersReducedMotion ? 0 : 340);
+            window.setTimeout(() => row.classList.remove("is-live"), prefersReducedMotion ? 0 : 1800);
+          }, index * 180);
         };
 
         if (liveStatusItems.length && liveLogRows.length) {
-          liveLogRows.forEach((row) => {
-            const typeNode = row.querySelector("[data-live-type]");
-            if (!typeNode) return;
-            row.dataset.liveKind = typeNode.textContent.trim().toLowerCase();
+          liveLogRows.forEach((row, index) => {
+            primeLogRow(row, index);
           });
 
           liveStatusItems.forEach((item, index) => {
             window.setTimeout(() => updateStatusItem(item), index * 220);
-          });
-
-          liveLogRows.forEach((row, index) => {
-            window.setTimeout(() => updateLogRow(row), index * 280);
           });
 
           const runStatusLoop = () => {
@@ -726,20 +749,16 @@
           };
 
           const runLogLoop = () => {
-            const delay = prefersReducedMotion ? 9000 : randomDelay(4600, 7800);
+            const delay = prefersReducedMotion ? 9000 : randomDelay(4200, 6200);
             window.setTimeout(() => {
-              const rowTarget = liveLogRows.shift();
-              if (rowTarget) {
-                updateLogRow(rowTarget);
-                liveLogRows.push(rowTarget);
-              }
+              pushLogRow();
               runLogLoop();
             }, delay);
           };
 
           runStatusLoop();
           runLogLoop();
-        }
+        };
       }
     </script>
   </body>

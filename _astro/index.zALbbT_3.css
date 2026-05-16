@@ -693,6 +693,12 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .live-logs .log-row.is-live{
   background:linear-gradient(90deg,rgba(113,200,143,.06),rgba(82,166,138,.018) 48%,transparent 76%);
 }
+.live-logs .log-row.is-entering{
+  opacity:0;transform:translateY(16px);filter:blur(1px)
+}
+.live-logs .log-row.is-exiting{
+  opacity:0;transform:translateY(-16px);filter:blur(1px)
+}
 .built-for-strip{
   display:grid;gap:18px
 }
@@ -876,6 +882,21 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .log-row[data-live-kind="warning"] .log-pill{
   background:rgba(148,108,45,.16);border-color:rgba(186,136,55,.12);color:#f4b955
+}
+.log-row-tail{
+  position:relative;animation:none!important;opacity:.88
+}
+.log-row-tail:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(255,255,255,.018),transparent 74%);
+  opacity:.55
+}
+.log-row-tail span[data-live-time],
+.log-row-tail p{
+  color:rgba(228,234,231,.78)
+}
+.log-row[data-live-kind="tail"] .log-pill{
+  min-width:60px;background:rgba(255,255,255,.035);border-color:rgba(129,171,151,.08);color:rgba(228,234,231,.7)
 }
 .vision-section{padding-top:72px}
 .vision-card{

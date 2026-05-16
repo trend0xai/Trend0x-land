@@ -711,9 +711,6 @@ html.is-chrome-like .aura-system-map:after,
 html.is-chrome-like .aura-beam:before,
 html.is-chrome-like .aura-beam:after,
 html.is-chrome-like .agent-capsules span,
- html.is-chrome-like .flow-step:before,
- html.is-chrome-like .flow-step:after,
- html.is-chrome-like .flow-arrow:before,
  html.is-chrome-like .live-status i,
  html.is-chrome-like .live-logs .log-row,
  html.is-chrome-like .live-logs .log-row span{
@@ -729,6 +726,15 @@ html.is-chrome-like .aura-system-map:after{
 html.is-chrome-like .aura-beam:before,
 html.is-chrome-like .aura-beam:after{
   animation:dataSweep 24s linear infinite
+}
+html.is-chrome-like .flow-step:before{
+  animation:flowSweep 14s linear infinite
+}
+html.is-chrome-like .flow-step:after{
+  animation:flowPulse 14s ease-in-out infinite
+}
+html.is-chrome-like .flow-arrow:before{
+  animation:flowArrowPulse 14s linear infinite
 }
 html.is-chrome-like .reveal-up{
   transition:opacity .55s ease, transform .55s ease;

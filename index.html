@@ -461,33 +461,45 @@
         });
 
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const liveStatusItems = Array.from(document.querySelectorAll("[data-live-status-item]"));
+        const liveStatusRoot = document.querySelector("[data-live-status]");
+        const liveStatusItems = liveStatusRoot ? Array.from(liveStatusRoot.querySelectorAll("[data-live-status-item]")) : [];
         const liveLogRows = Array.from(document.querySelectorAll("[data-live-log-row]"));
 
         const liveStatusPool = [
           "Context updated",
           "Governance sync active",
-          "Reasoning sequence active",
-          "Risk envelope verified",
-          "Execution path coordinated",
-          "Feedback review queued",
-          "System state normalized",
           "Market context refreshed",
+          "System state normalized",
+          "Risk layer synchronized",
+          "Agent routing updated",
+          "Execution layer stable",
+          "Feedback cycle initialized",
+          "Intelligence layer active",
+          "Regime map refreshed",
+          "Exposure layer verified",
+          "Signal clustering detected",
+          "Decision layer synchronized",
+          "Operational state stable",
+          "Cross-market scan active",
         ];
 
         const liveFeedPool = [
-          { type: "Context", message: "Volatility regime updated across active watchlists." },
-          { type: "Reasoning", message: "Signal clustering detected across structure, momentum, and flow." },
-          { type: "Governance", message: "Decision path validated against independent control logic." },
-          { type: "Risk", message: "Exposure remains inside governor thresholds." },
           { type: "Execution", message: "Governed execution route prepared for active market state." },
           { type: "Feedback", message: "Post-trade analysis loop initialized for current regime set." },
           { type: "System", message: "Operational state synchronized across intelligence and execution layers." },
           { type: "Context", message: "Liquidity conditions re-ranked across monitored instruments." },
-          { type: "Reasoning", message: "Multi-factor bias updated after higher-timeframe alignment shift." },
-          { type: "Governance", message: "Capital boundaries re-confirmed before coordinated action." },
-          { type: "Execution", message: "Execution coordination held pending risk confirmation cycle." },
-          { type: "Feedback", message: "Adaptive review path scheduled after signal-state transition." },
+          { type: "Governance", message: "Exposure layer validated inside active constraints." },
+          { type: "Reasoning", message: "Cross-market signal convergence detected." },
+          { type: "System", message: "Agent synchronization completed successfully." },
+          { type: "Risk", message: "Volatility-aware sizing parameters updated." },
+          { type: "Context", message: "Regime transition probability increased across watchlists." },
+          { type: "Execution", message: "Execution coordination queued through governance layer." },
+          { type: "Feedback", message: "Outcome review cycle scheduled." },
+          { type: "Governance", message: "Decision path validated against independent control logic." },
+          { type: "Reasoning", message: "Signal clustering detected across structure, momentum, and flow." },
+          { type: "Risk", message: "Exposure remains inside governor thresholds." },
+          { type: "Context", message: "Volatility regime updated across active watchlists." },
+          { type: "System", message: "Intelligence layer heartbeat completed across active modules." },
         ];
 
         const timeFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -499,6 +511,7 @@
 
         let liveFeedIndex = 0;
         let liveStatusIndex = 0;
+        let liveVirtualClock = new Date();
 
         const nextFeedEntry = () => {
           const entry = liveFeedPool[liveFeedIndex % liveFeedPool.length];
@@ -512,15 +525,39 @@
           return text;
         };
 
+        const advanceClock = () => {
+          const step = 4 + Math.floor(Math.random() * 8);
+          liveVirtualClock = new Date(liveVirtualClock.getTime() + step * 1000);
+          return timeFormatter.format(liveVirtualClock);
+        };
+
+        const randomDelay = (min, max) => min + Math.random() * (max - min);
+
+        const promoteStatusItem = (item) => {
+          if (!liveStatusRoot || !item) return;
+          const siblings = Array.from(liveStatusRoot.children);
+          const currentIndex = siblings.indexOf(item);
+          if (currentIndex <= 0 || Math.random() < 0.48) return;
+          const targetIndex = Math.max(0, currentIndex - (Math.random() > 0.5 ? 1 : 2));
+          const anchor = siblings[targetIndex];
+          if (anchor && anchor !== item) {
+            liveStatusRoot.insertBefore(item, anchor);
+          }
+        };
+
         const updateStatusItem = (item) => {
           const textNode = item.querySelector("b");
           if (!textNode) return;
 
           item.classList.add("is-refreshing");
+          item.classList.remove("is-live");
           window.setTimeout(() => {
             textNode.textContent = nextStatusText();
             item.classList.remove("is-refreshing");
-          }, prefersReducedMotion ? 0 : 240);
+            item.classList.add("is-live");
+            window.setTimeout(() => item.classList.remove("is-live"), prefersReducedMotion ? 0 : 1800);
+            promoteStatusItem(item);
+          }, prefersReducedMotion ? 0 : 320);
         };
 
         const updateLogRow = (row) => {
@@ -534,35 +571,47 @@
 
           window.setTimeout(() => {
             const entry = nextFeedEntry();
-            timeNode.textContent = timeFormatter.format(new Date());
+            timeNode.textContent = advanceClock();
             typeNode.textContent = entry.type;
             messageNode.textContent = entry.message;
             row.classList.remove("is-refreshing");
             row.classList.add("is-live");
-            window.setTimeout(() => row.classList.remove("is-live"), prefersReducedMotion ? 0 : 1800);
-          }, prefersReducedMotion ? 0 : 260);
+            window.setTimeout(() => row.classList.remove("is-live"), prefersReducedMotion ? 0 : 2200);
+          }, prefersReducedMotion ? 0 : 340);
         };
 
         if (liveStatusItems.length && liveLogRows.length) {
           liveStatusItems.forEach((item, index) => {
-            window.setTimeout(() => updateStatusItem(item), index * 180);
+            window.setTimeout(() => updateStatusItem(item), index * 220);
           });
 
           liveLogRows.forEach((row, index) => {
-            window.setTimeout(() => updateLogRow(row), index * 220);
+            window.setTimeout(() => updateLogRow(row), index * 280);
           });
 
-          window.setInterval(() => {
-            const statusTarget = liveStatusItems[Math.floor(Math.random() * liveStatusItems.length)];
-            updateStatusItem(statusTarget);
-          }, prefersReducedMotion ? 8000 : 5200);
+          const runStatusLoop = () => {
+            const delay = prefersReducedMotion ? 8200 : randomDelay(4200, 7600);
+            window.setTimeout(() => {
+              const statusTarget = liveStatusItems[Math.floor(Math.random() * liveStatusItems.length)];
+              updateStatusItem(statusTarget);
+              runStatusLoop();
+            }, delay);
+          };
 
-          window.setInterval(() => {
-            const rowTarget = liveLogRows.shift();
-            if (!rowTarget) return;
-            updateLogRow(rowTarget);
-            liveLogRows.push(rowTarget);
-          }, prefersReducedMotion ? 9000 : 6400);
+          const runLogLoop = () => {
+            const delay = prefersReducedMotion ? 9000 : randomDelay(4600, 7800);
+            window.setTimeout(() => {
+              const rowTarget = liveLogRows.shift();
+              if (rowTarget) {
+                updateLogRow(rowTarget);
+                liveLogRows.push(rowTarget);
+              }
+              runLogLoop();
+            }, delay);
+          };
+
+          runStatusLoop();
+          runLogLoop();
         }
       }
     </script>

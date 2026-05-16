@@ -610,15 +610,33 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .flow-arrow-3:before{animation-name:flowArrowFill3}
 .flow-arrow-4:before{animation-name:flowArrowFill4}
 .live-panel{
-  display:grid;grid-template-columns:280px 1fr;overflow:hidden
+  position:relative;display:grid;grid-template-columns:280px 1fr;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(12,20,31,.96),rgba(8,14,22,.98))
+}
+.live-panel:before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.022) 0,rgba(255,255,255,0) 22%,rgba(255,255,255,.014) 58%,rgba(255,255,255,0) 100%),
+    repeating-linear-gradient(180deg,rgba(129,171,151,.018) 0,rgba(129,171,151,.018) 1px,transparent 1px,transparent 7px);
+  animation:liveScanline 22s linear infinite
+}
+.live-panel:after{
+  content:"";position:absolute;inset:auto -8% -18% auto;width:320px;height:320px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(113,200,143,.12),transparent 66%);
+  filter:blur(20px);opacity:.38;animation:ambientBrandGlow 18s ease-in-out infinite
 }
 .live-status{
-  display:grid;gap:12px;padding:28px;border-right:1px solid rgba(129,171,151,.12);background:rgba(255,255,255,.015)
+  position:relative;z-index:1;display:grid;gap:12px;padding:28px;border-right:1px solid rgba(129,171,151,.12);
+  background:
+    radial-gradient(circle at 14% 18%,rgba(113,200,143,.08),transparent 26%),
+    linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012))
 }
 .live-status span{
   display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:16px;
-  background:rgba(255,255,255,.02);border:1px solid rgba(129,171,151,.1);color:#bfd0ca;font-weight:600;
-  transition:background .45s ease,border-color .45s ease,transform .45s ease,box-shadow .45s ease,opacity .45s ease
+  background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.018));
+  border:1px solid rgba(129,171,151,.1);color:#bfd0ca;font-weight:600;
+  transition:background .55s ease,border-color .55s ease,transform .55s ease,box-shadow .55s ease,opacity .55s ease,filter .55s ease
 }
 .live-status i{
   width:8px;height:8px;border-radius:50%;background:var(--mint);
@@ -632,17 +650,28 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .live-status span:nth-child(4) i{animation-delay:1.05s}
 .live-status span:nth-child(5) i{animation-delay:1.4s}
 .live-status span.is-refreshing{
-  background:rgba(18,31,44,.92);
+  opacity:.22;transform:translateY(10px);filter:blur(.8px)
+}
+.live-status span.is-live{
+  background:linear-gradient(90deg,rgba(18,31,44,.98),rgba(10,18,28,.95));
   border-color:rgba(129,171,151,.22);
-  transform:translateX(4px);
+  transform:translateY(0);
+  filter:none;
   box-shadow:0 0 24px rgba(113,200,143,.06)
 }
 .live-logs{
-  position:relative;padding:24px;overflow:hidden
+  position:relative;z-index:1;padding:24px;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.012),rgba(255,255,255,0))
 }
 .live-logs:after{
   content:"";position:absolute;left:0;right:0;bottom:0;height:48px;
   background:linear-gradient(180deg,rgba(8,15,24,0),rgba(8,15,24,.92))
+}
+.live-logs:before{
+  content:"";position:absolute;inset:-10% -20% auto auto;width:68%;height:48%;
+  background:linear-gradient(120deg,transparent,rgba(113,200,143,.05),transparent 72%);
+  opacity:.45;pointer-events:none;filter:blur(18px);animation:liveGradientDrift 20s ease-in-out infinite
 }
 .live-logs .log-row{
   animation:logFloat 18s ease-in-out infinite;
@@ -653,10 +682,10 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .live-logs .log-row:nth-child(4){animation-delay:3s}
 .live-logs .log-row span{animation:timestampBlink 8s ease-in-out infinite}
 .live-logs .log-row.is-refreshing{
-  opacity:.2;transform:translateY(8px);filter:blur(1px)
+  opacity:.18;transform:translateY(10px);filter:blur(1px)
 }
 .live-logs .log-row.is-live{
-  background:linear-gradient(90deg,rgba(113,200,143,.05),transparent 72%);
+  background:linear-gradient(90deg,rgba(113,200,143,.06),rgba(82,166,138,.018) 48%,transparent 76%);
 }
 .built-for-strip{
   display:grid;gap:18px
@@ -998,6 +1027,14 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 @keyframes timestampBlink{
   0%,100%{opacity:.52}
   50%{opacity:1}
+}
+@keyframes liveScanline{
+  0%{transform:translateY(-2%)}
+  100%{transform:translateY(2%)}
+}
+@keyframes liveGradientDrift{
+  0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.34}
+  50%{transform:translate3d(-3%,4%,0) scale(1.06);opacity:.56}
 }
 html.is-chrome-like body:before,
 html.is-chrome-like body:after{

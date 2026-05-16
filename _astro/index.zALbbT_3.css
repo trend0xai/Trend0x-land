@@ -335,16 +335,24 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
     radial-gradient(circle at 50% 50%,rgba(113,200,143,.12),transparent 30%),
     linear-gradient(180deg,rgba(13,22,36,.95),rgba(10,17,27,.98))
 }
+.aura-system-map > *{position:relative;z-index:1}
+.aura-system-map .aura-node{z-index:2}
+.aura-system-map:before{
+  content:"";position:absolute;inset:18px;border-radius:22px;border:1px solid rgba(129,171,151,.08)
+}
 .aura-system-map:after{
   content:"";position:absolute;inset:0;
   background:
-    linear-gradient(125deg,transparent 0%,rgba(115,208,146,.05) 48%,transparent 62%),
-    radial-gradient(circle at 68% 42%,rgba(113,200,143,.08),transparent 24%);
-  animation:traceDrift 24s linear infinite;
+    radial-gradient(circle at 34% 38%,rgba(96,177,125,.12),transparent 24%),
+    radial-gradient(circle at 66% 56%,rgba(82,168,145,.1),transparent 22%),
+    linear-gradient(125deg,transparent 0%,rgba(115,208,146,.045) 48%,transparent 62%);
+  filter:blur(0px);
+  animation:auraGradientDrift 20s ease-in-out infinite;
   pointer-events:none
 }
-.aura-system-map:before{
-  content:"";position:absolute;inset:18px;border-radius:22px;border:1px solid rgba(129,171,151,.08)
+.aura-system-map .aura-trace{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  pointer-events:none;opacity:.34;z-index:0
 }
 .aura-beam{
   position:absolute;left:50%;top:50%;width:180px;height:180px;transform:translate(-50%,-50%);
@@ -355,30 +363,55 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .aura-beam:before,.aura-beam:after{
   content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  border-radius:999px;background:linear-gradient(90deg,transparent,rgba(116,211,147,.44),transparent);
-  animation:dataSweep 12s linear infinite
+  border-radius:999px;background:linear-gradient(90deg,transparent,rgba(116,211,147,.22),transparent);
+  animation:dataSweep 16s linear infinite
 }
 .aura-beam:before{width:420px;height:1px}
-.aura-beam:after{width:1px;height:300px;background:linear-gradient(180deg,transparent,rgba(116,211,147,.22),transparent);animation-duration:14s}
+.aura-beam:after{width:1px;height:300px;background:linear-gradient(180deg,transparent,rgba(116,211,147,.18),transparent);animation-duration:18s}
 .aura-node{
   position:absolute;max-width:220px;padding:18px 18px 16px;border-radius:20px;
   background:rgba(9,15,24,.9);
   border:1px solid rgba(129,171,151,.14);box-shadow:0 18px 40px rgba(0,0,0,.22);
   transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
-  animation:nodePulse 14s ease-in-out infinite
+  animation:nodePulse 14s ease-in-out infinite, auraNodeFloat 8.5s ease-in-out infinite
 }
 .aura-node:hover{
   border-color:rgba(129,171,151,.28);
-  box-shadow:0 24px 60px rgba(0,0,0,.28),0 0 0 1px rgba(120,191,147,.1);
-  transform:translateY(-3px)
+  background:rgba(13,21,32,.96);
+  box-shadow:0 24px 60px rgba(0,0,0,.28),0 0 0 1px rgba(120,191,147,.14),0 0 28px rgba(113,200,143,.08);
+  transform:translate3d(0,-4px,0)
 }
 .aura-node:hover:after,.glow-card:hover:after,.arch-card:hover:after,.subtle-card:hover:after{opacity:.9}
 .aura-node h3,.subtle-card h3{font-size:20px}
 .aura-node p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.5}
-.node-perception{left:26px;top:34px}
-.node-reasoning{right:30px;top:66px}
-.node-execution{left:56px;bottom:38px}
-.node-learning{right:26px;bottom:40px}
+.node-perception{left:26px;top:34px;animation-duration:7.6s;animation-delay:-1.2s}
+.node-reasoning{right:30px;top:66px;animation-duration:9.4s;animation-delay:-2.4s}
+.node-execution{left:56px;bottom:38px;animation-duration:8.2s;animation-delay:-3.2s}
+.node-learning{right:26px;bottom:40px;animation-duration:9.8s;animation-delay:-1.8s}
+.aura-system-map:has(.node-perception:hover):after{
+  background:
+    radial-gradient(circle at 26% 24%,rgba(111,203,143,.18),transparent 20%),
+    radial-gradient(circle at 66% 56%,rgba(82,168,145,.08),transparent 22%),
+    linear-gradient(125deg,transparent 0%,rgba(115,208,146,.05) 48%,transparent 62%)
+}
+.aura-system-map:has(.node-reasoning:hover):after{
+  background:
+    radial-gradient(circle at 76% 26%,rgba(111,203,143,.18),transparent 20%),
+    radial-gradient(circle at 36% 54%,rgba(82,168,145,.08),transparent 22%),
+    linear-gradient(125deg,transparent 0%,rgba(115,208,146,.05) 48%,transparent 62%)
+}
+.aura-system-map:has(.node-execution:hover):after{
+  background:
+    radial-gradient(circle at 30% 76%,rgba(111,203,143,.18),transparent 20%),
+    radial-gradient(circle at 64% 36%,rgba(82,168,145,.08),transparent 22%),
+    linear-gradient(125deg,transparent 0%,rgba(115,208,146,.05) 48%,transparent 62%)
+}
+.aura-system-map:has(.node-learning:hover):after{
+  background:
+    radial-gradient(circle at 78% 74%,rgba(111,203,143,.18),transparent 20%),
+    radial-gradient(circle at 38% 42%,rgba(82,168,145,.08),transparent 22%),
+    linear-gradient(125deg,transparent 0%,rgba(115,208,146,.05) 48%,transparent 62%)
+}
 .system-grid{
   position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px
 }
@@ -586,6 +619,10 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   0%{transform:translateX(-10%) translateY(0)}
   100%{transform:translateX(10%) translateY(0)}
 }
+@keyframes auraGradientDrift{
+  0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.8}
+  50%{transform:translate3d(1.5%, -1%, 0) scale(1.04);opacity:1}
+}
 @keyframes flowSweep{
   0%,15%{transform:translateX(-130%)}
   25%,55%{transform:translateX(130%)}
@@ -598,6 +635,12 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 @keyframes nodePulse{
   0%,100%{box-shadow:0 18px 40px rgba(0,0,0,.22)}
   50%{box-shadow:0 22px 52px rgba(0,0,0,.26),0 0 0 1px rgba(115,208,146,.08)}
+}
+@keyframes auraNodeFloat{
+  0%,100%{transform:translate3d(0,0,0)}
+  25%{transform:translate3d(1px,-3px,0)}
+  50%{transform:translate3d(-1px,2px,0)}
+  75%{transform:translate3d(2px,-1px,0)}
 }
 @keyframes capsuleGlow{
   0%,100%{border-color:rgba(129,171,151,.14);box-shadow:none}
@@ -646,6 +689,17 @@ html.is-chrome-like .live-status i,
 html.is-chrome-like .live-logs .log-row,
 html.is-chrome-like .live-logs .log-row span{
   animation:none;
+}
+html.is-chrome-like .aura-node{
+  animation:nodePulse 16s ease-in-out infinite, auraNodeFloat 10s ease-in-out infinite
+}
+html.is-chrome-like .aura-system-map:after{
+  animation:auraGradientDrift 28s ease-in-out infinite;
+  opacity:.72
+}
+html.is-chrome-like .aura-beam:before,
+html.is-chrome-like .aura-beam:after{
+  animation:dataSweep 24s linear infinite
 }
 html.is-chrome-like .reveal-up{
   transition:opacity .55s ease, transform .55s ease;
@@ -700,6 +754,7 @@ html.is-chrome-like .aura-system-map{
   .aura-beam{display:none}
   .system-grid:before,.section:before{display:none}
   body:before,body:after,.aura-system-map:after{animation:none}
+  .aura-node{animation:nodePulse 16s ease-in-out infinite}
   .decision-flow{gap:8px}
   .flow-arrow{width:16px}
   .card-live{left:20px}

@@ -1400,6 +1400,20 @@ html.is-chrome-like .liquid-refraction{
   .card-data{right:8px}
   .aura-system-copy p,.hero-lead{font-size:17px}
   .trust-statement{padding:24px 22px 26px}
+  .final-cta-card{
+    flex-direction:column;align-items:stretch;gap:18px;
+    padding:26px 22px
+  }
+  .final-cta-card h2{max-width:none}
+  .final-cta-card p{
+    max-width:none;font-size:16px;line-height:1.58
+  }
+  .final-cta-actions{
+    width:100%;min-width:0;gap:10px
+  }
+  .final-cta-actions .button{
+    width:100%;min-width:0
+  }
   .decision-flow{gap:10px}
   .flow-step{width:100%;justify-content:flex-start}
   .flow-arrow{display:none}
@@ -1435,8 +1449,9 @@ html.is-chrome-like .liquid-refraction{
   .operator-row{padding:16px}
   .operator-row h3{font-size:18px}
   .operator-row p{font-size:14px}
-  .final-cta-card{padding:24px 22px}
-  .final-cta-actions{gap:12px}
+  .final-cta-card{padding:22px 18px}
+  .final-cta-card p{font-size:15px}
+  .final-cta-actions{gap:10px}
   .live-logs{height:500px;min-height:500px;max-height:500px}
   .footer-socials{width:100%}
   .footer-socials a{flex:1 1 calc(50% - 5px);min-width:0}

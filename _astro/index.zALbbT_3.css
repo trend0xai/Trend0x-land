@@ -163,44 +163,111 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .orbit-wave-4{width:560px;height:560px;animation-delay:1.65s}
 .core-orb{
   position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
-  width:236px;height:236px;border-radius:50%;
-  background:
-    radial-gradient(circle at 50% 50%,rgba(216,255,228,.16),transparent 26%),
-    radial-gradient(circle at 50% 52%,rgba(69,135,91,.2),rgba(10,18,16,.08) 58%,transparent 76%);
+  width:244px;height:244px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;z-index:4;
-  box-shadow:0 0 120px rgba(124,226,159,.18), 0 0 220px rgba(56,116,76,.16);
-  animation:coreFloat 5s ease-in-out infinite
+  isolation:isolate;
+  animation:coreFloat 9s ease-in-out infinite
 }
 .core-bloom{
-  position:absolute;inset:10px;border-radius:50%;
-  animation:coreSpin 24s linear infinite, coreBloomPulse 5s ease-in-out infinite
-}
-.core-petal{
-  position:absolute;left:50%;top:50%;
-  width:104px;height:172px;border-radius:999px;
-  transform-origin:center center;
+  position:absolute;inset:8px;border-radius:50%;overflow:hidden;
+  border:1px solid rgba(214,255,228,.18);
   background:
-    radial-gradient(circle at 50% 30%,rgba(232,255,240,.34),transparent 34%),
-    radial-gradient(circle at 50% 52%,rgba(147,239,176,.54),rgba(86,156,107,.34) 58%,rgba(35,77,49,.12) 82%,transparent 100%);
+    radial-gradient(circle at 32% 26%,rgba(240,255,247,.24),transparent 22%),
+    radial-gradient(circle at 70% 78%,rgba(72,145,106,.18),transparent 28%),
+    radial-gradient(circle at 50% 52%,rgba(91,180,126,.18),rgba(11,20,24,.84) 64%,rgba(5,10,14,.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -28px 48px rgba(4,10,12,.34),
+    inset 18px 24px 38px rgba(255,255,255,.03),
+    0 30px 56px rgba(0,0,0,.22);
+  animation:coreShellBreath 10.5s ease-in-out infinite
+}
+.core-bloom:before{
+  content:"";position:absolute;inset:3px;border-radius:50%;pointer-events:none;
+  border:1px solid rgba(197,244,214,.1);
+  opacity:.72
+}
+.core-bloom:after{
+  content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:
+    radial-gradient(circle at 28% 20%,rgba(255,255,255,.22),transparent 16%),
+    radial-gradient(circle at 50% 50%,transparent 54%,rgba(210,255,228,.08) 68%,transparent 78%);
   mix-blend-mode:screen;
-  filter:blur(.2px);
-  opacity:.92
+  opacity:.78;
+  animation:coreHighlightDrift 16s ease-in-out infinite
 }
-.petal-1{transform:translate(-50%,-50%) rotate(0deg)}
-.petal-2{transform:translate(-50%,-50%) rotate(60deg)}
-.petal-3{transform:translate(-50%,-50%) rotate(120deg)}
-.petal-4{transform:translate(-50%,-50%) rotate(180deg)}
-.petal-5{transform:translate(-50%,-50%) rotate(240deg)}
-.petal-6{transform:translate(-50%,-50%) rotate(300deg)}
-.core-glow{
-  position:absolute;inset:-88px;border-radius:50%;
+.liquid-layer,.liquid-caustic,.liquid-specular,.liquid-refraction{
+  position:absolute;pointer-events:none
+}
+.liquid-layer{
+  mix-blend-mode:screen;opacity:.88;filter:blur(1px)
+}
+.liquid-layer-a{
+  inset:14% 18% 22% 14%;
+  border-radius:42% 58% 50% 50% / 45% 36% 64% 55%;
   background:
-    radial-gradient(circle,rgba(117,223,155,.28),rgba(117,223,155,.1) 42%,transparent 68%);
-  filter:blur(38px)
+    radial-gradient(circle at 34% 30%,rgba(228,255,239,.28),transparent 24%),
+    radial-gradient(circle at 52% 58%,rgba(138,241,175,.38),rgba(69,144,103,.24) 58%,transparent 76%);
+  animation:orbMorphA 18s ease-in-out infinite alternate
+}
+.liquid-layer-b{
+  inset:18% 14% 16% 24%;
+  border-radius:54% 46% 42% 58% / 48% 58% 42% 52%;
+  background:
+    radial-gradient(circle at 64% 30%,rgba(210,255,226,.2),transparent 22%),
+    radial-gradient(circle at 44% 54%,rgba(90,200,145,.28),rgba(42,100,83,.16) 62%,transparent 82%);
+  opacity:.72;
+  filter:blur(2px);
+  animation:orbMorphB 22s ease-in-out infinite alternate
+}
+.liquid-layer-c{
+  inset:22% 22% 18% 18%;
+  border-radius:58% 42% 60% 40% / 44% 54% 46% 56%;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(233,255,242,.18),transparent 18%),
+    radial-gradient(circle at 50% 60%,rgba(112,223,169,.22),rgba(24,60,52,.1) 68%,transparent 86%);
+  opacity:.62;
+  filter:blur(8px);
+  animation:orbMorphC 26s ease-in-out infinite alternate
+}
+.liquid-caustic{
+  inset:8%;border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 52%,rgba(120,228,168,.18),transparent 28%),
+    radial-gradient(circle at 34% 40%,rgba(83,206,165,.12),transparent 24%),
+    radial-gradient(circle at 66% 68%,rgba(184,255,212,.1),transparent 20%);
+  filter:blur(10px);
+  opacity:.95;
+  animation:coreInnerFlow 20s ease-in-out infinite
+}
+.liquid-specular{
+  left:18%;top:14%;width:42%;height:28%;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.24),rgba(255,255,255,.08) 46%,transparent 72%);
+  filter:blur(2px);
+  opacity:.82;
+  transform:rotate(-18deg);
+  animation:specularDrift 14s ease-in-out infinite
+}
+.liquid-refraction{
+  right:16%;bottom:18%;width:38%;height:32%;border-radius:50%;
+  background:radial-gradient(circle at 42% 42%,rgba(103,220,168,.14),rgba(103,220,168,.04) 52%,transparent 78%);
+  filter:blur(4px);
+  opacity:.72;
+  animation:refractionDrift 17s ease-in-out infinite
+}
+.core-glow{
+  position:absolute;inset:-102px;border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(117,223,155,.26),rgba(85,177,138,.12) 38%,transparent 68%),
+    radial-gradient(circle at 50% 50%,rgba(86,164,132,.14),transparent 58%);
+  filter:blur(44px);
+  opacity:.96;
+  animation:coreGlowBreath 12s ease-in-out infinite
 }
 .core-label{
   position:relative;z-index:2;font-size:28px;font-weight:900;letter-spacing:.12em;color:#f4fbf7;
-  text-shadow:0 0 28px rgba(210,255,225,.24)
+  text-shadow:0 0 22px rgba(210,255,225,.18),0 0 42px rgba(124,226,159,.12);
+  animation:coreLabelBreath 10s ease-in-out infinite
 }
 .signal-card{
   position:absolute;z-index:5;padding:14px 16px;min-width:156px;border-radius:18px;
@@ -261,15 +328,54 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 @keyframes coreFloat{
   0%,100%{transform:translate(-50%,-50%) scale(1)}
-  50%{transform:translate(-50%,-50%) scale(1.11)}
+  50%{transform:translate(-50%,-50%) scale(1.032)}
 }
-@keyframes coreSpin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
+@keyframes coreShellBreath{
+  0%,100%{transform:scale(1);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -28px 48px rgba(4,10,12,.34),inset 18px 24px 38px rgba(255,255,255,.03),0 30px 56px rgba(0,0,0,.22)}
+  50%{transform:scale(1.018);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -32px 54px rgba(4,10,12,.38),inset 20px 26px 44px rgba(255,255,255,.04),0 34px 62px rgba(0,0,0,.24)}
 }
-@keyframes coreBloomPulse{
-  0%,100%{opacity:.92;transform:scale(.94)}
-  50%{opacity:1;transform:scale(1.08)}
+@keyframes coreGlowBreath{
+  0%,100%{opacity:.84;transform:scale(.96)}
+  50%{opacity:1;transform:scale(1.06)}
+}
+@keyframes coreLabelBreath{
+  0%,100%{opacity:.96;text-shadow:0 0 22px rgba(210,255,225,.18),0 0 42px rgba(124,226,159,.12)}
+  50%{opacity:1;text-shadow:0 0 26px rgba(210,255,225,.22),0 0 54px rgba(124,226,159,.16)}
+}
+@keyframes coreHighlightDrift{
+  0%,100%{transform:translate3d(0,0,0) rotate(0deg);opacity:.72}
+  50%{transform:translate3d(4px,-6px,0) rotate(8deg);opacity:.9}
+}
+@keyframes coreInnerFlow{
+  0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.82}
+  33%{transform:translate3d(-6px,4px,0) scale(1.04);opacity:1}
+  66%{transform:translate3d(6px,-5px,0) scale(.96);opacity:.86}
+}
+@keyframes orbMorphA{
+  0%{transform:translate3d(-8px,-4px,0) rotate(-8deg) scale(1);border-radius:42% 58% 50% 50% / 45% 36% 64% 55%}
+  33%{transform:translate3d(8px,-8px,0) rotate(10deg) scale(1.04);border-radius:54% 46% 62% 38% / 42% 58% 46% 54%}
+  66%{transform:translate3d(-3px,7px,0) rotate(-14deg) scale(.96);border-radius:46% 54% 42% 58% / 58% 40% 60% 42%}
+  100%{transform:translate3d(6px,3px,0) rotate(6deg) scale(1.02);border-radius:60% 40% 48% 52% / 44% 58% 42% 56%}
+}
+@keyframes orbMorphB{
+  0%{transform:translate3d(5px,-8px,0) rotate(12deg) scale(.98);border-radius:54% 46% 42% 58% / 48% 58% 42% 52%}
+  40%{transform:translate3d(-10px,3px,0) rotate(-8deg) scale(1.05);border-radius:44% 56% 58% 42% / 54% 42% 58% 46%}
+  72%{transform:translate3d(6px,8px,0) rotate(16deg) scale(.94);border-radius:60% 40% 46% 54% / 40% 56% 44% 60%}
+  100%{transform:translate3d(-4px,-2px,0) rotate(-4deg) scale(1.02);border-radius:50% 50% 38% 62% / 58% 42% 52% 48%}
+}
+@keyframes orbMorphC{
+  0%{transform:translate3d(0,-6px,0) rotate(0deg) scale(1)}
+  30%{transform:translate3d(8px,6px,0) rotate(12deg) scale(1.08)}
+  60%{transform:translate3d(-8px,4px,0) rotate(-10deg) scale(.94)}
+  100%{transform:translate3d(4px,-4px,0) rotate(6deg) scale(1.03)}
+}
+@keyframes specularDrift{
+  0%,100%{transform:translate3d(0,0,0) rotate(-18deg) scale(1);opacity:.74}
+  50%{transform:translate3d(7px,-4px,0) rotate(-10deg) scale(1.08);opacity:.92}
+}
+@keyframes refractionDrift{
+  0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.64}
+  50%{transform:translate3d(-9px,6px,0) scale(1.12);opacity:.82}
 }
 @keyframes cardDrift{
   0%,100%{transform:translate3d(0,0,0)}
@@ -940,14 +1046,39 @@ html.is-chrome-like .reveal-up{
 html.is-chrome-like .aura-system-map{
   background:linear-gradient(180deg,rgba(13,22,36,.96),rgba(10,17,27,.98));
 }
+html.is-chrome-like .core-bloom{
+  animation:coreShellBreath 13s ease-in-out infinite
+}
+html.is-chrome-like .core-glow{
+  animation:coreGlowBreath 14s ease-in-out infinite
+}
+html.is-chrome-like .liquid-layer-a{
+  animation:orbMorphA 22s ease-in-out infinite alternate
+}
+html.is-chrome-like .liquid-layer-b{
+  animation:orbMorphB 26s ease-in-out infinite alternate
+}
+html.is-chrome-like .liquid-layer-c{
+  animation:orbMorphC 30s ease-in-out infinite alternate
+}
+html.is-chrome-like .liquid-caustic{
+  animation:coreInnerFlow 24s ease-in-out infinite
+}
+html.is-chrome-like .liquid-specular{
+  animation:specularDrift 18s ease-in-out infinite
+}
+html.is-chrome-like .liquid-refraction{
+  animation:refractionDrift 21s ease-in-out infinite
+}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .reveal-up,.reveal-up.is-visible,.glow-card,.glow-card:hover,.aura-node,.aura-node:hover{
+  .reveal-up,.reveal-up.is-visible,.glow-card,.glow-card:hover,.aura-node,.aura-node:hover,.core-orb{
     transition:none;transform:none;opacity:1
   }
   body:before,body:after,.glow-card:after,.arch-card:after,.subtle-card:after,.aura-node:after,
   .aura-beam:before,.aura-beam:after,.aura-node,.agent-capsules span,.flow-step:before,.flow-step:after,.flow-arrow:before,
+  .core-bloom,.core-bloom:after,.core-glow,.core-label,.liquid-layer,.liquid-caustic,.liquid-specular,.liquid-refraction,
   .operator-glyph i,
   .live-status i,.live-logs .log-row,.live-logs .log-row span,.aura-system-map:after{animation:none}
 }

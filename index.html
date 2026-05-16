@@ -530,6 +530,10 @@
           }
         });
 
+        document.querySelector(".risk-modal-dialog")?.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
+
         window.addEventListener("keydown", (event) => {
           if (event.key === "Escape") setState(false);
           if (event.key === "Escape") setRiskModal(false);

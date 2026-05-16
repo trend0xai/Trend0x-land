@@ -925,6 +925,9 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .risk-modal{
   position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px
 }
+.risk-modal[hidden]{
+  display:none!important
+}
 .risk-modal-backdrop{
   position:absolute;inset:0;background:rgba(3,8,13,.76);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)
 }

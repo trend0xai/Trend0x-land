@@ -373,7 +373,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   background:rgba(9,15,24,.9);
   border:1px solid rgba(129,171,151,.14);box-shadow:0 18px 40px rgba(0,0,0,.22);
   transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
-  animation:nodePulse 14s ease-in-out infinite, auraNodeFloat 9.2s ease-in-out infinite
+  animation:nodePulse 14s ease-in-out infinite
 }
 .aura-node:hover{
   border-color:rgba(129,171,151,.28);
@@ -384,10 +384,22 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .aura-node:hover:after,.glow-card:hover:after,.arch-card:hover:after,.subtle-card:hover:after{opacity:.9}
 .aura-node h3,.subtle-card h3{font-size:20px}
 .aura-node p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.5}
-.node-perception{left:26px;top:34px;animation-duration:7.4s;animation-delay:-1.2s}
-.node-reasoning{right:30px;top:66px;animation-duration:10.1s;animation-delay:-2.6s}
-.node-execution{left:56px;bottom:38px;animation-duration:8.4s;animation-delay:-3.4s}
-.node-learning{right:26px;bottom:40px;animation-duration:9.6s;animation-delay:-1.9s}
+.node-perception{
+  left:26px;top:34px;
+  animation:nodePulse 14s ease-in-out infinite, auraNodeFloatA 8.2s ease-in-out infinite
+}
+.node-reasoning{
+  right:30px;top:66px;
+  animation:nodePulse 14s ease-in-out infinite, auraNodeFloatB 10.8s ease-in-out infinite
+}
+.node-execution{
+  left:56px;bottom:38px;
+  animation:nodePulse 14s ease-in-out infinite, auraNodeFloatC 9.1s ease-in-out infinite
+}
+.node-learning{
+  right:26px;bottom:40px;
+  animation:nodePulse 14s ease-in-out infinite, auraNodeFloatD 11.4s ease-in-out infinite
+}
 .aura-system-map:has(.node-perception:hover):after{
   background:
     radial-gradient(circle at 26% 24%,rgba(111,203,143,.18),transparent 20%),
@@ -449,14 +461,14 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   background:rgba(255,255,255,.02);color:#dce8e3;font-weight:700;overflow:hidden
 }
 .flow-step:before{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(114,206,145,.14),transparent);
-  transform:translateX(-130%);
-  animation:flowSweep 10s linear infinite
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(90deg,rgba(102,186,129,.08),rgba(116,211,147,.22));
+  transform:scaleX(0);transform-origin:left center;
+  animation:flowStepFill 10s ease-in-out infinite
 }
 .flow-step:after{
   content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(circle at 50% 50%,rgba(116,211,147,.14),transparent 68%);
+  background:radial-gradient(circle at 50% 50%,rgba(116,211,147,.18),transparent 68%);
   opacity:0;
   animation:flowPulse 10s ease-in-out infinite
 }
@@ -467,9 +479,9 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .flow-arrow:before{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(116,211,147,.9),transparent);
-  transform:translateX(-140%);
-  animation:flowArrowPulse 10s linear infinite
+  background:linear-gradient(90deg,rgba(116,211,147,.1),rgba(116,211,147,.9),rgba(116,211,147,.1));
+  transform:scaleX(0);transform-origin:left center;
+  animation:flowArrowFill 10s ease-in-out infinite
 }
 .flow-step-1:before,.flow-step-1:after{animation-delay:0s}
 .flow-step-2:before,.flow-step-2:after{animation-delay:2s}
@@ -641,18 +653,19 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.8}
   50%{transform:translate3d(1.5%, -1%, 0) scale(1.04);opacity:1}
 }
-@keyframes flowSweep{
-  0%,8%{transform:translateX(-130%)}
-  16%,100%{transform:translateX(130%)}
-}
 @keyframes flowPulse{
   0%,8%,100%{opacity:0}
   12%,18%{opacity:1}
 }
-@keyframes flowArrowPulse{
-  0%,8%{transform:translateX(-140%);opacity:0}
-  18%,24%{transform:translateX(140%);opacity:1}
-  100%{transform:translateX(140%);opacity:0}
+@keyframes flowStepFill{
+  0%,8%{transform:scaleX(0);opacity:.15}
+  12%,18%{transform:scaleX(1);opacity:1}
+  20%,100%{transform:scaleX(1);opacity:.88}
+}
+@keyframes flowArrowFill{
+  0%,8%{transform:scaleX(0);opacity:0}
+  14%,22%{transform:scaleX(1);opacity:1}
+  24%,100%{transform:scaleX(1);opacity:.68}
 }
 @keyframes blinkDot{
   0%,100%{opacity:.45;transform:scale(.92)}
@@ -662,12 +675,33 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   0%,100%{box-shadow:0 18px 40px rgba(0,0,0,.22)}
   50%{box-shadow:0 22px 52px rgba(0,0,0,.26),0 0 0 1px rgba(115,208,146,.08)}
 }
-@keyframes auraNodeFloat{
+@keyframes auraNodeFloatA{
   0%,100%{transform:translate3d(0,0,0)}
-  20%{transform:translate3d(2px,-4px,0)}
-  45%{transform:translate3d(-2px,3px,0)}
-  70%{transform:translate3d(3px,-2px,0)}
-  85%{transform:translate3d(-1px,1px,0)}
+  18%{transform:translate3d(4px,-7px,0)}
+  44%{transform:translate3d(-3px,5px,0)}
+  69%{transform:translate3d(6px,-2px,0)}
+  86%{transform:translate3d(-2px,3px,0)}
+}
+@keyframes auraNodeFloatB{
+  0%,100%{transform:translate3d(0,0,0)}
+  24%{transform:translate3d(-5px,-4px,0)}
+  48%{transform:translate3d(3px,6px,0)}
+  74%{transform:translate3d(-2px,-7px,0)}
+  90%{transform:translate3d(4px,2px,0)}
+}
+@keyframes auraNodeFloatC{
+  0%,100%{transform:translate3d(0,0,0)}
+  22%{transform:translate3d(5px,3px,0)}
+  46%{transform:translate3d(-4px,-6px,0)}
+  72%{transform:translate3d(2px,7px,0)}
+  88%{transform:translate3d(-3px,-1px,0)}
+}
+@keyframes auraNodeFloatD{
+  0%,100%{transform:translate3d(0,0,0)}
+  20%{transform:translate3d(-6px,2px,0)}
+  42%{transform:translate3d(4px,-7px,0)}
+  68%{transform:translate3d(-2px,6px,0)}
+  84%{transform:translate3d(5px,-3px,0)}
 }
 @keyframes capsuleGlow{
   0%,100%{border-color:rgba(129,171,151,.14);box-shadow:none}
@@ -717,7 +751,7 @@ html.is-chrome-like .agent-capsules span,
   animation:none;
 }
 html.is-chrome-like .aura-node{
-  animation:nodePulse 16s ease-in-out infinite, auraNodeFloat 11.5s ease-in-out infinite
+  animation:nodePulse 16s ease-in-out infinite
 }
 html.is-chrome-like .aura-system-map:after{
   animation:auraGradientDrift 28s ease-in-out infinite;
@@ -727,14 +761,26 @@ html.is-chrome-like .aura-beam:before,
 html.is-chrome-like .aura-beam:after{
   animation:dataSweep 24s linear infinite
 }
+html.is-chrome-like .node-perception{
+  animation:nodePulse 16s ease-in-out infinite, auraNodeFloatA 10.2s ease-in-out infinite
+}
+html.is-chrome-like .node-reasoning{
+  animation:nodePulse 16s ease-in-out infinite, auraNodeFloatB 12.6s ease-in-out infinite
+}
+html.is-chrome-like .node-execution{
+  animation:nodePulse 16s ease-in-out infinite, auraNodeFloatC 11.1s ease-in-out infinite
+}
+html.is-chrome-like .node-learning{
+  animation:nodePulse 16s ease-in-out infinite, auraNodeFloatD 13.4s ease-in-out infinite
+}
 html.is-chrome-like .flow-step:before{
-  animation:flowSweep 14s linear infinite
+  animation:flowStepFill 14s ease-in-out infinite
 }
 html.is-chrome-like .flow-step:after{
   animation:flowPulse 14s ease-in-out infinite
 }
 html.is-chrome-like .flow-arrow:before{
-  animation:flowArrowPulse 14s linear infinite
+  animation:flowArrowFill 14s ease-in-out infinite
 }
 html.is-chrome-like .reveal-up{
   transition:opacity .55s ease, transform .55s ease;

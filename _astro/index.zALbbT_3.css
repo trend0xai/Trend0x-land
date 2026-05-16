@@ -32,17 +32,17 @@ body{
   color:var(--text);
 }
 body:before,body:after{
-  content:"";position:fixed;inset:auto;pointer-events:none;z-index:-1;filter:blur(60px);opacity:.55
+  content:"";position:absolute;inset:auto;pointer-events:none;z-index:-1;filter:blur(28px);opacity:.38
 }
 body:before{
   width:44vw;height:44vw;left:-10vw;top:12vh;
   background:radial-gradient(circle,rgba(102,167,125,.16),transparent 64%);
-  animation:ambientDriftA 26s ease-in-out infinite
+  animation:ambientDriftA 40s ease-in-out infinite
 }
 body:after{
   width:38vw;height:38vw;right:-8vw;top:30vh;
   background:radial-gradient(circle,rgba(64,116,155,.12),transparent 62%);
-  animation:ambientDriftB 34s ease-in-out infinite
+  animation:ambientDriftB 48s ease-in-out infinite
 }
 body.no-scroll{overflow:hidden}
 a{color:inherit;text-decoration:none}
@@ -51,7 +51,6 @@ main{position:relative}
 .site-shell{max-width:var(--shell);margin:0 auto;padding:0 28px}
 .site-header{
   position:sticky;top:0;z-index:50;
-  backdrop-filter:blur(20px);
   background:rgba(6,12,20,.72);
   border-bottom:1px solid rgba(129,171,151,.08)
 }
@@ -205,7 +204,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .signal-card{
   position:absolute;z-index:5;padding:14px 16px;min-width:156px;border-radius:18px;
-  background:rgba(10,17,25,.68);backdrop-filter:blur(10px);
+  background:rgba(10,17,25,.82);
   border:1px solid rgba(129,171,151,.14);box-shadow:0 14px 30px rgba(0,0,0,.18);
   animation:cardDrift 8s ease-in-out infinite
 }
@@ -287,9 +286,6 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(180deg,rgba(13,22,36,.92),rgba(10,17,27,.96));
   box-shadow:var(--panel-shadow)
 }
-.surface-card,.arch-card,.aura-system-copy,.aura-system-map,.live-panel,.final-cta-card,.trust-statement{
-  backdrop-filter:blur(12px)
-}
 .surface-card,.arch-card{padding:28px}
 .surface-card h3,.arch-card h3{margin-bottom:12px}
 .surface-card p,.arch-card p{font-size:16px;line-height:1.65}
@@ -344,7 +340,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   background:
     linear-gradient(125deg,transparent 0%,rgba(115,208,146,.05) 48%,transparent 62%),
     radial-gradient(circle at 68% 42%,rgba(113,200,143,.08),transparent 24%);
-  animation:traceDrift 14s linear infinite;
+  animation:traceDrift 24s linear infinite;
   pointer-events:none
 }
 .aura-system-map:before{
@@ -355,21 +351,21 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   border-radius:50%;
   background:
     radial-gradient(circle,rgba(116,211,147,.18),rgba(116,211,147,.06) 44%,transparent 72%);
-  filter:blur(4px)
+  opacity:.8
 }
 .aura-beam:before,.aura-beam:after{
   content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   border-radius:999px;background:linear-gradient(90deg,transparent,rgba(116,211,147,.44),transparent);
-  animation:dataSweep 7.5s linear infinite
+  animation:dataSweep 12s linear infinite
 }
 .aura-beam:before{width:420px;height:1px}
-.aura-beam:after{width:1px;height:300px;background:linear-gradient(180deg,transparent,rgba(116,211,147,.22),transparent);animation-duration:9s}
+.aura-beam:after{width:1px;height:300px;background:linear-gradient(180deg,transparent,rgba(116,211,147,.22),transparent);animation-duration:14s}
 .aura-node{
   position:absolute;max-width:220px;padding:18px 18px 16px;border-radius:20px;
-  background:rgba(9,15,24,.78);backdrop-filter:blur(10px);
+  background:rgba(9,15,24,.9);
   border:1px solid rgba(129,171,151,.14);box-shadow:0 18px 40px rgba(0,0,0,.22);
   transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
-  animation:nodePulse 8s ease-in-out infinite
+  animation:nodePulse 14s ease-in-out infinite
 }
 .aura-node:hover{
   border-color:rgba(129,171,151,.28);
@@ -396,7 +392,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .agent-capsules span{
   padding:11px 14px;border-radius:999px;border:1px solid rgba(129,171,151,.14);
   background:rgba(255,255,255,.02);color:#b7c9c3;font-size:14px;font-weight:600;
-  animation:capsuleGlow 7.5s ease-in-out infinite
+  animation:capsuleGlow 14s ease-in-out infinite
 }
 .agent-capsules span:nth-child(2){animation-delay:.8s}
 .agent-capsules span:nth-child(3){animation-delay:1.6s}
@@ -423,7 +419,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,transparent,rgba(114,206,145,.14),transparent);
   transform:translateX(-130%);
-  animation:flowSweep 8s linear infinite
+  animation:flowSweep 14s linear infinite
 }
 .flow-step:nth-child(3):before{animation-delay:1.2s}
 .flow-step:nth-child(5):before{animation-delay:2.4s}
@@ -445,7 +441,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 .live-status i{
   width:8px;height:8px;border-radius:50%;background:var(--mint);
-  box-shadow:0 0 14px rgba(142,227,169,.6);animation:blinkDot 2.8s ease-in-out infinite
+  box-shadow:0 0 10px rgba(142,227,169,.45);animation:blinkDot 4.6s ease-in-out infinite
 }
 .live-status span:nth-child(2) i{animation-delay:.35s}
 .live-status span:nth-child(3) i{animation-delay:.7s}
@@ -459,12 +455,12 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   background:linear-gradient(180deg,rgba(8,15,24,0),rgba(8,15,24,.92))
 }
 .live-logs .log-row{
-  animation:logFloat 12s ease-in-out infinite
+  animation:logFloat 18s ease-in-out infinite
 }
 .live-logs .log-row:nth-child(2){animation-delay:1s}
 .live-logs .log-row:nth-child(3){animation-delay:2s}
 .live-logs .log-row:nth-child(4){animation-delay:3s}
-.live-logs .log-row span{animation:timestampBlink 5s ease-in-out infinite}
+.live-logs .log-row span{animation:timestampBlink 8s ease-in-out infinite}
 .built-for-strip{
   display:grid;gap:18px
 }
@@ -637,6 +633,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   .nav-toggle,.mobile-nav{display:flex}
   .mobile-nav[hidden]{display:none}
   .system-grid:before{left:20%;right:20%}
+  .glow-card:after,.arch-card:after,.subtle-card:after,.aura-node:after{animation:none}
 }
 @media (max-width: 860px){
   .section{padding:72px 0}
@@ -660,6 +657,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   .aura-system-map{display:grid;gap:14px}
   .aura-beam{display:none}
   .system-grid:before,.section:before{display:none}
+  body:before,body:after,.aura-system-map:after{animation:none}
   .decision-flow{gap:8px}
   .flow-arrow{width:16px}
   .card-live{left:20px}

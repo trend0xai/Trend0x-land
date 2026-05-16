@@ -452,16 +452,34 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,transparent,rgba(114,206,145,.14),transparent);
   transform:translateX(-130%);
-  animation:flowSweep 14s linear infinite
+  animation:flowSweep 10s linear infinite
 }
-.flow-step:nth-child(3):before{animation-delay:1.2s}
-.flow-step:nth-child(5):before{animation-delay:2.4s}
-.flow-step:nth-child(7):before{animation-delay:3.6s}
-.flow-step:nth-child(9):before{animation-delay:4.8s}
+.flow-step:after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,rgba(116,211,147,.14),transparent 68%);
+  opacity:0;
+  animation:flowPulse 10s ease-in-out infinite
+}
 .flow-step span{position:relative;z-index:1}
 .flow-arrow{
-  width:28px;height:1px;background:linear-gradient(90deg,rgba(129,171,151,.14),rgba(129,171,151,.4),rgba(129,171,151,.14))
+  position:relative;width:28px;height:1px;background:linear-gradient(90deg,rgba(129,171,151,.14),rgba(129,171,151,.4),rgba(129,171,151,.14));
+  overflow:hidden
 }
+.flow-arrow:before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(116,211,147,.9),transparent);
+  transform:translateX(-140%);
+  animation:flowArrowPulse 10s linear infinite
+}
+.flow-step-1:before,.flow-step-1:after{animation-delay:0s}
+.flow-step-2:before,.flow-step-2:after{animation-delay:2s}
+.flow-step-3:before,.flow-step-3:after{animation-delay:4s}
+.flow-step-4:before,.flow-step-4:after{animation-delay:6s}
+.flow-step-5:before,.flow-step-5:after{animation-delay:8s}
+.flow-arrow-1:before{animation-delay:1s}
+.flow-arrow-2:before{animation-delay:3s}
+.flow-arrow-3:before{animation-delay:5s}
+.flow-arrow-4:before{animation-delay:7s}
 .live-panel{
   display:grid;grid-template-columns:280px 1fr;overflow:hidden
 }
@@ -624,9 +642,17 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   50%{transform:translate3d(1.5%, -1%, 0) scale(1.04);opacity:1}
 }
 @keyframes flowSweep{
-  0%,15%{transform:translateX(-130%)}
-  25%,55%{transform:translateX(130%)}
-  100%{transform:translateX(130%)}
+  0%,8%{transform:translateX(-130%)}
+  16%,100%{transform:translateX(130%)}
+}
+@keyframes flowPulse{
+  0%,8%,100%{opacity:0}
+  12%,18%{opacity:1}
+}
+@keyframes flowArrowPulse{
+  0%,8%{transform:translateX(-140%);opacity:0}
+  18%,24%{transform:translateX(140%);opacity:1}
+  100%{transform:translateX(140%);opacity:0}
 }
 @keyframes blinkDot{
   0%,100%{opacity:.45;transform:scale(.92)}
@@ -685,10 +711,12 @@ html.is-chrome-like .aura-system-map:after,
 html.is-chrome-like .aura-beam:before,
 html.is-chrome-like .aura-beam:after,
 html.is-chrome-like .agent-capsules span,
-html.is-chrome-like .flow-step:before,
-html.is-chrome-like .live-status i,
-html.is-chrome-like .live-logs .log-row,
-html.is-chrome-like .live-logs .log-row span{
+ html.is-chrome-like .flow-step:before,
+ html.is-chrome-like .flow-step:after,
+ html.is-chrome-like .flow-arrow:before,
+ html.is-chrome-like .live-status i,
+ html.is-chrome-like .live-logs .log-row,
+ html.is-chrome-like .live-logs .log-row span{
   animation:none;
 }
 html.is-chrome-like .aura-node{
@@ -715,7 +743,7 @@ html.is-chrome-like .aura-system-map{
     transition:none;transform:none;opacity:1
   }
   body:before,body:after,.glow-card:after,.arch-card:after,.subtle-card:after,.aura-node:after,
-  .aura-beam:before,.aura-beam:after,.aura-node,.agent-capsules span,.flow-step:before,
+  .aura-beam:before,.aura-beam:after,.aura-node,.agent-capsules span,.flow-step:before,.flow-step:after,.flow-arrow:before,
   .live-status i,.live-logs .log-row,.live-logs .log-row span,.aura-system-map:after{animation:none}
 }
 

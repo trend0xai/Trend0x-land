@@ -864,17 +864,108 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   width:100%;min-width:280px
 }
 .site-footer{
-  padding:0 0 46px;border-top:1px solid rgba(129,171,151,.08);background:rgba(5,10,16,.4)
+  position:relative;padding:0 0 34px;border-top:1px solid rgba(129,171,151,.08);
+  background:
+    radial-gradient(circle at 12% 0%,rgba(113,200,143,.08),transparent 22%),
+    linear-gradient(180deg,rgba(5,10,16,.78),rgba(5,10,16,.96))
 }
 .footer-shell{
-  display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding-top:32px
+  display:flex;align-items:flex-start;justify-content:space-between;gap:36px;padding-top:34px;padding-bottom:26px
+}
+.footer-brand{
+  max-width:360px
 }
 .footer-logo{
   display:block;width:auto;height:46px;object-fit:contain
 }
-.footer-shell p{margin-top:14px;max-width:380px;line-height:1.6}
-.site-footer nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:16px}
-.site-footer nav a{color:var(--muted);font-weight:600}
+.footer-shell p{margin-top:14px;max-width:340px;line-height:1.6;color:var(--muted)}
+.footer-links-wrap{
+  display:grid;gap:22px;justify-items:end
+}
+.footer-nav{
+  display:flex;flex-wrap:wrap;justify-content:flex-end;gap:16px
+}
+.footer-nav a{
+  color:var(--muted);font-weight:600;transition:color .25s ease,opacity .25s ease
+}
+.footer-nav a:hover,.footer-nav a:focus-visible{color:var(--text)}
+.footer-socials{
+  display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px
+}
+.footer-socials a{
+  display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;
+  border:1px solid rgba(129,171,151,.12);background:rgba(255,255,255,.015);
+  color:#c8d8d2;font-size:13px;font-weight:700;letter-spacing:.02em;
+  transition:background .25s ease,border-color .25s ease,transform .25s ease,color .25s ease,box-shadow .25s ease
+}
+.footer-socials a:hover,.footer-socials a:focus-visible{
+  color:var(--text);background:rgba(18,31,44,.88);border-color:rgba(129,171,151,.24);
+  transform:translateY(-1px);box-shadow:0 0 18px rgba(113,200,143,.05)
+}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:20px;
+  border-top:1px solid rgba(129,171,151,.08)
+}
+.footer-bottom p{
+  color:rgba(200,216,210,.68);font-size:15px;font-weight:500
+}
+.footer-disclaimer-button{
+  display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:16px;
+  border:1px solid rgba(129,171,151,.18);background:rgba(255,255,255,.02);color:var(--text);
+  font-size:15px;font-weight:700;cursor:pointer;
+  transition:background .25s ease,border-color .25s ease,transform .25s ease,box-shadow .25s ease
+}
+.footer-disclaimer-button:hover,.footer-disclaimer-button:focus-visible{
+  background:rgba(18,31,44,.92);border-color:rgba(129,171,151,.26);transform:translateY(-1px);
+  box-shadow:0 0 22px rgba(113,200,143,.06)
+}
+.risk-modal{
+  position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px
+}
+.risk-modal-backdrop{
+  position:absolute;inset:0;background:rgba(3,8,13,.76);backdrop-filter:blur(14px)
+}
+.risk-modal-dialog{
+  position:relative;z-index:1;width:min(860px,100%);max-height:min(86vh,920px);overflow:auto;
+  border-radius:28px;border:1px solid rgba(129,171,151,.18);
+  background:
+    radial-gradient(circle at 18% 0%,rgba(113,200,143,.1),transparent 24%),
+    linear-gradient(180deg,rgba(12,20,31,.98),rgba(8,14,22,.98));
+  box-shadow:0 32px 90px rgba(0,0,0,.44)
+}
+.risk-modal-head{
+  position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:24px 26px 18px;border-bottom:1px solid rgba(129,171,151,.1);
+  background:linear-gradient(180deg,rgba(12,20,31,.98),rgba(12,20,31,.92))
+}
+.risk-modal-head h2{
+  font-size:clamp(28px,3vw,40px);line-height:1;font-weight:900
+}
+.risk-modal-close{
+  position:relative;flex:0 0 44px;width:44px;height:44px;border-radius:14px;border:1px solid rgba(129,171,151,.16);
+  background:rgba(255,255,255,.02);cursor:pointer
+}
+.risk-modal-close span{
+  position:absolute;left:50%;top:50%;width:18px;height:1.5px;background:#d7e6df;border-radius:999px
+}
+.risk-modal-close span:first-child{transform:translate(-50%,-50%) rotate(45deg)}
+.risk-modal-close span:last-child{transform:translate(-50%,-50%) rotate(-45deg)}
+.risk-modal-body{
+  display:grid;gap:16px;padding:24px 26px 28px
+}
+.risk-modal-body p,.risk-modal-body li{
+  color:#bfd0ca;font-size:16px;line-height:1.72
+}
+.risk-modal-list-block{
+  display:grid;gap:10px;padding:18px 18px 18px 20px;border-radius:20px;border:1px solid rgba(129,171,151,.1);
+  background:rgba(255,255,255,.018)
+}
+.risk-modal-list-block p{
+  color:#e9f3ee;font-weight:700
+}
+.risk-modal-list-block ul{
+  display:grid;gap:8px;padding-left:18px
+}
 
 @keyframes dataSweep{
   0%{opacity:.24}
@@ -1152,6 +1243,8 @@ html.is-chrome-like .liquid-refraction{
   .aura-capabilities{grid-template-columns:1fr 1fr}
   .operator-row{grid-template-columns:34px minmax(0,.9fr) minmax(0,1.2fr)}
   .live-status{border-right:none;border-bottom:1px solid rgba(129,171,151,.12)}
+  .footer-shell,.footer-bottom{flex-direction:column;align-items:flex-start}
+  .footer-links-wrap,.footer-nav,.footer-socials{justify-items:start;justify-content:flex-start}
   .desktop-nav,.nav-actions{display:none}
   .nav-toggle,.mobile-nav{display:flex}
   .mobile-nav[hidden]{display:none}
@@ -1198,6 +1291,15 @@ html.is-chrome-like .liquid-refraction{
   .terminal-row,.log-row{grid-template-columns:1fr}
   .infra-sidebar{border-right:none;border-bottom:1px solid rgba(129,171,151,.12)}
   .reasoning-card blockquote{font-size:24px}
-  .footer-shell{flex-direction:column}
-  .site-footer nav{justify-content:flex-start}
+  .footer-logo{height:40px}
+  .footer-shell{padding-bottom:22px}
+  .footer-nav,.footer-socials{gap:10px}
+  .footer-socials a{padding:9px 12px}
+  .footer-bottom{padding-top:18px}
+  .footer-bottom p{font-size:14px}
+  .footer-disclaimer-button{width:100%}
+  .risk-modal{padding:14px}
+  .risk-modal-dialog{border-radius:22px;max-height:min(88vh,920px)}
+  .risk-modal-head{padding:20px 18px 16px}
+  .risk-modal-body{padding:20px 18px 22px}
 }

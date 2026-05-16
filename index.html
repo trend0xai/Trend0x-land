@@ -379,7 +379,7 @@
 
     <footer class="site-footer">
       <div class="site-shell footer-shell">
-        <div>
+        <div class="footer-brand">
           <img
             src="/_astro/trend0x-logo-long.png"
             alt="Trend0x"
@@ -389,17 +389,83 @@
           />
           <p>AI-native cognitive infrastructure for autonomous trading workflows.</p>
         </div>
-        <nav aria-label="Footer">
-          <a href="#overview">Overview</a>
-          <a href="#aura-os">AURA OS</a>
-          <a href="#architecture">System</a>
-          <a href="#risk">Trust</a>
-          <a href="#live">Live</a>
-          <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer">Docs</a>
-          <a href="/risk-disclaimer">Risk Disclaimer</a>
-        </nav>
+        <div class="footer-links-wrap">
+          <nav class="footer-nav" aria-label="Footer">
+            <a href="#overview">Overview</a>
+            <a href="#aura-os">AURA OS</a>
+            <a href="#architecture">System</a>
+            <a href="#risk">Trust</a>
+            <a href="#live">Live</a>
+            <a href="https://trend0x.gitbook.io/trend0x-docs/" target="_blank" rel="noopener noreferrer">Docs</a>
+          </nav>
+          <div class="footer-socials" aria-label="Social links">
+            <a href="https://t.me/trend0x" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a href="https://x.com/Trend0x_com" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://www.linkedin.com/company/trend0x" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://medium.com/@trend0x.ai" target="_blank" rel="noopener noreferrer">Medium</a>
+          </div>
+        </div>
+      </div>
+      <div class="site-shell footer-bottom">
+        <p>© 2026 TRENDOX. Cognitive AI Trading System.</p>
+        <button type="button" class="footer-disclaimer-button" data-open-risk>Risk Disclaimer</button>
       </div>
     </footer>
+
+    <div class="risk-modal" data-risk-modal hidden>
+      <div class="risk-modal-backdrop" data-close-risk></div>
+      <div class="risk-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="risk-modal-title">
+        <div class="risk-modal-head">
+          <h2 id="risk-modal-title">Risk Disclosure</h2>
+          <button type="button" class="risk-modal-close" aria-label="Close risk disclosure" data-close-risk>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <div class="risk-modal-body">
+          <p>
+            Trading digital assets involves financial risk due to market volatility, liquidity conditions,
+            and changing market regimes.
+          </p>
+          <p>
+            Trend0x applies automated risk management mechanisms, including exposure limits and adaptive
+            execution logic. These measures are designed to reduce risk, but do not eliminate the possibility
+            of losses.
+          </p>
+          <p>Trend0x does not guarantee profitability or performance. Past results are not indicative of future outcomes.</p>
+          <p>Trend0x is a non-custodial execution and copy trading infrastructure.</p>
+          <div class="risk-modal-list-block">
+            <p>Trend0x:</p>
+            <ul>
+              <li>does not custody user funds,</li>
+              <li>does not pool or manage capital,</li>
+              <li>does not act as a broker, fund, or investment advisor.</li>
+            </ul>
+          </div>
+          <p>
+            All trading activity is executed directly on third-party exchanges selected by the user. Trend0x has no
+            access to user balances or withdrawal permissions.
+          </p>
+          <p>Users remain fully responsible for their capital, strategy selection, and risk exposure.</p>
+          <p>
+            Information provided by Trend0x is for informational and execution purposes only and does not constitute
+            financial, legal, or investment advice.
+          </p>
+          <p>
+            Users should assess their own risk tolerance and conduct independent due diligence before engaging in
+            trading activities.
+          </p>
+          <p>
+            Execution outcomes may vary due to exchange mechanics, liquidity, latency, and account-specific factors.
+            Trend0x is not responsible for execution differences caused by third-party platforms.
+          </p>
+          <p>
+            By using Trend0x, users acknowledge and accept the risks associated with digital asset trading, including
+            the possibility of losses despite applied risk controls.
+          </p>
+        </div>
+      </div>
+    </div>
 
     <script>
       if (typeof window !== "undefined") {
@@ -414,11 +480,20 @@
         const toggle = document.querySelector(".nav-toggle");
         const mobileNav = document.getElementById("mobile-nav");
         const mobileLinks = mobileNav ? Array.from(mobileNav.querySelectorAll("a")) : [];
+        const riskModal = document.querySelector("[data-risk-modal]");
+        const riskOpeners = Array.from(document.querySelectorAll("[data-open-risk]"));
+        const riskClosers = Array.from(document.querySelectorAll("[data-close-risk]"));
 
         const setState = (open) => {
           if (!toggle || !mobileNav) return;
           toggle.setAttribute("aria-expanded", String(open));
           mobileNav.hidden = !open;
+          document.body.classList.toggle("no-scroll", open);
+        };
+
+        const setRiskModal = (open) => {
+          if (!riskModal) return;
+          riskModal.hidden = !open;
           document.body.classList.toggle("no-scroll", open);
         };
 
@@ -431,8 +506,17 @@
           link.addEventListener("click", () => setState(false));
         });
 
+        riskOpeners.forEach((button) => {
+          button.addEventListener("click", () => setRiskModal(true));
+        });
+
+        riskClosers.forEach((button) => {
+          button.addEventListener("click", () => setRiskModal(false));
+        });
+
         window.addEventListener("keydown", (event) => {
           if (event.key === "Escape") setState(false);
+          if (event.key === "Escape") setRiskModal(false);
         });
 
         const revealItems = Array.from(document.querySelectorAll(".reveal-up"));

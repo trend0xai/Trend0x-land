@@ -373,7 +373,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
   background:rgba(9,15,24,.9);
   border:1px solid rgba(129,171,151,.14);box-shadow:0 18px 40px rgba(0,0,0,.22);
   transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
-  animation:nodePulse 14s ease-in-out infinite, auraNodeFloat 8.5s ease-in-out infinite
+  animation:nodePulse 14s ease-in-out infinite, auraNodeFloat 9.2s ease-in-out infinite
 }
 .aura-node:hover{
   border-color:rgba(129,171,151,.28);
@@ -384,10 +384,10 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .aura-node:hover:after,.glow-card:hover:after,.arch-card:hover:after,.subtle-card:hover:after{opacity:.9}
 .aura-node h3,.subtle-card h3{font-size:20px}
 .aura-node p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.5}
-.node-perception{left:26px;top:34px;animation-duration:7.6s;animation-delay:-1.2s}
-.node-reasoning{right:30px;top:66px;animation-duration:9.4s;animation-delay:-2.4s}
-.node-execution{left:56px;bottom:38px;animation-duration:8.2s;animation-delay:-3.2s}
-.node-learning{right:26px;bottom:40px;animation-duration:9.8s;animation-delay:-1.8s}
+.node-perception{left:26px;top:34px;animation-duration:7.4s;animation-delay:-1.2s}
+.node-reasoning{right:30px;top:66px;animation-duration:10.1s;animation-delay:-2.6s}
+.node-execution{left:56px;bottom:38px;animation-duration:8.4s;animation-delay:-3.4s}
+.node-learning{right:26px;bottom:40px;animation-duration:9.6s;animation-delay:-1.9s}
 .aura-system-map:has(.node-perception:hover):after{
   background:
     radial-gradient(circle at 26% 24%,rgba(111,203,143,.18),transparent 20%),
@@ -638,9 +638,10 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 }
 @keyframes auraNodeFloat{
   0%,100%{transform:translate3d(0,0,0)}
-  25%{transform:translate3d(1px,-3px,0)}
-  50%{transform:translate3d(-1px,2px,0)}
-  75%{transform:translate3d(2px,-1px,0)}
+  20%{transform:translate3d(2px,-4px,0)}
+  45%{transform:translate3d(-2px,3px,0)}
+  70%{transform:translate3d(3px,-2px,0)}
+  85%{transform:translate3d(-1px,1px,0)}
 }
 @keyframes capsuleGlow{
   0%,100%{border-color:rgba(129,171,151,.14);box-shadow:none}
@@ -691,7 +692,7 @@ html.is-chrome-like .live-logs .log-row span{
   animation:none;
 }
 html.is-chrome-like .aura-node{
-  animation:nodePulse 16s ease-in-out infinite, auraNodeFloat 10s ease-in-out infinite
+  animation:nodePulse 16s ease-in-out infinite, auraNodeFloat 11.5s ease-in-out infinite
 }
 html.is-chrome-like .aura-system-map:after{
   animation:auraGradientDrift 28s ease-in-out infinite;

@@ -590,9 +590,6 @@
         const liveFeedRoot = document.querySelector("[data-live-feed]");
         let liveLogRows = Array.from(document.querySelectorAll("[data-live-log-row]"));
         const liveLogTail = document.querySelector("[data-live-log-tail]");
-        const systemCarousel = document.querySelector(".system-grid");
-        const systemCards = systemCarousel ? Array.from(systemCarousel.querySelectorAll(".arch-card")) : [];
-        const mobileCarouselQuery = window.matchMedia("(max-width: 860px)");
 
         const liveStatusPool = [
           "Context updated",
@@ -772,63 +769,6 @@
           runLogLoop();
         }
 
-        if (systemCarousel && systemCards.length > 1 && !prefersReducedMotion) {
-          let systemCardIndex = 0;
-          let systemAdvanceTimer = null;
-          let systemPauseUntil = 0;
-
-          const setSystemCard = (index) => {
-            systemCards.forEach((card, cardIndex) => {
-              card.classList.toggle("is-mobile-active", cardIndex === index);
-            });
-
-            if (mobileCarouselQuery.matches) {
-              systemCards[index]?.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-                inline: "start",
-              });
-            }
-          };
-
-          const scheduleSystemAdvance = () => {
-            window.clearTimeout(systemAdvanceTimer);
-            systemAdvanceTimer = window.setTimeout(() => {
-              if (!mobileCarouselQuery.matches) {
-                setSystemCard(0);
-                scheduleSystemAdvance();
-                return;
-              }
-
-              if (Date.now() < systemPauseUntil) {
-                scheduleSystemAdvance();
-                return;
-              }
-
-              systemCardIndex = (systemCardIndex + 1) % systemCards.length;
-              setSystemCard(systemCardIndex);
-              scheduleSystemAdvance();
-            }, 3900);
-          };
-
-          const pauseSystemAdvance = () => {
-            systemPauseUntil = Date.now() + 7000;
-          };
-
-          setSystemCard(0);
-          scheduleSystemAdvance();
-
-          systemCarousel.addEventListener("touchstart", pauseSystemAdvance, { passive: true });
-          systemCarousel.addEventListener("pointerdown", pauseSystemAdvance);
-          systemCarousel.addEventListener("scroll", pauseSystemAdvance, { passive: true });
-          mobileCarouselQuery.addEventListener("change", () => {
-            if (!mobileCarouselQuery.matches) {
-              systemCards.forEach((card) => card.classList.remove("is-mobile-active"));
-            } else {
-              setSystemCard(systemCardIndex);
-            }
-          });
-        }
       }
     </script>
   </body>

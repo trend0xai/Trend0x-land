@@ -1660,11 +1660,11 @@ html.is-chrome-like .liquid-refraction{
   .system-grid{
     grid-template-columns:1fr
   }
-  .system-grid .arch-card:first-child{
+  .system-grid .arch-card{
     min-height:124px
   }
   .system-grid .arch-card:not(:first-child){
-    min-height:0;width:100%;margin-left:0
+    min-height:124px;width:100%;margin-left:0
   }
   .system-grid .arch-card:last-child{grid-column:auto}
   .trust-grid{

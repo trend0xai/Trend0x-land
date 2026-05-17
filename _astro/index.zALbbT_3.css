@@ -1406,21 +1406,49 @@ html.is-chrome-like .liquid-refraction{
     margin-left:10%
   }
   .system-grid{
-    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;
-    padding-bottom:6px;margin:0 -4px;padding-inline:4px
+    display:flex;align-items:stretch;gap:12px;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    overscroll-behavior-x:contain;overscroll-behavior-y:none;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x pinch-zoom;
+    padding-bottom:8px;margin:0 -4px;padding-inline:4px
   }
+  .system-grid::-webkit-scrollbar,.agent-capsules::-webkit-scrollbar,.decision-flow::-webkit-scrollbar,.live-status::-webkit-scrollbar{display:none}
+  .system-grid,.agent-capsules,.decision-flow,.live-status{scrollbar-width:none}
   .system-grid:before{display:none}
   .system-grid .arch-card{
-    flex:0 0 78%;scroll-snap-align:start;padding:18px 18px 16px;min-height:148px
+    flex:0 0 78%;scroll-snap-align:start;
+    padding:18px 18px 16px;min-height:148px;height:148px;
+    display:flex;flex-direction:column;justify-content:flex-start;
+    transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease,background .35s ease
   }
   .system-grid .arch-card:first-child{
     flex-basis:88%;border-color:rgba(129,171,151,.24);
     background:linear-gradient(180deg,rgba(16,27,35,.98),rgba(11,18,29,.98))
   }
+  .system-grid .arch-card:before{
+    transform:scaleX(.22);transform-origin:left center;opacity:.72;
+    transition:transform 3.9s linear,opacity .3s ease,background .3s ease
+  }
+  .system-grid .arch-card.is-mobile-active{
+    border-color:rgba(129,171,151,.28);
+    background:linear-gradient(180deg,rgba(18,30,40,.98),rgba(11,18,29,.98));
+    box-shadow:0 18px 44px rgba(0,0,0,.22),0 0 0 1px rgba(120,191,147,.08)
+  }
+  .system-grid .arch-card.is-mobile-active:before{
+    transform:scaleX(1);opacity:1;
+    background:linear-gradient(90deg,rgba(113,200,143,.9),rgba(149,226,178,.6),transparent 92%)
+  }
   .system-grid .arch-card h3{font-size:20px}
-  .system-grid .arch-card p{font-size:14px;line-height:1.55}
+  .system-grid .arch-card p{
+    font-size:14px;line-height:1.55;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden
+  }
   .agent-capsules{
-    justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;
+    justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+    overscroll-behavior-x:contain;overscroll-behavior-y:none;
+    -webkit-overflow-scrolling:touch;touch-action:pan-x pinch-zoom;
     padding-bottom:4px;margin-top:16px
   }
   .agent-capsules span{
@@ -1435,8 +1463,9 @@ html.is-chrome-like .liquid-refraction{
   .trust-grid .surface-card h3{font-size:16px;line-height:1.12}
   .trust-grid .surface-card p{font-size:13px;line-height:1.5}
   .decision-flow{
-    flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;
-    -webkit-overflow-scrolling:touch
+    flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;padding-bottom:4px;
+    overscroll-behavior-x:contain;overscroll-behavior-y:none;
+    -webkit-overflow-scrolling:touch;touch-action:pan-x pinch-zoom
   }
   .flow-step{
     flex:0 0 auto;min-width:max-content;padding:13px 16px
@@ -1445,7 +1474,9 @@ html.is-chrome-like .liquid-refraction{
     flex:0 0 20px
   }
   .live-status{
-    display:flex;gap:10px;overflow-x:auto;padding:18px 18px 16px;
+    display:flex;align-items:stretch;gap:10px;overflow-x:auto;overflow-y:hidden;padding:18px 18px 16px;
+    overscroll-behavior-x:contain;overscroll-behavior-y:none;
+    -webkit-overflow-scrolling:touch;touch-action:pan-x pinch-zoom;
     background:
       radial-gradient(circle at 14% 18%,rgba(113,200,143,.07),transparent 26%),
       linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.01))
@@ -1546,7 +1577,7 @@ html.is-chrome-like .liquid-refraction{
   .node-perception,.node-execution{margin-right:6%}
   .node-reasoning,.node-learning{margin-left:6%}
   .system-grid .arch-card{
-    flex-basis:84%;padding:16px 16px 15px;min-height:132px
+    flex-basis:84%;padding:16px 16px 15px;min-height:132px;height:132px
   }
   .system-grid .arch-card:first-child{flex-basis:90%}
   .agent-capsules{
@@ -1637,7 +1668,7 @@ html.is-chrome-like .liquid-refraction{
   .aura-node h3{font-size:14px}
   .aura-node p{font-size:11px}
   .system-grid .arch-card{
-    flex-basis:88%;min-height:126px
+    flex-basis:88%;min-height:126px;height:126px
   }
   .system-grid .arch-card:first-child{flex-basis:94%}
   .trust-grid{

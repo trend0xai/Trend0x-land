@@ -138,6 +138,7 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .hero-lead{
   margin-top:22px;max-width:760px;font-size:22px;line-height:1.55
 }
+.hero-lead-mobile{display:none}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .hero-pills span,.vision-points span{
@@ -1390,28 +1391,53 @@ html.is-chrome-like .liquid-refraction{
 }
 @media (max-width: 680px){
   .site-shell{padding:0 16px}
-  .nav-shell{min-height:76px}
-  .button{min-height:48px;padding:0 18px}
+  .nav-shell{min-height:70px}
+  .site-header{border-bottom-color:rgba(129,171,151,.06)}
+  .brand-logo{height:34px}
+  .nav-toggle{
+    padding:8px 12px;border-radius:13px;font-size:14px
+  }
+  .button{min-height:46px;padding:0 17px}
   .hero-actions{width:100%}
   .hero-actions .button{width:100%}
+  .hero-actions .button.button-primary{
+    min-height:44px;padding:0 16px;
+    box-shadow:0 0 0 1px rgba(160,230,180,.1),0 8px 22px rgba(70,151,101,.16)
+  }
+  .hero-actions .button.button-primary:hover,
+  .hero-actions .button.button-primary:focus-visible{
+    box-shadow:0 0 0 1px rgba(160,230,180,.14),0 10px 24px rgba(70,151,101,.2)
+  }
   .hero-pills span{padding:10px 13px;font-size:13px}
-  .hero-orbit,.orbit-field{min-height:420px}
+  .hero-section{padding:4px 0 28px}
+  .hero-grid{gap:20px}
+  .hero-orbit,.orbit-field{min-height:388px}
   .orbit-grid{inset:10% 2% 4%}
-  .orbit-wave-1{width:150px;height:150px}
-  .orbit-wave-2{width:232px;height:232px}
-  .orbit-wave-3{width:332px;height:332px}
-  .orbit-wave-4{width:430px;height:430px}
-  .core-orb{width:206px;height:206px}
-  .core-label{font-size:22px}
-  .signal-card{min-width:126px;padding:11px 12px;border-radius:16px}
-  .signal-card small{margin-bottom:6px;font-size:10px}
-  .signal-card strong{font-size:14px}
-  .card-live{top:82px;left:6px}
-  .card-xai{top:96px;right:8px}
-  .card-risk{left:16px;bottom:108px}
-  .card-agent{right:16px;bottom:88px}
-  .card-data{right:8px}
+  .orbit-wave-1{width:142px;height:142px}
+  .orbit-wave-2{width:220px;height:220px}
+  .orbit-wave-3{width:312px;height:312px}
+  .orbit-wave-4{width:396px;height:396px}
+  .core-orb{width:194px;height:194px}
+  .core-label{font-size:21px}
+  .signal-card{min-width:112px;padding:9px 10px;border-radius:15px}
+  .signal-card small{margin-bottom:5px;font-size:9px}
+  .signal-card strong{font-size:12px}
+  .card-live{top:86px;left:12px}
+  .card-risk{left:18px;bottom:94px}
+  .card-xai,.card-agent{
+    opacity:.34;transform:scale(.92)
+  }
+  .card-xai{top:96px;right:14px}
+  .card-agent{right:18px;bottom:80px}
+  .card-data{
+    right:12px;opacity:.2;transform:translateY(-50%) scale(.88)
+  }
   .aura-system-copy p,.hero-lead{font-size:17px}
+  .hero-lead{margin-top:18px;max-width:30ch;line-height:1.48}
+  .hero-lead-desktop{display:none}
+  .hero-lead-mobile{display:inline}
+  .hero-copy .eyebrow{margin-bottom:14px}
+  .hero-copy h1{max-width:10ch}
   .trust-statement{padding:24px 22px 26px}
   .final-cta-card{
     flex-direction:column;align-items:stretch;gap:18px;
@@ -1441,24 +1467,26 @@ html.is-chrome-like .liquid-refraction{
 @media (max-width: 520px){
   h1{font-size:clamp(36px,14vw,54px);line-height:.98}
   h2{font-size:clamp(26px,10vw,38px)}
-  .hero-section{padding:8px 0 34px}
+  .hero-section{padding:0 0 26px}
   .eyebrow{padding:9px 12px;font-size:11px;letter-spacing:.13em}
   .hero-lead,.section-heading p,.vision-card p{font-size:16px}
-  .hero-orbit,.orbit-field{min-height:376px}
-  .orbit-wave-1{width:132px;height:132px}
-  .orbit-wave-2{width:202px;height:202px}
-  .orbit-wave-3{width:286px;height:286px}
-  .orbit-wave-4{width:372px;height:372px}
-  .core-orb{width:180px;height:180px}
-  .core-label{font-size:19px;letter-spacing:.1em}
-  .signal-card{min-width:114px;padding:10px 11px}
-  .signal-card strong{font-size:13px}
+  .hero-grid{gap:18px}
+  .hero-orbit,.orbit-field{min-height:352px}
+  .orbit-wave-1{width:124px;height:124px}
+  .orbit-wave-2{width:190px;height:190px}
+  .orbit-wave-3{width:266px;height:266px}
+  .orbit-wave-4{width:344px;height:344px}
+  .core-orb{width:170px;height:170px}
+  .core-label{font-size:18px;letter-spacing:.08em}
+  .signal-card{min-width:102px;padding:8px 10px}
+  .signal-card strong{font-size:12px}
   .signal-card small{font-size:9px}
-  .card-live{top:70px}
-  .card-xai{top:78px}
-  .card-risk{bottom:92px}
-  .card-agent{bottom:76px}
+  .card-live{top:74px;left:10px}
+  .card-risk{left:12px;bottom:78px}
+  .card-xai{top:84px;right:10px}
+  .card-agent{right:14px;bottom:66px}
   .card-data{display:none}
+  .hero-lead{margin-top:16px;max-width:24ch;font-size:15px}
   .operator-row{padding:16px}
   .operator-row h3{font-size:18px}
   .operator-row p{font-size:14px}

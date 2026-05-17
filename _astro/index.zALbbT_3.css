@@ -1406,29 +1406,28 @@ html.is-chrome-like .liquid-refraction{
     margin-left:10%
   }
   .system-grid{
-    display:grid;grid-template-columns:1fr;gap:10px;position:relative;
-    width:100%;max-width:100%;overflow:visible
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;position:relative;
+    width:100%;max-width:100%;overflow:hidden
   }
   .system-grid::-webkit-scrollbar,.agent-capsules::-webkit-scrollbar,.decision-flow::-webkit-scrollbar,.live-status::-webkit-scrollbar{display:none}
   .system-grid,.agent-capsules,.decision-flow,.live-status{scrollbar-width:none}
-  .system-grid:before{
-    display:block;left:28px;right:auto;top:96px;bottom:26px;width:1px;height:auto;
-    background:linear-gradient(180deg,rgba(129,171,151,.22),rgba(129,171,151,.06))
-  }
+  .system-grid:before{display:none}
   .system-grid .arch-card{
     width:100%;max-width:100%;box-sizing:border-box;
-    min-height:auto;padding:16px 16px 15px;
+    min-height:112px;padding:16px 16px 15px;
     transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease,background .3s ease
   }
   .system-grid .arch-card:first-child{
+    grid-column:1/-1;
     padding:20px 18px 18px;min-height:148px;
     border-color:rgba(129,171,151,.24);
     background:linear-gradient(180deg,rgba(16,27,35,.98),rgba(11,18,29,.98))
   }
   .system-grid .arch-card:not(:first-child){
-    width:calc(100% - 28px);margin-left:28px;padding-left:18px;
+    width:100%;margin-left:0;padding-left:16px;
     background:linear-gradient(180deg,rgba(12,20,31,.92),rgba(9,15,24,.96))
   }
+  .system-grid .arch-card:last-child{grid-column:1/-1}
   .system-grid .arch-card h3{font-size:18px}
   .system-grid .arch-card p{font-size:14px;line-height:1.55}
   .agent-capsules{
@@ -1562,7 +1561,6 @@ html.is-chrome-like .liquid-refraction{
   .aura-node p{font-size:12px;line-height:1.4}
   .node-perception,.node-execution{margin-right:6%}
   .node-reasoning,.node-learning{margin-left:6%}
-  .system-grid:before{left:22px;top:88px;bottom:22px}
   .system-grid .arch-card{
     padding:15px 15px 14px
   }
@@ -1570,7 +1568,7 @@ html.is-chrome-like .liquid-refraction{
     min-height:136px
   }
   .system-grid .arch-card:not(:first-child){
-    width:calc(100% - 22px);margin-left:22px
+    min-height:104px;width:100%;margin-left:0
   }
   .agent-capsules{
     gap:10px;margin-top:14px
@@ -1659,13 +1657,16 @@ html.is-chrome-like .liquid-refraction{
   }
   .aura-node h3{font-size:14px}
   .aura-node p{font-size:11px}
-  .system-grid:before{left:18px;top:82px;bottom:18px}
+  .system-grid{
+    grid-template-columns:1fr
+  }
   .system-grid .arch-card:first-child{
     min-height:124px
   }
   .system-grid .arch-card:not(:first-child){
-    width:calc(100% - 18px);margin-left:18px
+    min-height:0;width:100%;margin-left:0
   }
+  .system-grid .arch-card:last-child{grid-column:auto}
   .trust-grid{
     grid-template-columns:1fr 1fr
   }

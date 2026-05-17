@@ -103,7 +103,7 @@
               into one AI-native operating system for modern trading workflows.
             </p>
             <div class="hero-actions">
-              <a href="https://demo.trend0x.com/" target="_blank" rel="noopener noreferrer" class="button button-primary">Launch Autonomous Terminal</a>
+              <a href="https://demo.trend0x.com/" target="_blank" rel="noopener noreferrer" class="button button-primary">Open Autonomous Terminal</a>
             </div>
             <div class="hero-pills">
               <span>Explainable AI</span>
@@ -193,7 +193,7 @@
             <h2>AURA interprets markets. Not just signals.</h2>
             <p>
               The cognitive core of Trend0x — built to read market context, reason across signals,
-              coordinate execution, and learn from outcomes.
+              coordinate governed execution, and learn from outcomes.
             </p>
           </div>
           <div class="aura-system-panel">
@@ -316,25 +316,25 @@
             </div>
             <div class="infra-logs live-logs" data-live-feed>
               <div class="log-row" data-live-log-row data-live-kind="execution">
-                <span data-live-time>[ 19:13:49 ]</span><span class="log-pill" data-live-type>Execution</span><p data-live-message>Latency spike detected. Switching to fallback feed.</p>
+                <span data-live-time>[ 19:13:49 ]</span><span class="log-pill" data-live-type>Execution</span><p data-live-message>Fallback execution route selected due to spread widening.</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="success">
-                <span data-live-time>[ 19:13:57 ]</span><span class="log-pill" data-live-type>Success</span><p data-live-message>Scanning ZRC-USDT...</p>
+              <div class="log-row" data-live-log-row data-live-kind="warning">
+                <span data-live-time>[ 19:13:57 ]</span><span class="log-pill" data-live-type>Warning</span><p data-live-message>Execution confidence below threshold. Trade blocked.</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="scan">
-                <span data-live-time>[ 19:14:03 ]</span><span class="log-pill" data-live-type>Scan</span><p data-live-message>Scanning HBAR-USDT...</p>
+              <div class="log-row" data-live-log-row data-live-kind="system">
+                <span data-live-time>[ 19:14:03 ]</span><span class="log-pill" data-live-type>System</span><p data-live-message>Market perception layer resynchronized.</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="error">
-                <span data-live-time>[ 19:14:11 ]</span><span class="log-pill" data-live-type>Error</span><p data-live-message>Stop loss: DOGE-USDT hit SL. Limit order sent at 0.1261</p>
+              <div class="log-row" data-live-log-row data-live-kind="risk">
+                <span data-live-time>[ 19:14:11 ]</span><span class="log-pill" data-live-type>Risk</span><p data-live-message>Risk Governor reduced exposure on SOL-USDT.</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="success">
-                <span data-live-time>[ 19:14:17 ]</span><span class="log-pill" data-live-type>Success</span><p data-live-message>Close confirmed (system): DOGE-USDT</p>
+              <div class="log-row" data-live-log-row data-live-kind="context">
+                <span data-live-time>[ 19:14:17 ]</span><span class="log-pill" data-live-type>Context</span><p data-live-message>Liquidity imbalance detected on BTC-USDT.</p>
               </div>
               <div class="log-row" data-live-log-row data-live-kind="info">
-                <span data-live-time>[ 19:14:24 ]</span><span class="log-pill" data-live-type>Info</span><p data-live-message>Latency spike detected. Switching to fallback feed.</p>
+                <span data-live-time>[ 19:14:24 ]</span><span class="log-pill" data-live-type>Info</span><p data-live-message>Agent coordination updated across active pairs.</p>
               </div>
-              <div class="log-row" data-live-log-row data-live-kind="execution">
-                <span data-live-time>[ 19:14:30 ]</span><span class="log-pill" data-live-type>Execution</span><p data-live-message>Scanning HBAR-USDT...</p>
+              <div class="log-row" data-live-log-row data-live-kind="success">
+                <span data-live-time>[ 19:14:30 ]</span><span class="log-pill" data-live-type>Success</span><p data-live-message>Strategy review completed: drawdown within limits.</p>
               </div>
               <div class="log-row log-row-tail" data-live-log-tail data-live-kind="tail">
                 <span data-live-time>[...]</span><span class="log-pill" data-live-type>...</span><p data-live-message>...</p>
@@ -607,30 +607,30 @@
         ];
 
         const liveFeedPool = [
-          { type: "Execution", message: "Latency spike detected. Switching to fallback feed." },
-          { type: "Success", message: "Scanning ZRC-USDT..." },
-          { type: "Scan", message: "Scanning HBAR-USDT..." },
-          { type: "Error", message: "Stop loss: DOGE-USDT hit SL. Limit order sent at 0.1261" },
-          { type: "Success", message: "Close confirmed (system): DOGE-USDT" },
-          { type: "Info", message: "Latency spike detected. Switching to fallback feed." },
-          { type: "Execution", message: "Scanning HBAR-USDT..." },
-          { type: "Scan", message: "Scanning SOL-USDT..." },
-          { type: "Success", message: "Scanning SOL-USDT..." },
-          { type: "Execution", message: "Close confirmed (system): DOGE-USDT" },
-          { type: "Info", message: "Scanning ZRC-USDT..." },
-          { type: "Scan", message: "Scanning DOGE-USDT..." },
-          { type: "Warning", message: "Latency spike detected. Switching to fallback feed." },
-          { type: "Execution", message: "Close confirmed (system): TRX-USDT" },
-          { type: "Success", message: "Execution route confirmed: BTC-USDT" },
-          { type: "Info", message: "Scanning XRP-USDT..." },
-          { type: "Scan", message: "Scanning ADA-USDT..." },
-          { type: "Error", message: "Stop loss: TRX-USDT hit SL. Limit order sent at 0.2893" },
-          { type: "Execution", message: "Scanning SOL-USDT..." },
-          { type: "Success", message: "Close confirmed (system): HBAR-USDT" },
-          { type: "Info", message: "Market feed resynchronized across active pairs." },
-          { type: "Warning", message: "Spread widened on SOL-USDT. Routing through fallback book." },
-          { type: "Scan", message: "Scanning ZRC-USDT..." },
-          { type: "Execution", message: "Trailing stop adjusted: BTC-USDT" },
+          { type: "Execution", message: "Fallback execution route selected due to spread widening." },
+          { type: "Context", message: "Regime shift detected: volatility expansion." },
+          { type: "Risk", message: "Risk Governor reduced exposure on SOL-USDT." },
+          { type: "Context", message: "Liquidity imbalance detected on BTC-USDT." },
+          { type: "Warning", message: "Execution confidence below threshold. Trade blocked." },
+          { type: "Success", message: "Strategy review completed: drawdown within limits." },
+          { type: "System", message: "Market perception layer resynchronized." },
+          { type: "Info", message: "Agent coordination updated across active pairs." },
+          { type: "Execution", message: "Governed execution route prepared for current regime." },
+          { type: "Risk", message: "Volatility-aware sizing parameters updated." },
+          { type: "Context", message: "Cross-market liquidity map recalibrated." },
+          { type: "System", message: "Operational state normalized across active modules." },
+          { type: "Warning", message: "Spread widening detected on ETH-USDT. Fallback routing engaged." },
+          { type: "Execution", message: "Trade path queued through governance layer." },
+          { type: "Info", message: "Decision layer synchronized with updated market context." },
+          { type: "Success", message: "Strategy review completed: exposure remains within limits." },
+          { type: "Risk", message: "Risk Governor tightened exposure on BTC-USDT." },
+          { type: "System", message: "Agent coordination updated across monitored instruments." },
+          { type: "Context", message: "Regime transition probability increased across active watchlists." },
+          { type: "Execution", message: "Execution confidence recovered. Route re-enabled." },
+          { type: "Info", message: "Market perception layer resynchronized." },
+          { type: "Warning", message: "Execution confidence below threshold. Trade blocked." },
+          { type: "Context", message: "Liquidity imbalance detected on SOL-USDT." },
+          { type: "Success", message: "Strategy review completed: drawdown within limits." },
         ];
 
         const timeFormatter = new Intl.DateTimeFormat("en-GB", {

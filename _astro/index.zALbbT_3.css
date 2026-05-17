@@ -871,6 +871,15 @@ h3{font-size:24px;line-height:1.1;font-weight:750}
 .log-row p{
   color:rgba(228,234,231,.62);line-height:1.4;font-size:15px
 }
+.log-row[data-live-kind="context"] .log-pill{
+  background:rgba(77,124,169,.12);border-color:rgba(119,159,200,.14);color:#c8daf1
+}
+.log-row[data-live-kind="risk"] .log-pill{
+  background:rgba(168,136,82,.14);border-color:rgba(186,149,92,.16);color:#efd8ab
+}
+.log-row[data-live-kind="system"] .log-pill{
+  background:rgba(115,133,156,.13);border-color:rgba(140,157,182,.14);color:#d9e1eb
+}
 .log-row[data-live-kind="execution"] .log-pill{
   background:rgba(112,116,136,.16);border-color:rgba(144,147,168,.12);color:#e6e8f1
 }

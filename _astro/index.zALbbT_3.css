@@ -1348,7 +1348,7 @@ html.is-chrome-like .liquid-refraction{
   h2{font-size:clamp(28px,9vw,44px)}
   .hero-lead,.section-heading p,.vision-card p{font-size:18px}
   .section-heading{margin-bottom:30px}
-  .problem-grid,.compare-grid,.risk-grid,.agent-grid,.audience-grid,.architecture-grid,.aura-capabilities,.system-grid,.trust-grid,.built-for-grid,.compact-problem-grid{grid-template-columns:1fr}
+  .problem-grid,.compare-grid,.risk-grid,.agent-grid,.audience-grid,.architecture-grid,.aura-capabilities,.built-for-grid{grid-template-columns:1fr}
   .operator-access{padding:20px;border-radius:24px}
   .operator-access-head{align-items:flex-start}
   .operator-row{grid-template-columns:28px 1fr;gap:14px;padding:18px}
@@ -1358,17 +1358,104 @@ html.is-chrome-like .liquid-refraction{
   .hero-orbit,.orbit-field{min-height:470px}
   .surface-card,.arch-card,.aura-system-copy,.aura-system-map,.live-panel,.final-cta-card,.trust-statement{border-radius:22px}
   .surface-card,.arch-card{padding:22px}
-  .aura-system-map{min-height:520px;padding:22px}
-  .node-perception,.node-reasoning,.node-execution,.node-learning{
-    position:relative;left:auto;right:auto;top:auto;bottom:auto;max-width:none
+  .compact-problem-grid{gap:12px}
+  .compact-problem-grid .surface-card{
+    padding:18px 18px 16px;min-height:auto
   }
-  .aura-system-map{display:grid;gap:14px}
-  .aura-beam{display:none}
+  .compact-problem-grid .surface-card:first-child{
+    padding:22px 20px 20px
+  }
+  .compact-problem-grid .surface-card:nth-child(2){
+    width:94%;margin-left:auto
+  }
+  .compact-problem-grid .surface-card:nth-child(3){
+    width:90%
+  }
+  .aura-system-panel{grid-template-columns:1fr;gap:14px}
+  .aura-system-copy{padding:22px 20px}
+  .aura-system-title{margin-top:14px;font-size:36px}
+  .aura-system-copy p{margin-top:14px;font-size:16px}
+  .aura-system-map{
+    min-height:auto;padding:18px;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+    background:
+      radial-gradient(circle at 50% 42%,rgba(113,200,143,.12),transparent 30%),
+      linear-gradient(180deg,rgba(13,22,36,.95),rgba(10,17,27,.98))
+  }
+  .aura-system-map:before{inset:14px;border-radius:18px}
+  .aura-beam{
+    display:block;left:50%;top:50%;width:120px;height:120px;
+    background:radial-gradient(circle,rgba(116,211,147,.14),rgba(116,211,147,.04) 50%,transparent 76%);
+    opacity:.52
+  }
+  .aura-beam:before{width:220px;height:1px;opacity:.6}
+  .aura-beam:after{width:1px;height:180px;opacity:.55}
+  .node-perception,.node-reasoning,.node-execution,.node-learning{
+    position:relative;left:auto;right:auto;top:auto;bottom:auto;max-width:none;
+    padding:14px 14px 13px;border-radius:18px
+  }
+  .aura-node{
+    min-height:120px;box-shadow:0 14px 28px rgba(0,0,0,.16)
+  }
+  .aura-node h3{font-size:16px;line-height:1.12}
+  .aura-node p{margin-top:6px;font-size:13px;line-height:1.45}
+  .node-perception,.node-execution{
+    margin-right:10%
+  }
+  .node-reasoning,.node-learning{
+    margin-left:10%
+  }
+  .system-grid{
+    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;
+    padding-bottom:6px;margin:0 -4px;padding-inline:4px
+  }
+  .system-grid:before{display:none}
+  .system-grid .arch-card{
+    flex:0 0 78%;scroll-snap-align:start;padding:18px 18px 16px;min-height:148px
+  }
+  .system-grid .arch-card:first-child{
+    flex-basis:88%;border-color:rgba(129,171,151,.24);
+    background:linear-gradient(180deg,rgba(16,27,35,.98),rgba(11,18,29,.98))
+  }
+  .system-grid .arch-card h3{font-size:20px}
+  .system-grid .arch-card p{font-size:14px;line-height:1.55}
+  .agent-capsules{
+    justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;
+    padding-bottom:4px;margin-top:16px
+  }
+  .agent-capsules span{
+    flex:0 0 auto;white-space:nowrap
+  }
+  .trust-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));gap:10px
+  }
+  .trust-grid .surface-card{
+    padding:16px 16px 14px;min-height:auto
+  }
+  .trust-grid .surface-card h3{font-size:16px;line-height:1.12}
+  .trust-grid .surface-card p{font-size:13px;line-height:1.5}
+  .decision-flow{
+    flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;
+    -webkit-overflow-scrolling:touch
+  }
+  .flow-step{
+    flex:0 0 auto;min-width:max-content;padding:13px 16px
+  }
+  .flow-arrow{
+    flex:0 0 20px
+  }
+  .live-status{
+    display:flex;gap:10px;overflow-x:auto;padding:18px 18px 16px;
+    background:
+      radial-gradient(circle at 14% 18%,rgba(113,200,143,.07),transparent 26%),
+      linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.01))
+  }
+  .live-status span{
+    flex:0 0 auto;min-width:220px;padding:12px 14px
+  }
   .system-grid:before,.section:before{display:none}
   body:before,body:after,.aura-system-map:after{animation:none}
   .aura-node{animation:nodePulse 16s ease-in-out infinite}
-  .decision-flow{gap:8px}
-  .flow-arrow{width:16px}
   .card-live{left:20px}
   .card-xai{right:18px}
   .card-risk{left:24px}
@@ -1439,6 +1526,43 @@ html.is-chrome-like .liquid-refraction{
   .hero-copy .eyebrow{margin-bottom:14px}
   .hero-copy h1{max-width:10ch}
   .trust-statement{padding:24px 22px 26px}
+  .section-heading{margin-bottom:24px}
+  .section-heading h2{font-size:clamp(26px,8vw,38px)}
+  .compact-problem-grid .surface-card:nth-child(2){width:96%}
+  .compact-problem-grid .surface-card:nth-child(3){width:92%}
+  .aura-system-panel{gap:12px}
+  .aura-system-copy{
+    padding:20px 18px
+  }
+  .aura-system-title{font-size:32px}
+  .aura-system-map{
+    grid-template-columns:1fr 1fr;gap:10px;padding:14px
+  }
+  .aura-node{
+    min-height:104px;padding:12px 12px 11px
+  }
+  .aura-node h3{font-size:15px}
+  .aura-node p{font-size:12px;line-height:1.4}
+  .node-perception,.node-execution{margin-right:6%}
+  .node-reasoning,.node-learning{margin-left:6%}
+  .system-grid .arch-card{
+    flex-basis:84%;padding:16px 16px 15px;min-height:132px
+  }
+  .system-grid .arch-card:first-child{flex-basis:90%}
+  .agent-capsules{
+    gap:10px;margin-top:14px
+  }
+  .agent-capsules span{
+    padding:10px 13px;font-size:13px
+  }
+  .trust-grid{
+    gap:8px
+  }
+  .trust-grid .surface-card{
+    padding:14px 14px 13px
+  }
+  .trust-grid .surface-card h3{font-size:15px}
+  .trust-grid .surface-card p{font-size:12px}
   .final-cta-card{
     flex-direction:column;align-items:stretch;gap:18px;
     padding:26px 22px
@@ -1453,11 +1577,16 @@ html.is-chrome-like .liquid-refraction{
   .final-cta-actions .button{
     width:100%;min-width:0
   }
-  .decision-flow{gap:10px}
-  .flow-step{width:100%;justify-content:flex-start}
-  .flow-arrow{display:none}
-  .live-status span{padding:12px 14px}
-  .live-status b{font-size:14px}
+  .decision-flow{gap:8px}
+  .flow-step{
+    width:auto;justify-content:center;min-width:max-content;padding:12px 14px
+  }
+  .flow-arrow{display:block}
+  .live-status{
+    gap:8px;padding:14px 14px 12px
+  }
+  .live-status span{padding:11px 13px;min-width:188px}
+  .live-status b{font-size:13px}
   .live-logs{height:540px;min-height:540px;max-height:540px}
   .log-row{gap:10px;padding:14px 0}
   .log-pill{min-height:36px;padding:0 14px;font-size:12px;justify-self:start}
@@ -1487,6 +1616,48 @@ html.is-chrome-like .liquid-refraction{
   .card-agent{right:14px;bottom:66px}
   .card-data{display:none}
   .hero-lead{margin-top:16px;max-width:24ch;font-size:15px}
+  .compact-problem-grid{gap:10px}
+  .compact-problem-grid .surface-card:first-child{
+    padding:18px 16px 17px
+  }
+  .compact-problem-grid .surface-card:nth-child(2){width:100%}
+  .compact-problem-grid .surface-card:nth-child(3){width:94%}
+  .aura-system-map{
+    grid-template-columns:1fr 1fr;gap:8px;padding:12px
+  }
+  .aura-system-map:before{inset:10px}
+  .aura-beam{
+    width:100px;height:100px
+  }
+  .aura-beam:before{width:180px}
+  .aura-beam:after{height:150px}
+  .aura-node{
+    min-height:96px;padding:11px 11px 10px;border-radius:16px
+  }
+  .aura-node h3{font-size:14px}
+  .aura-node p{font-size:11px}
+  .system-grid .arch-card{
+    flex-basis:88%;min-height:126px
+  }
+  .system-grid .arch-card:first-child{flex-basis:94%}
+  .trust-grid{
+    grid-template-columns:1fr 1fr
+  }
+  .trust-grid .surface-card{
+    padding:13px 12px 12px
+  }
+  .flow-step{
+    padding:11px 13px;font-size:13px
+  }
+  .flow-arrow{
+    flex-basis:16px;width:16px
+  }
+  .live-status{
+    padding:12px 12px 10px
+  }
+  .live-status span{
+    min-width:172px;padding:10px 12px
+  }
   .operator-row{padding:16px}
   .operator-row h3{font-size:18px}
   .operator-row p{font-size:14px}

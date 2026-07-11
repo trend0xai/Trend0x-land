@@ -1661,7 +1661,15 @@ html.is-chrome-like .liquid-refraction{
     grid-template-columns:1fr
   }
   .system-grid .arch-card{
-    min-height:124px
+    min-height:124px;
+    padding:15px 15px 14px
+  }
+  .system-grid .arch-card:first-child{
+    grid-column:auto;
+    min-height:124px;
+    padding:15px 15px 14px;
+    border-color:rgba(129,171,151,.16);
+    background:linear-gradient(180deg,rgba(12,20,31,.92),rgba(9,15,24,.96))
   }
   .system-grid .arch-card:not(:first-child){
     min-height:124px;width:100%;margin-left:0
